@@ -16,6 +16,8 @@ namespace Core
 {
 	namespace Math
 	{
+		union Quaternion;
+
 		union vec2
 		{
 			float	e[2];
@@ -31,7 +33,9 @@ namespace Core
 			struct	{ float i; float j; float k; };
 			vec2	xy;
 
-			void	print();
+			//get vector's quaternion
+			Quaternion	q();
+			void		print();
 		};
 
 		union vec4
@@ -45,6 +49,14 @@ namespace Core
 			void	print();
 		};
 
+		union mat3
+		{
+			vec3	c[3];
+			float	e[9];
+
+			void	print();
+		};
+
 		union mat4
 		{
 			vec4	c[4];
@@ -53,12 +65,19 @@ namespace Core
 			void	print();
 		};
 
+		mat3	identity3();
+		mat4	identity4();
+
 		float	min(const float& a, const float& b);
 		float	max(const float& a, const float& b);
 		void	clamp(float& value, const float& mini, const float& maxi);
 
+		float	dotProduct(vec3 a, vec3 b);
+		vec3	crossProduct(vec3 a, vec3 b);
+
 		mat4	translateMatrix(const vec3& pos);
 
+		//euler rotation
 		mat4	rotateXMatrix(const float& pitch);		//angle in rad
 		mat4	rotateYMatrix(const float& yaw);		//angle in rad
 		mat4	rotateZMatrix(const float& roll);		//angle in rad
