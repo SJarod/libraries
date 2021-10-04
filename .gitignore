@@ -1,0 +1,14 @@
+#visual studio
+.vs
+
+#compilation files
+x64
+libraries/x64
+
+#git merge original files
+*.orig
+
+#archives
+*.zip
+*.rar
+*.7z
