@@ -6,61 +6,24 @@ namespace Core
 {
 	namespace Math
 	{
-		namespace Complex
-		{
-			struct k;
-			struct j;
-
-			struct i
-			{
-				float	scalar;
-
-				float	operator*(i i);	//i * i = -1
-				k		operator*(j j);	//i * j = k
-				j		operator*(k k);	//i * k = -j
-
-				void	print();
-			};
-
-			struct j
-			{
-				float	scalar;
-
-				k		operator*(i i);	//j * i = -k
-				float	operator*(j j);	//j * j = -1
-				i		operator*(k k);	//j * k = i
-
-				void	print();
-			};
-
-			struct k
-			{
-				float	scalar;
-
-				j		operator*(i i);	//k * i = j
-				i		operator*(j j);	//k * j = -i
-				float	operator*(k k);	//k * k = -1
-
-				void	print();
-			};
-		}
-
 		union Quaternion
 		{
-			struct	{ float a; Complex::i i; Complex::j j; Complex::k k; };
+			struct	{ float a; float i; float j; float k; };
 			vec4	v4;	//show quaternion as a vec4
 
 			Quaternion() = default;
-			//scalar, vector
-			//scalar is angle in rad
-			Quaternion(float a, vec3 v);
+			Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
+			Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
 
-			Quaternion conjugate();
-			Quaternion operator*(Quaternion q);
+			Quaternion conjugate() const;
+
+			Quaternion operator*(const Quaternion& q) const;
 		};
 
 		//quaternion rotation
-		vec3 rotateQ(vec3 a, Quaternion q);
+		//angle in degrees
+		vec3 rotateQ(const vec3& v, const float& angle, const vec3& axis);
+		vec3 rotateQ(const vec3& v, const Quaternion& q);
 	}
 }
 

@@ -2,94 +2,58 @@
 
 #include <iostream>
 
-Core::Math::Quaternion::Quaternion(float a, vec3 v)
+Core::Math::Quaternion::Quaternion(const float& a, const float& i, const float& j, const float& k)
 {
 	this->a = a;
-	this->i.scalar = v.i;
-	this->j.scalar = v.j;
-	this->k.scalar = v.k;
+	this->i = i;
+	this->j = j;
+	this->k = k;
 }
 
-Quaternion Core::Math::Quaternion::conjugate()
+Core::Math::Quaternion::Quaternion(const float& angle, const vec3& v)
 {
-	vec3 v = { v4.y, v4.z, v4.w };
-	Quaternion qb(a, -v);
+	float a = angle * TORAD;
+
+	//real part
+	this->a = cosf(a / 2);
+
+	//imaginary part
+	float im = sinf(a / 2);
+	vec3 axis = v.normalized();
+	this->i = im * axis.i;
+	this->j = im * axis.j;
+	this->k = im * axis.k;
+}
+
+Quaternion Core::Math::Quaternion::conjugate() const
+{
+	Quaternion qb = { a, -i, -j, -k };
 	return qb;
 }
 
-Quaternion Core::Math::Quaternion::operator*(Quaternion q)
+Quaternion Core::Math::Quaternion::operator*(const Quaternion& q) const
 {
 	Quaternion qr;	//result
+	qr.a = a * q.a - i * q.i - j * q.j - k * q.k;
+	qr.i = a * q.i + i * q.a + j * q.k - k * q.j;
+	qr.j = a * q.j - i * q.k + j * q.a + k * q.i;
+	qr.k = a * q.k + i * q.j - j * q.i + k * q.a;
 	return qr;
 }
 
-vec3 Core::Math::rotateQ(vec3 a, Quaternion q)
+vec3 Core::Math::rotateQ(const vec3& v, const float& angle, const vec3& axis)
 {
-	return vec3();
+	Quaternion q(angle, axis);
+	Quaternion qb = q.conjugate();
+	Quaternion qv = v.q();
+
+	Quaternion qr = q * qv * qb;	//quaternion after rotation
+
+	return { qr.i, qr.j, qr.k };
 }
 
-float Core::Math::Complex::i::operator*(Core::Math::Complex::i i)
+vec3 Core::Math::rotateQ(const vec3& v, const Quaternion& q)
 {
-	return -1 * this->scalar * i.scalar;
-}
-
-Core::Math::Complex::k Core::Math::Complex::i::operator*(Core::Math::Complex::j j)
-{
-	Complex::k k = { this->scalar * j.scalar };
-	return k;
-}
-
-Core::Math::Complex::j Core::Math::Complex::i::operator*(Core::Math::Complex::k k)
-{
-	Complex::j j = { -1 * this->scalar * k.scalar };
-	return j;
-}
-
-void Core::Math::Complex::i::print()
-{
-	std::cout << scalar << "i" << std::endl;
-}
-
-Core::Math::Complex::k Core::Math::Complex::j::operator*(Core::Math::Complex::i i)
-{
-	Complex::k k = { -1 * this->scalar * i.scalar };
-	return k;
-}
-
-float Core::Math::Complex::j::operator*(Core::Math::Complex::j j)
-{
-	return -1 * this->scalar * j.scalar;
-}
-
-Core::Math::Complex::i Core::Math::Complex::j::operator*(Core::Math::Complex::k k)
-{
-	Complex::i i = { this->scalar * k.scalar };
-	return i;
-}
-
-void Core::Math::Complex::j::print()
-{
-	std::cout << scalar << "j" << std::endl;
-}
-
-Core::Math::Complex::j Core::Math::Complex::k::operator*(Core::Math::Complex::i i)
-{
-	Complex::j j = { this->scalar * i.scalar };
-	return j;
-}
-
-Core::Math::Complex::i Core::Math::Complex::k::operator*(Core::Math::Complex::j j)
-{
-	Complex::i i = { -1 * this->scalar * j.scalar };
-	return i;
-}
-
-float Core::Math::Complex::k::operator*(Core::Math::Complex::k k)
-{
-	return -1 * this->scalar * k.scalar;
-}
-
-void Core::Math::Complex::k::print()
-{
-	std::cout << scalar << "k" << std::endl;
+	Quaternion qr = q * v.q() * q.conjugate();
+	return { qr.i, qr.j, qr.k };
 }

@@ -5,17 +5,16 @@
 
 int main()
 {
-	Quaternion q(0, { 1, 2, 3 });
-	q.v4.print();
+	{
+		vec3 a = { 1, 1, 1 };
+		vec3 ar = rotateQ(a, (M_PI / 3) * TODEG, { 0, 1, 1 });
+		ar.print();
+	}
+	{
+		vec3 a = { 1, 0, 0 };
+		vec3 ar = rotateQ(a, 90, { 0, 1, 0 });
+		ar.print();
+	}
 
-	vec3 a = { 1, 2, 3 };
-	a.q().v4.print();
-
-	Complex::i i = { 1 };
-	Complex::j j = { 1 };
-	Complex::k k = { 1 };
-	(k * i).print();
-
-	q.conjugate().v4.print();
 	return 0;
 }

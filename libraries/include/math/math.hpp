@@ -23,7 +23,7 @@ namespace Core
 			float	e[2];
 			struct	{ float x; float y; };
 
-			void	print();
+			void	print() const;
 		};
 
 		union vec3
@@ -34,8 +34,12 @@ namespace Core
 			vec2	xy;
 
 			//get vector's quaternion
-			Quaternion	q();
-			void		print();
+			Quaternion	q() const;
+			float		sqrMag() const;
+			float		mag() const;
+			vec3		normalized() const;
+
+			void		print() const;
 		};
 
 		union vec4
@@ -46,7 +50,7 @@ namespace Core
 			vec3	xyz;
 			vec3	rgb;
 
-			void	print();
+			void	print() const;
 		};
 
 		union mat3
@@ -54,7 +58,7 @@ namespace Core
 			vec3	c[3];
 			float	e[9];
 
-			void	print();
+			void	print() const;
 		};
 
 		union mat4
@@ -62,7 +66,7 @@ namespace Core
 			vec4	c[4];
 			float	e[16];
 
-			void	print();
+			void	print() const;
 		};
 
 		mat3	identity3();
@@ -72,23 +76,40 @@ namespace Core
 		float	max(const float& a, const float& b);
 		void	clamp(float& value, const float& mini, const float& maxi);
 
-		float	dotProduct(vec3 a, vec3 b);
-		vec3	crossProduct(vec3 a, vec3 b);
+		float	dotProduct(const vec3& a, const vec3& b);
+		vec3	crossProduct(const vec3& a, const vec3& b);
 
 		mat4	translateMatrix(const vec3& pos);
 
 		//euler rotation
-		mat4	rotateXMatrix(const float& pitch);		//angle in rad
-		mat4	rotateYMatrix(const float& yaw);		//angle in rad
-		mat4	rotateZMatrix(const float& roll);		//angle in rad
+		mat4	rotateXMatrix(const float& pitch);		//angle in degrees
+		mat4	rotateYMatrix(const float& yaw);		//angle in degrees
+		mat4	rotateZMatrix(const float& roll);		//angle in degrees
 
 		mat4	scaleMatrix(const vec3& scale);
 
+		//-vec3
 		inline vec3 operator-(const vec3& v)
 		{
 			return { -v.x, -v.y, -v.z };
 		}
 
+		//f * vec3
+		inline vec3 operator*(const float& a, const vec3& v)
+		{
+			return { a * v.x, a * v.y, a * v.z };
+		}
+
+		//vec3 / f
+		inline vec3 operator/(const vec3& v, const float a)
+		{
+			if (a == 0)
+				return v;
+
+			return { v.x / a, v.y / a, v.z / a };
+		}
+
+		//mat4 * vec4
 		inline vec4 operator*(const mat4& m, const vec4& v)
 		{
 			vec4 temp = {};
@@ -104,6 +125,7 @@ namespace Core
 			return temp;
 		}
 
+		//mat4 * mat4
 		inline mat4 operator*(const mat4& m, const mat4& m2)
 		{
 			mat4 temp = {};
