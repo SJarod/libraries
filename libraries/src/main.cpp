@@ -15,6 +15,22 @@ int main()
 		vec3 ar = rotateQ(a, 90, { 0, 1, 0 });
 		ar.print();
 	}
+	{
+		vec3 a = { 1, 0, 0 };
+		Quaternion q1(90, { 0, 1, 0 });
+		Quaternion q2(90, { 1, 0, 0 });
+
+		vec3 ar = rotateQ(a, q1 * q2);
+		ar.print();
+	}
+	{
+		vec3 a = { 1, 0, 0 };
+		Quaternion q1(90, { 0, 1, 0 });
+		Quaternion q2(90, { 1, 0, 0 });
+
+		vec3 ar = rotateQ(a, q2 * q1);
+		ar.print();
+	}
 
 	return 0;
 }
