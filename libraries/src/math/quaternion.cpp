@@ -51,9 +51,3 @@ vec3 Core::Math::rotateQ(const vec3& v, const float& angle, const vec3& axis)
 
 	return { qr.i, qr.j, qr.k };
 }
-
-vec3 Core::Math::rotateQ(const vec3& v, const Quaternion& q)
-{
-	Quaternion qr = q * v.q() * q.conjugate();
-	return { qr.i, qr.j, qr.k };
-}
