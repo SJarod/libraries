@@ -8,6 +8,7 @@ namespace Core
 	{
 		union Quaternion
 		{
+			//q = a + bi + cj + dk
 			struct	{ float a; float i; float j; float k; };
 			vec4	v4;	//show quaternion as a vec4
 
@@ -15,9 +16,10 @@ namespace Core
 			Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
 			Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
 
-			inline Quaternion conjugate() const;
+			inline Quaternion	conjugate() const;
+			mat4				m4() const; //get quaternion as mat4
 
-			inline Quaternion operator*(const Quaternion& q) const;
+			inline Quaternion	operator*(const Quaternion& q) const;
 		};
 
 		//quaternion rotation
