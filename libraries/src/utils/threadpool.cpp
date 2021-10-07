@@ -6,8 +6,8 @@
 #include <chrono>
 
 Utils::Task::Task(std::function<void()> fct)
+	: task(fct)
 {
-	task = fct;
 }
 
 void Utils::Task::doTask()

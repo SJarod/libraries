@@ -16,8 +16,8 @@ void Utils::SpinLock::unlock()
 }
 
 Utils::RawText::RawText(const std::string& str)
+	: raw(str)
 {
-	raw = str;
 	length = (int)str.length();
 }
 

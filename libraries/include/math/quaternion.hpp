@@ -15,9 +15,9 @@ namespace Core
 			Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
 			Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
 
-			Quaternion conjugate() const;
+			inline Quaternion conjugate() const;
 
-			Quaternion operator*(const Quaternion& q) const;
+			inline Quaternion operator*(const Quaternion& q) const;
 		};
 
 		//quaternion rotation
@@ -34,6 +34,22 @@ namespace Core
 }
 
 using namespace Core::Math;
+
+inline Quaternion Core::Math::Quaternion::conjugate() const
+{
+	Quaternion qb = { a, -i, -j, -k };
+	return qb;
+}
+
+inline Quaternion Core::Math::Quaternion::operator*(const Quaternion& q) const
+{
+	Quaternion qr;	//result
+	qr.a = a * q.a - i * q.i - j * q.j - k * q.k;
+	qr.i = a * q.i + i * q.a + j * q.k - k * q.j;
+	qr.j = a * q.j - i * q.k + j * q.a + k * q.i;
+	qr.k = a * q.k + i * q.j - j * q.i + k * q.a;
+	return qr;
+}
 
 template <class Q>
 vec3 Core::Math::rotateQ(const vec3& v, const Q& q)

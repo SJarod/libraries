@@ -3,43 +3,10 @@
 
 #include <iostream>
 
-mat3 Core::Math::identity3()
+Quaternion Core::Math::vec3::q() const
 {
-	mat3 m;
-	m.c[0] = { 1.f, 0.f, 0.f };
-	m.c[1] = { 0.f, 1.f, 0.f };
-	m.c[2] = { 0.f, 0.f, 1.f };
-	return m;
-}
-
-mat4 Core::Math::identity4()
-{
-	mat4 m;
-	m.c[0] = { 1.f, 0.f, 0.f, 0.f };
-	m.c[1] = { 0.f, 1.f, 0.f, 0.f };
-	m.c[2] = { 0.f, 0.f, 1.f, 0.f };
-	m.c[3] = { 0.f, 0.f, 0.f, 1.f };
-	return m;
-}
-
-float Core::Math::min(const float& a, const float& b)
-{
-	return a < b ? a : b;
-}
-
-float Core::Math::max(const float& a, const float& b)
-{
-	return a > b ? a : b;
-}
-
-void Core::Math::clamp(float& value, const float& mini, const float& maxi)
-{
-	value = max(mini, min(value, maxi));
-}
-
-float Core::Math::dotProduct(const vec3& a, const vec3& b)
-{
-	return a.x * b.x + a.y * b.y + a.z * b.z;
+	Quaternion q = { 0, x, y, z };
+	return q;
 }
 
 vec3 Core::Math::crossProduct(const vec3& a, const vec3& b)
@@ -49,6 +16,15 @@ vec3 Core::Math::crossProduct(const vec3& a, const vec3& b)
 	v.y = a.z * b.x - a.x * b.z;
 	v.z = a.x * b.y - a.y * b.x;
 	return v;
+}
+
+vec2 Core::Math::vec2Rotation(const vec2& v, const float& angle)
+{
+	float a = angle * TORAD;
+	float x = cosf(a) * v.x - sinf(a) * v.y;
+	float y = sinf(a) * v.x + cosf(a) * v.y;
+
+	return { x, y };
 }
 
 mat4 Core::Math::translateMatrix(const vec3& pos)
@@ -108,27 +84,6 @@ void Core::Math::vec2::print() const
 {
 	std::cout << "---vec2---" << std::endl;
 	std::cout << x << ", " << y << std::endl;
-}
-
-Quaternion Core::Math::vec3::q() const
-{
-	Quaternion q = { 0, x, y, z };
-	return q;
-}
-
-float Core::Math::vec3::sqrMag() const
-{
-	return x * x + y * y + z * z;
-}
-
-float Core::Math::vec3::mag() const
-{
-	return sqrtf(sqrMag());
-}
-
-vec3 Core::Math::vec3::normalized() const
-{
-	return (*this) / mag();
 }
 
 void Core::Math::vec3::print() const

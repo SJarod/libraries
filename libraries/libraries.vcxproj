@@ -147,10 +147,42 @@
   <ItemGroup>
     <ClInclude Include="include\math\math.hpp" />
     <ClInclude Include="include\math\quaternion.hpp" />
+    <ClInclude Include="include\physics\collision.hpp" />
+    <ClInclude Include="include\physics\primitives2\aabb2.hpp" />
+    <ClInclude Include="include\physics\primitives2\circle.hpp" />
+    <ClInclude Include="include\physics\primitives2\concavepolygon.hpp" />
+    <ClInclude Include="include\physics\primitives2\convexpolygon.hpp" />
+    <ClInclude Include="include\physics\primitives2\range2.hpp" />
+    <ClInclude Include="include\physics\primitives2\rectangle.hpp" />
+    <ClInclude Include="include\physics\primitives3\aabb3.hpp" />
+    <ClInclude Include="include\physics\primitives3\box.hpp" />
+    <ClInclude Include="include\physics\primitives3\capsule.hpp" />
+    <ClInclude Include="include\physics\primitives3\cylinder.hpp" />
+    <ClInclude Include="include\physics\primitives3\plane.hpp" />
+    <ClInclude Include="include\physics\primitives3\range3.hpp" />
+    <ClInclude Include="include\physics\referential2.hpp" />
+    <ClInclude Include="include\physics\referential3.hpp" />
+    <ClInclude Include="include\physics\primitives3\segment.hpp" />
+    <ClInclude Include="include\physics\primitives3\sphere.hpp" />
     <ClInclude Include="include\utils\threadpool.hpp" />
     <ClInclude Include="include\utils\utils.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\physics\primitives3\range3.cpp" />
+    <ClCompile Include="src\physics\primitives2\circle.cpp" />
+    <ClCompile Include="src\physics\primitives2\concavepolygon.cpp" />
+    <ClCompile Include="src\physics\primitives2\convexpolygon.cpp" />
+    <ClCompile Include="src\physics\primitives2\range2.cpp" />
+    <ClCompile Include="src\physics\primitives2\rectangle.cpp" />
+    <ClCompile Include="src\physics\primitives3\aabb3.cpp" />
+    <ClCompile Include="src\physics\primitives3\box.cpp" />
+    <ClCompile Include="src\physics\primitives3\capsule.cpp" />
+    <ClCompile Include="src\physics\primitives3\cylinder.cpp" />
+    <ClCompile Include="src\physics\primitives3\plane.cpp" />
+    <ClCompile Include="src\physics\primitives3\segment.cpp" />
+    <ClCompile Include="src\physics\primitives3\sphere.cpp" />
+    <ClCompile Include="src\physics\referential2.cpp" />
+    <ClCompile Include="src\physics\referential3.cpp" />
     <ClCompile Include="src\math\quaternion.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\math.cpp" />
