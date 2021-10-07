@@ -74,6 +74,45 @@ AABB3 Physics::Primitives3::Box::getAABB() const
     return aabb;
 }
 
+void Physics::Primitives3::Box::getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const
+{
+    float ver[] = {
+        center.x + -extensions.x, center.y +  extensions.y, center.z +  extensions.z,
+        center.x +  extensions.x, center.y +  extensions.y, center.z +  extensions.z,
+        center.x +  extensions.x, center.y + -extensions.y, center.z +  extensions.z,
+        center.x + -extensions.x, center.y + -extensions.y, center.z +  extensions.z,
+        center.x + -extensions.x, center.y + -extensions.y, center.z + -extensions.z,
+        center.x + -extensions.x, center.y +  extensions.y, center.z + -extensions.z,
+        center.x +  extensions.x, center.y +  extensions.y, center.z + -extensions.z,
+        center.x +  extensions.x, center.y + -extensions.y, center.z + -extensions.z,
+    };
+
+    for (int i = 0; i < 24; ++i)
+    {
+        vertices.push_back(ver[i]);
+    }
+
+    unsigned int ind[] = {
+        0, 1, 3,
+        1, 2, 3,
+        5, 6, 4,
+        6, 4, 7,
+        0, 1, 5,
+        1, 5, 6,
+        2, 3, 4,
+        2, 4, 7,
+        0, 3, 4,
+        0, 4, 5,
+        1, 2, 7,
+        1, 6, 7,
+    };
+
+    for (int i = 0; i < 36; ++i)
+    {
+        indices.push_back(ind[i]);
+    }
+}
+
 Physics::Primitives3::RoundedBox::RoundedBox(const vec3& center, const vec4& extensions, const Quaternion& q)
     :center(center), extensions(extensions), q(q)
 {

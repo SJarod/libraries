@@ -5,6 +5,8 @@
 
 #include "physics/primitives3/aabb3.hpp"
 
+#include <vector>
+
 namespace Physics
 {
 	namespace Primitives3
@@ -36,7 +38,8 @@ namespace Physics
 			Box() = default;
 			Box(const vec3& center, const vec3& extensions, const Quaternion& q);
 
-			AABB3 getAABB() const;
+			AABB3	getAABB() const;
+			void	getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const;
 		};
 
 		class RoundedBox
