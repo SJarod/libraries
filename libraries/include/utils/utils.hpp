@@ -17,14 +17,14 @@ namespace Utils
 		Node(const T& t);
 
 		T			data;
-		Node<T>* next = nullptr;
+		Node<T>*	next = nullptr;
 	};
 
 	template<typename T>
 	class Queue
 	{
 	private:
-		Node<T>* head = nullptr;
+		Node<T>*		head = nullptr;
 		unsigned int	size = 0;	//queue size, number of elements
 
 	public:
@@ -69,7 +69,7 @@ namespace Utils
 using namespace Utils;
 
 template<typename T>
-Utils::Node<T>::Node(const T& t)
+inline Utils::Node<T>::Node(const T& t)
 {
 	data = t;
 }

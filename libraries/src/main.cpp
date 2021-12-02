@@ -1,10 +1,30 @@
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
+#include "utils/singleton.hpp"
 
 #include <iostream>
 
+#include "utils/memleaks.hpp"
+
+class Test : public Singleton<Test>
+{
+	friend class Singleton<Test>;
+
+private:
+	Test() {}
+
+	int a = 1;
+	int b = 2;
+
+public:
+	void testing();
+	void plus();
+};
+
 int main()
 {
+	initMemleaksDebug();
+
 	{
 		vec3 a = { 1, 1, 1 };
 		vec3 ar = rotateQ(a, (M_PI / 3) * TODEG, { 0, 1, 1 });
@@ -53,6 +73,26 @@ int main()
 		mq.print();
 		(mq * a).print();
 	}
+	{
+		Test* t = Test::getInstance();
+		t->testing();
+		t->plus();
+		Test* t2 = Test::getInstance();
+		t2->testing();
+
+		Test::end();
+	}
 
 	return 0;
+}
+
+void Test::testing()
+{
+	std::cout << getInstance() << std::endl;
+	std::cout << "a " << a << " b " << b << std::endl;
+}
+
+void Test::plus()
+{
+	a += b;
 }

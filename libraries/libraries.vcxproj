@@ -164,6 +164,8 @@
     <ClInclude Include="include\physics\referential3.hpp" />
     <ClInclude Include="include\physics\primitives3\segment.hpp" />
     <ClInclude Include="include\physics\primitives3\sphere.hpp" />
+    <ClInclude Include="include\utils\memleaks.hpp" />
+    <ClInclude Include="include\utils\singleton.hpp" />
     <ClInclude Include="include\utils\threadpool.hpp" />
     <ClInclude Include="include\utils\utils.hpp" />
   </ItemGroup>
