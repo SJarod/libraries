@@ -188,6 +188,7 @@
     <ClCompile Include="src\math\quaternion.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\math\math.cpp" />
+    <ClCompile Include="src\utils\memleaks.cpp" />
     <ClCompile Include="src\utils\threadpool.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
   </ItemGroup>
