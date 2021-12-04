@@ -21,6 +21,36 @@ namespace Core
 
 		union Quaternion;
 
+		union int2
+		{
+			int e[2];
+		};
+
+		union int3
+		{
+			int e[3];
+		};
+
+		union uint2
+		{
+			uint e[2];
+		};
+
+		union uint3
+		{
+			uint e[3];
+		};
+
+		union float2
+		{
+			float e[2];
+		};
+
+		union float3
+		{
+			float e[3];
+		};
+
 		union vec2
 		{
 			float	e[2];
