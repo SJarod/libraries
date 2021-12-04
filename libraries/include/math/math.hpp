@@ -19,6 +19,8 @@ namespace Core
 	{
 		typedef unsigned int uint;
 
+		union vec2;
+		union vec3;
 		union Quaternion;
 
 		union int2
@@ -44,17 +46,23 @@ namespace Core
 		union float2
 		{
 			float e[2];
+
+			inline operator vec2() const;
 		};
 
 		union float3
 		{
 			float e[3];
+
+			inline operator vec3() const;
 		};
 
 		union vec2
 		{
 			float	e[2];
 			struct	{ float x; float y; };
+
+			inline operator float2() const;
 
 			void	print() const;
 		};
@@ -65,6 +73,8 @@ namespace Core
 			struct	{ float x; float y; float z; };
 			struct	{ float i; float j; float k; };
 			vec2	xy;
+
+			inline operator float3() const;
 
 			//get vector's quaternion
 			Quaternion q() const;
@@ -152,6 +162,26 @@ namespace Core
 }
 
 using namespace Core::Math;
+
+inline Core::Math::float2::operator vec2() const
+{
+	return vec2{ e[0], e[1] };
+}
+
+inline Core::Math::float3::operator vec3() const
+{
+	return vec3{ e[0], e[1], e[2] };
+}
+
+inline Core::Math::vec2::operator float2() const
+{
+	return float2{ x, y };
+}
+
+inline Core::Math::vec3::operator float3() const
+{
+	return float3{ x, y, z };
+}
 
 inline float Core::Math::vec3::sqrMag() const
 {
