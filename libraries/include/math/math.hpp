@@ -13,6 +13,8 @@
 #include <cmath>
 #include <cfloat>
 
+#include <string>
+
 namespace Core
 {
 	namespace Math
@@ -63,8 +65,7 @@ namespace Core
 			struct	{ float x; float y; };
 
 			inline operator float2() const;
-
-			void	print() const;
+			operator std::string () const;
 		};
 
 		union vec3
@@ -75,6 +76,7 @@ namespace Core
 			vec2	xy;
 
 			inline operator float3() const;
+			operator std::string () const;
 
 			//get vector's quaternion
 			Quaternion q() const;
@@ -82,8 +84,6 @@ namespace Core
 			inline float	sqrMag() const;
 			inline float	mag() const;
 			inline vec3		normalized() const;
-
-			void		print() const;
 		};
 
 		union vec4
@@ -94,7 +94,7 @@ namespace Core
 			vec3	xyz;
 			vec3	rgb;
 
-			void	print() const;
+			operator std::string () const;
 		};
 
 		union mat3
@@ -102,7 +102,7 @@ namespace Core
 			vec3	c[3];
 			float	e[9];
 
-			void	print() const;
+			operator std::string () const;
 		};
 
 		union mat4
@@ -110,7 +110,7 @@ namespace Core
 			vec4	c[4];
 			float	e[16];
 
-			void	print() const;
+			operator std::string () const;
 		};
 
 		inline mat3	identity3();

@@ -28,12 +28,12 @@ int main()
 	{
 		vec3 a = { 1, 1, 1 };
 		vec3 ar = rotateQ(a, (M_PI / 3) * TODEG, { 0, 1, 1 });
-		ar.print();
+		std::cout << (std::string)ar << std::endl;
 	}
 	{
 		vec3 a = { 1, 0, 0 };
 		vec3 ar = rotateQ(a, 90, { 0, 1, 0 });
-		ar.print();
+		std::cout << (std::string)ar << std::endl;
 	}
 	{
 		vec3 a = { 1, 0, 0 };
@@ -41,7 +41,7 @@ int main()
 		Quaternion q2(90, { 1, 0, 0 });
 
 		vec3 ar = rotateQ(a, q1 * q2);
-		ar.print();
+		std::cout << (std::string)ar << std::endl;
 	}
 	{
 		vec3 a = { 1, 0, 0 };
@@ -49,7 +49,7 @@ int main()
 		Quaternion q2(90, { 1, 0, 0 });
 
 		vec3 ar = rotateQ(a, q2 * q1);
-		ar.print();
+		std::cout << (std::string)ar << std::endl;
 	}
 	{
 		vec3 a = { 1, 0, 0 };
@@ -58,7 +58,7 @@ int main()
 		Quaternion q3(90, { 0, 0, 1 });
 
 		vec3 ar = rotateQ(a, q1, q2, q3);
-		ar.print();
+		std::cout << (std::string)ar << std::endl;
 	}
 	{
 		vec4 a = { 1, 0, 0 , 1};
@@ -67,11 +67,11 @@ int main()
 		Quaternion q3(90, { 0, 0, 1 });
 
 		mat4 m = rotateYMatrix(90) * rotateXMatrix(90) * rotateZMatrix(90);
-		m.print();
-		(m * a).print();
+		std::cout << (std::string)m << std::endl;
+		std::cout << (std::string)(m * a) << std::endl;
 		mat4 mq = (q3 * q2 * q1).m4();
-		mq.print();
-		(mq * a).print();
+		std::cout << (std::string)mq << std::endl;
+		std::cout << (std::string)(mq * a) << std::endl;
 	}
 	{
 		Test* t = Test::getInstance();
