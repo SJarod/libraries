@@ -17,6 +17,8 @@ namespace Core
 {
 	namespace Math
 	{
+		typedef unsigned int uint;
+
 		union Quaternion;
 
 		union vec2
