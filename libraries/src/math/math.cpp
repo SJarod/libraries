@@ -78,41 +78,44 @@ mat4 Core::Math::scaleMatrix(const vec3& scale)
 	};
 }
 
-Core::Math::vec2::operator std::string () const
+std::ostream& Core::Math::operator<<(std::ostream& os, const vec2& v)
 {
-	std::string str = "---vec2---\n" + std::to_string(x) + ", " + std::to_string(y);
-	return str;
+	os << "---vec2---" << std::endl;
+	os << v.x << ", " << v.y;
+	return os;
 }
 
-Core::Math::vec3::operator std::string () const
+std::ostream& Core::Math::operator<<(std::ostream& os, const vec3& v)
 {
-	std::string str = "---vec3---\n" + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z);
-	return str;
+	os << "---vec3---" << std::endl;
+	os << v.x << ", " << v.y << ", " << v.z;
+	return os;
 }
 
-Core::Math::vec4::operator std::string () const
+std::ostream& Core::Math::operator<<(std::ostream& os, const vec4& v)
 {
-	std::string str = "---vec4---\n" + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + ", " + std::to_string(w);
-	return str;
+	os << "---vec4---" << std::endl;
+	os << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
+	return os;
 }
 
-Core::Math::mat3::operator std::string () const
+std::ostream& Core::Math::operator<<(std::ostream& os, const mat3& m)
 {
-	std::string str = "---mat3---\n";
-	str += std::to_string(c[0].x) + ", " + std::to_string(c[0].y) + ", " + std::to_string(c[0].z) + "\n";
-	str += std::to_string(c[1].x) + ", " + std::to_string(c[1].y) + ", " + std::to_string(c[1].z) + "\n";
-	str += std::to_string(c[2].x) + ", " + std::to_string(c[2].y) + ", " + std::to_string(c[2].z);
+	os << "---mat3---" << std::endl;
+	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << std::endl;
+	os << m.c[1].x << ", " << m.c[1].y << ", " << m.c[1].z << std::endl;
+	os << m.c[2].x << ", " << m.c[2].y << ", " << m.c[2].z;
 
-	return str;
+	return os;
 }
 
-Core::Math::mat4::operator std::string () const
+std::ostream& Core::Math::operator<<(std::ostream& os, const mat4& m)
 {
-	std::string str = "---mat4---\n";
-	str += std::to_string(c[0].x) + ", " + std::to_string(c[0].y) + ", " + std::to_string(c[0].z) + ", " + std::to_string(c[0].w) + "\n";
-	str += std::to_string(c[1].x) + ", " + std::to_string(c[1].y) + ", " + std::to_string(c[1].z) + ", " + std::to_string(c[1].w) + "\n";
-	str += std::to_string(c[2].x) + ", " + std::to_string(c[2].y) + ", " + std::to_string(c[2].z) + ", " + std::to_string(c[2].w) + "\n";
-	str += std::to_string(c[3].x) + ", " + std::to_string(c[3].y) + ", " + std::to_string(c[3].z) + ", " + std::to_string(c[3].w);
+	os << "---mat4---" << std::endl;
+	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << ", " << m.c[0].w << std::endl;
+	os << m.c[1].x << ", " << m.c[1].y << ", " << m.c[1].z << ", " << m.c[1].w << std::endl;
+	os << m.c[2].x << ", " << m.c[2].y << ", " << m.c[2].z << ", " << m.c[2].w << std::endl;
+	os << m.c[3].x << ", " << m.c[3].y << ", " << m.c[3].z << ", " << m.c[3].w;
 
-	return str;
+	return os;
 }

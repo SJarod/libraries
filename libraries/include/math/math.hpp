@@ -13,7 +13,7 @@
 #include <cmath>
 #include <cfloat>
 
-#include <string>
+#include <iostream>
 
 namespace Core
 {
@@ -65,7 +65,6 @@ namespace Core
 			struct	{ float x; float y; };
 
 			inline operator float2() const;
-			operator std::string () const;
 		};
 
 		union vec3
@@ -76,7 +75,6 @@ namespace Core
 			vec2	xy;
 
 			inline operator float3() const;
-			operator std::string () const;
 
 			//get vector's quaternion
 			Quaternion q() const;
@@ -93,24 +91,18 @@ namespace Core
 			struct	{ float r; float g; float b; float a; };
 			vec3	xyz;
 			vec3	rgb;
-
-			operator std::string () const;
 		};
 
 		union mat3
 		{
 			vec3	c[3];
 			float	e[9];
-
-			operator std::string () const;
 		};
 
 		union mat4
 		{
 			vec4	c[4];
 			float	e[16];
-
-			operator std::string () const;
 		};
 
 		inline mat3	identity3();
@@ -158,6 +150,12 @@ namespace Core
 		inline vec4 operator*(const mat4& m, const vec4& v);
 		//mat4 * mat4
 		inline mat4 operator*(const mat4& m, const mat4& m2);
+
+		std::ostream& operator<<(std::ostream& os, const vec2& v);
+		std::ostream& operator<<(std::ostream& os, const vec3& v);
+		std::ostream& operator<<(std::ostream& os, const vec4& v);
+		std::ostream& operator<<(std::ostream& os, const mat3& m);
+		std::ostream& operator<<(std::ostream& os, const mat4& m);
 	}
 }
 
