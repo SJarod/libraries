@@ -1,13 +1,13 @@
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
 
-Quaternion Core::Math::vec3::q() const
+Quaternion Math::vec3::q() const
 {
 	Quaternion q = { 0, x, y, z };
 	return q;
 }
 
-vec3 Core::Math::crossProduct(const vec3& a, const vec3& b)
+vec3 Math::crossProduct(const vec3& a, const vec3& b)
 {
 	vec3 v;
 	v.x = a.y * b.z - a.z * b.y;
@@ -16,7 +16,7 @@ vec3 Core::Math::crossProduct(const vec3& a, const vec3& b)
 	return v;
 }
 
-vec2 Core::Math::vec2Rotation(const vec2& v, const float& angle)
+vec2 Math::vec2Rotation(const vec2& v, const float& angle)
 {
 	float a = angle * TORAD;
 	float x = cosf(a) * v.x - sinf(a) * v.y;
@@ -25,7 +25,7 @@ vec2 Core::Math::vec2Rotation(const vec2& v, const float& angle)
 	return { x, y };
 }
 
-mat4 Core::Math::translateMatrix(const vec3& pos)
+mat4 Math::translateMatrix(const vec3& pos)
 {
 	return mat4{
 		1.f, 0.f, 0.f, pos.x,
@@ -35,7 +35,7 @@ mat4 Core::Math::translateMatrix(const vec3& pos)
 	};
 }
 
-mat4 Core::Math::rotateXMatrix(const float& pitch)
+mat4 Math::rotateXMatrix(const float& pitch)
 {
 	float a = pitch * TORAD;
 	return mat4{
@@ -46,7 +46,7 @@ mat4 Core::Math::rotateXMatrix(const float& pitch)
 	};
 }
 
-mat4 Core::Math::rotateYMatrix(const float& yaw)
+mat4 Math::rotateYMatrix(const float& yaw)
 {
 	float a = yaw * TORAD;
 	return mat4{
@@ -57,7 +57,7 @@ mat4 Core::Math::rotateYMatrix(const float& yaw)
 	};
 }
 
-mat4 Core::Math::rotateZMatrix(const float& roll)
+mat4 Math::rotateZMatrix(const float& roll)
 {
 	float a = roll * TORAD;
 	return mat4{
@@ -68,7 +68,7 @@ mat4 Core::Math::rotateZMatrix(const float& roll)
 	};
 }
 
-mat4 Core::Math::scaleMatrix(const vec3& scale)
+mat4 Math::scaleMatrix(const vec3& scale)
 {
 	return mat4{
 		scale.x, 0.f, 0.f, 0.f,
@@ -78,28 +78,28 @@ mat4 Core::Math::scaleMatrix(const vec3& scale)
 	};
 }
 
-std::ostream& Core::Math::operator<<(std::ostream& os, const vec2& v)
+std::ostream& Math::operator<<(std::ostream& os, const vec2& v)
 {
 	os << "---vec2---" << std::endl;
 	os << v.x << ", " << v.y;
 	return os;
 }
 
-std::ostream& Core::Math::operator<<(std::ostream& os, const vec3& v)
+std::ostream& Math::operator<<(std::ostream& os, const vec3& v)
 {
 	os << "---vec3---" << std::endl;
 	os << v.x << ", " << v.y << ", " << v.z;
 	return os;
 }
 
-std::ostream& Core::Math::operator<<(std::ostream& os, const vec4& v)
+std::ostream& Math::operator<<(std::ostream& os, const vec4& v)
 {
 	os << "---vec4---" << std::endl;
 	os << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
 	return os;
 }
 
-std::ostream& Core::Math::operator<<(std::ostream& os, const mat3& m)
+std::ostream& Math::operator<<(std::ostream& os, const mat3& m)
 {
 	os << "---mat3---" << std::endl;
 	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << std::endl;
@@ -109,7 +109,7 @@ std::ostream& Core::Math::operator<<(std::ostream& os, const mat3& m)
 	return os;
 }
 
-std::ostream& Core::Math::operator<<(std::ostream& os, const mat4& m)
+std::ostream& Math::operator<<(std::ostream& os, const mat4& m)
 {
 	os << "---mat4---" << std::endl;
 	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << ", " << m.c[0].w << std::endl;

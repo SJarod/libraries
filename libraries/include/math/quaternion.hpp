@@ -2,48 +2,45 @@
 
 #include "math/math.hpp"
 
-namespace Core
+namespace Math
 {
-	namespace Math
+	union Quaternion
 	{
-		union Quaternion
-		{
-			//q = a + bi + cj + dk
-			struct	{ float a; float i; float j; float k; };
-			vec4	v4;	//show quaternion as a vec4
+		//q = a + bi + cj + dk
+		struct { float a; float i; float j; float k; };
+		vec4   v4;	//show quaternion as a vec4
 
-			Quaternion() = default;
-			Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
-			Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
+		Quaternion() = default;
+		Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
+		Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
 
-			inline Quaternion	conjugate() const;
-			mat4				m4() const; //get quaternion as mat4
+		inline Quaternion	conjugate() const;
+		mat4				m4() const; //get quaternion as mat4
 
-			inline Quaternion	operator*(const Quaternion& q) const;
-		};
+		inline Quaternion	operator*(const Quaternion& q) const;
+	};
 
-		//quaternion rotation
-		//angle in degrees
-		vec3 rotateQ(const vec3& v, const float& angle, const vec3& axis);
+	//quaternion rotation
+	//angle in degrees
+	vec3 rotateQ(const vec3& v, const float& angle, const vec3& axis);
 
-		//only accepts Quaternions
-		template <class Q>
-		vec3 rotateQ(const vec3& v, const Q& q);
-		//multiple rotation in the order of arguments
-		template <typename firstQuaternion, typename... quaternionArgs>
-		vec3 rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs);
-	}
+	//only accepts Quaternions
+	template <class Q>
+	vec3 rotateQ(const vec3& v, const Q& q);
+	//multiple rotation in the order of arguments
+	template <typename firstQuaternion, typename... quaternionArgs>
+	vec3 rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs);
 }
 
-using namespace Core::Math;
+using namespace Math;
 
-inline Quaternion Core::Math::Quaternion::conjugate() const
+inline Quaternion Math::Quaternion::conjugate() const
 {
 	Quaternion qb = { a, -i, -j, -k };
 	return qb;
 }
 
-inline Quaternion Core::Math::Quaternion::operator*(const Quaternion& q) const
+inline Quaternion Math::Quaternion::operator*(const Quaternion& q) const
 {
 	Quaternion qr;	//result
 	qr.a = a * q.a - i * q.i - j * q.j - k * q.k;
@@ -54,14 +51,14 @@ inline Quaternion Core::Math::Quaternion::operator*(const Quaternion& q) const
 }
 
 template <class Q>
-vec3 Core::Math::rotateQ(const vec3& v, const Q& q)
+vec3 Math::rotateQ(const vec3& v, const Q& q)
 {
 	Quaternion qr = q * v.q() * q.conjugate();
 	return { qr.i, qr.j, qr.k };
 }
 
 template<typename firstQuaternion, typename... quaternionArgs>
-vec3 Core::Math::rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
+vec3 Math::rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
 {
 	vec3 r = rotateQ(v, q1);
 	r = rotateQ(r, qs...);

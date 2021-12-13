@@ -17,7 +17,7 @@ namespace Utils
 	};
 
 	--------------------------
-	Don't forget to call end at the end of program to destory the instance.
+	Don't forget to call destroy() at the end of program to destory the instance.
 	*/
 
 	template<class T>
@@ -30,7 +30,7 @@ namespace Utils
 		static inline T* getInstance();
 
 		//destroys singleton instance
-		static void end();
+		static void destroy();
 
 		//cannot create any Singleton object
 		void operator=(const Singleton& s) = delete;
@@ -49,7 +49,7 @@ inline T* Utils::Singleton<T>::getInstance()
 }
 
 template<class T>
-inline void Utils::Singleton<T>::end()
+inline void Utils::Singleton<T>::destroy()
 {
 	delete instance;
 }

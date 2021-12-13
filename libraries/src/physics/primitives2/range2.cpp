@@ -37,8 +37,8 @@ Physics::Primitives2::Range2::Range2(const Rectangle& rect, const vec2& dir)
 	D.y = rect.center.x + rect.height / 2;
 	d = dotProduct(D, dir);
 
-	min = Core::Math::min(Core::Math::min(a, b), Core::Math::min(c, d));
-	max = Core::Math::max(Core::Math::max(a, b), Core::Math::max(c, d));
+	min = Math::min(Math::min(a, b), Math::min(c, d));
+	max = Math::max(Math::max(a, b), Math::max(c, d));
 }
 
 Physics::Primitives2::Range2::Range2(const Circle& cl, const vec2& dir)
@@ -50,13 +50,13 @@ Physics::Primitives2::Range2::Range2(const Circle& cl, const vec2& dir)
 	B.x = cl.center.x + cl.radius;
 	B.y = cl.center.y;
 
-	min = Core::Math::min(dotProduct(A, dir), dotProduct(B, dir));
-	max = Core::Math::max(dotProduct(A, dir), dotProduct(B, dir));
+	min = Math::min(dotProduct(A, dir), dotProduct(B, dir));
+	max = Math::max(dotProduct(A, dir), dotProduct(B, dir));
 }
 
 Physics::Primitives2::Range2::Range2(const ConvexPolygon& cx, const vec2& dir)
 {
-	min = Core::Math::min(dotProduct(cx.points[0], dir), dotProduct(cx.points[1], dir));
+	min = Math::min(dotProduct(cx.points[0], dir), dotProduct(cx.points[1], dir));
 	max = min;
 
 	for (int i = 0; i < cx.points.size(); ++i)
@@ -67,15 +67,15 @@ Physics::Primitives2::Range2::Range2(const ConvexPolygon& cx, const vec2& dir)
 		int j = i + 1;
 		B = cx.points[(int)(j % cx.points.size())];
 
-		add(Core::Math::min(dotProduct(A, dir), dotProduct(B, dir)));
-		add(Core::Math::max(dotProduct(A, dir), dotProduct(B, dir)));
+		add(Math::min(dotProduct(A, dir), dotProduct(B, dir)));
+		add(Math::max(dotProduct(A, dir), dotProduct(B, dir)));
 	}
 }
 
 void Physics::Primitives2::Range2::add(const float& val)
 {
-	min = Core::Math::min(val, min);
-	max = Core::Math::max(val, max);
+	min = Math::min(val, min);
+	max = Math::max(val, max);
 }
 
 float Physics::Primitives2::Range2::length() const

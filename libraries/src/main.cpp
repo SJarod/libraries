@@ -80,7 +80,7 @@ int main()
 		Test* t2 = Test::getInstance();
 		t2->testing();
 
-		Test::end();
+		Test::destroy();
 	}
 
 	return 0;

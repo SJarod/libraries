@@ -1,39 +1,39 @@
-inline Core::Math::float2::operator vec2() const
+inline Math::float2::operator vec2() const
 {
 	return vec2{ e[0], e[1] };
 }
 
-inline Core::Math::float3::operator vec3() const
+inline Math::float3::operator vec3() const
 {
 	return vec3{ e[0], e[1], e[2] };
 }
 
-inline Core::Math::vec2::operator float2() const
+inline Math::vec2::operator float2() const
 {
 	return float2{ x, y };
 }
 
-inline Core::Math::vec3::operator float3() const
+inline Math::vec3::operator float3() const
 {
 	return float3{ x, y, z };
 }
 
-inline float Core::Math::vec3::sqrMag() const
+inline float Math::vec3::sqrMag() const
 {
 	return x * x + y * y + z * z;
 }
 
-inline float Core::Math::vec3::mag() const
+inline float Math::vec3::mag() const
 {
 	return sqrtf(sqrMag());
 }
 
-inline vec3 Core::Math::vec3::normalized() const
+inline vec3 Math::vec3::normalized() const
 {
 	return (*this) / mag();
 }
 
-inline mat3 Core::Math::identity3()
+inline mat3 Math::identity3()
 {
 	mat3 m;
 	m.c[0] = { 1.f, 0.f, 0.f };
@@ -42,7 +42,7 @@ inline mat3 Core::Math::identity3()
 	return m;
 }
 
-inline mat4 Core::Math::identity4()
+inline mat4 Math::identity4()
 {
 	mat4 m;
 	m.c[0] = { 1.f, 0.f, 0.f, 0.f };
@@ -52,72 +52,72 @@ inline mat4 Core::Math::identity4()
 	return m;
 }
 
-inline float Core::Math::min(const float& a, const float& b)
+inline float Math::min(const float& a, const float& b)
 {
 	return a < b ? a : b;
 }
 
-inline float Core::Math::max(const float& a, const float& b)
+inline float Math::max(const float& a, const float& b)
 {
 	return a > b ? a : b;
 }
 
-inline vec3 Core::Math::min(const vec3& a, const vec3& b)
+inline vec3 Math::min(const vec3& a, const vec3& b)
 {
 	return { min(a.x, b.x), min(a.y, b.y), min(a.z, a.z) };
 }
 
-inline vec3 Core::Math::max(const vec3& a, const vec3& b)
+inline vec3 Math::max(const vec3& a, const vec3& b)
 {
 	return { max(a.x, b.x), max(a.y, b.y), max(a.z, a.z) };
 }
 
-inline void Core::Math::clamp(float& value, const float& mini, const float& maxi)
+inline void Math::clamp(float& value, const float& mini, const float& maxi)
 {
 	value = max(mini, min(value, maxi));
 }
 
-inline float Core::Math::dotProduct(const vec2& a, const vec2& b)
+inline float Math::dotProduct(const vec2& a, const vec2& b)
 {
 	return a.x * b.x + a.y * b.y;
 }
 
-inline float Core::Math::dotProduct(const vec3& a, const vec3& b)
+inline float Math::dotProduct(const vec3& a, const vec3& b)
 {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-inline vec2 Core::Math::operator+(const vec2& a, const vec2& b)
+inline vec2 Math::operator+(const vec2& a, const vec2& b)
 {
 	return { a.x + b.x, a.y + b.y };
 }
 
-vec2 Core::Math::operator-(const vec2& a, const vec2& b)
+vec2 Math::operator-(const vec2& a, const vec2& b)
 {
 	return { a.x - b.x, a.y - b.y };
 }
 
-inline vec2 Core::Math::operator*(const float& a, const vec2& v)
+inline vec2 Math::operator*(const float& a, const vec2& v)
 {
 	return { a * v.x, a * v.y };
 }
 
-inline vec3 Core::Math::operator-(const vec3& v)
+inline vec3 Math::operator-(const vec3& v)
 {
 	return { -v.x, -v.y, -v.z };
 }
 
-inline vec3 Core::Math::operator-(const vec3& a, const vec3& b)
+inline vec3 Math::operator-(const vec3& a, const vec3& b)
 {
 	return { a.x - b.x, a.y - b.y, a.z - b.z };
 }
 
-inline vec3 Core::Math::operator*(const float& a, const vec3& v)
+inline vec3 Math::operator*(const float& a, const vec3& v)
 {
 	return { a * v.x, a * v.y, a * v.z };
 }
 
-inline vec3 Core::Math::operator/(const vec3& v, const float a)
+inline vec3 Math::operator/(const vec3& v, const float a)
 {
 	if (a == 0)
 		return v;
@@ -125,14 +125,14 @@ inline vec3 Core::Math::operator/(const vec3& v, const float a)
 	return { v.x / a, v.y / a, v.z / a };
 }
 
-inline void Core::Math::operator+=(vec3& a, const vec3& b)
+inline void Math::operator+=(vec3& a, const vec3& b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 }
 
-inline vec4 Core::Math::operator*(const mat4& m, const vec4& v)
+inline vec4 Math::operator*(const mat4& m, const vec4& v)
 {
 	vec4 temp = {};
 
@@ -147,7 +147,7 @@ inline vec4 Core::Math::operator*(const mat4& m, const vec4& v)
 	return temp;
 }
 
-inline mat4 Core::Math::operator*(const mat4& m, const mat4& m2)
+inline mat4 Math::operator*(const mat4& m, const mat4& m2)
 {
 	mat4 temp = {};
 
