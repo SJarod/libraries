@@ -1,3 +1,4 @@
+#include "math.hpp"
 inline Math::float2::operator vec2() const
 {
 	return vec2{ e[0], e[1] };
@@ -50,6 +51,34 @@ inline mat4 Math::identity4()
 	m.c[2] = { 0.f, 0.f, 1.f, 0.f };
 	m.c[3] = { 0.f, 0.f, 0.f, 1.f };
 	return m;
+}
+
+inline mat4 Math::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
+{
+	mat4 frs;
+	frs.c[0] = { (2 * near) / (right - left), 0.f, 0.f, -near * (right + left) / (right - left) };
+	frs.c[1] = { 0.f, (2 * near) / (top - bot), 0.f, -near * (top + bot) / (top - bot) };
+	frs.c[2] = { 0.f, 0.f, -(far + near) / (far - near), -(2 * far * near) / (far - near) };
+	frs.c[3] = { 0.f, 0.f, -1.f, 0.f };
+	return frs;
+}
+
+inline mat4 Math::perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far)
+{
+	float top = near * tanf(fovYdeg * TORAD * 0.5f);
+	float right = top * aspect;
+
+	return frustum(-right, right, -top, top, near, far);
+}
+
+inline mat4 Math::orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
+{
+	mat4 orth;
+	orth.c[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
+	orth.c[1] = { 0.f, 2 / (top - bot), 0.f, -(top + bot) / (top - bot) };
+	orth.c[2] = { 0.f, 0.f, -2 / (far - near), -(far + near) / (far - near) };
+	orth.c[3] = { 0.f, 0.f, 0.f, 1.f };
+	return orth;
 }
 
 inline float Math::min(const float& a, const float& b)
@@ -151,14 +180,14 @@ inline mat4 Math::operator*(const mat4& m, const mat4& m2)
 {
 	mat4 temp = {};
 
+				// 0  1  2  3
+				// 4  5  6  7
+				// 8  9 10 11
+				//12 13 14 15
 	// 0  1  2  3
 	// 4  5  6  7
 	// 8  9 10 11
 	//12 13 14 15
-// 0  1  2  3
-// 4  5  6  7
-// 8  9 10 11
-//12 13 14 15
 
 	for (int i = 0; i < 4; ++i)
 	{

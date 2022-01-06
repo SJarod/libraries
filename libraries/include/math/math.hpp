@@ -106,6 +106,10 @@ namespace Math
 	inline mat3	identity3();
 	inline mat4	identity4();
 
+	inline mat4 frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
+	inline mat4 perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far);
+	inline mat4 orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
+
 	inline float	min(const float& a, const float& b);
 	inline float	max(const float& a, const float& b);
 	inline vec3		min(const vec3& a, const vec3& b);
