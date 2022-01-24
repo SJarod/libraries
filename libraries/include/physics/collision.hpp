@@ -28,6 +28,8 @@ namespace Physics
 
 		namespace Collision2
 		{
+			using namespace Primitives2;
+
 			bool pointPoint(const vec2& a, const vec2& b);
 			bool pointRect(const vec2& v, const Rectangle& rect);
 			bool pointCircle(const vec2& v, const Circle& cl);
@@ -45,6 +47,8 @@ namespace Physics
 
 		namespace Collision3
 		{
+			using namespace Primitives3;
+
 			bool segmentPlane(const Segment& seg, const Plane& pl, Collision3Info& cinfo);
 			bool segmentSphere(const Segment& seg, const Sphere& sph, Collision3Info& cinfo);
 
