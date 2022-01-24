@@ -18,4 +18,4 @@ namespace Physics
     }
 }
 
-using namespace Physics::Primitives2;
+using namespace Physics;

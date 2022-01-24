@@ -10,8 +10,8 @@ Physics::Referential2::Referential2(const vec2& origin)
 void Physics::Referential2::rotate(const float& angle)
 {
 	this->angle = angle;
-	i = vec2Rotation(i, angle);
-	j = vec2Rotation(j, angle);
+	i = Math::vec2Rotation(i, angle);
+	j = Math::vec2Rotation(j, angle);
 }
 
 vec2 Physics::Referential2::posLocalGlobal(const vec2& lPos) const
@@ -25,7 +25,7 @@ vec2 Physics::Referential2::posLocalGlobal(const vec2& lPos) const
 vec2 Physics::Referential2::posGlobalLocal(const vec2& gPos) const
 {
 	vec2 temp = gPos - origin;
-	return { dotProduct(temp, i), dotProduct(temp, j) };
+	return { Math::dotProduct(temp, i), Math::dotProduct(temp, j) };
 }
 
 vec2 Physics::Referential2::vectorLocalGlobal(const vec2& lVect) const
@@ -35,5 +35,5 @@ vec2 Physics::Referential2::vectorLocalGlobal(const vec2& lVect) const
 
 vec2 Physics::Referential2::vectorGlobalLocal(const vec2& gVect) const
 {
-	return { dotProduct(gVect, i), dotProduct(gVect, j) };
+	return { Math::dotProduct(gVect, i), Math::dotProduct(gVect, j) };
 }

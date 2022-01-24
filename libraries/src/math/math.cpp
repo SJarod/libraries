@@ -1,7 +1,7 @@
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
 
-Quaternion Math::vec3::q() const
+Quaternion vec3::q() const
 {
 	Quaternion q = { 0, x, y, z };
 	return q;
@@ -78,28 +78,28 @@ mat4 Math::scaleMatrix(const vec3& scale)
 	};
 }
 
-std::ostream& Math::operator<<(std::ostream& os, const vec2& v)
+std::ostream& operator<<(std::ostream& os, const vec2& v)
 {
 	os << "---vec2---" << std::endl;
 	os << v.x << ", " << v.y;
 	return os;
 }
 
-std::ostream& Math::operator<<(std::ostream& os, const vec3& v)
+std::ostream& operator<<(std::ostream& os, const vec3& v)
 {
 	os << "---vec3---" << std::endl;
 	os << v.x << ", " << v.y << ", " << v.z;
 	return os;
 }
 
-std::ostream& Math::operator<<(std::ostream& os, const vec4& v)
+std::ostream& operator<<(std::ostream& os, const vec4& v)
 {
 	os << "---vec4---" << std::endl;
 	os << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
 	return os;
 }
 
-std::ostream& Math::operator<<(std::ostream& os, const mat3& m)
+std::ostream& operator<<(std::ostream& os, const mat3& m)
 {
 	os << "---mat3---" << std::endl;
 	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << std::endl;
@@ -109,7 +109,7 @@ std::ostream& Math::operator<<(std::ostream& os, const mat3& m)
 	return os;
 }
 
-std::ostream& Math::operator<<(std::ostream& os, const mat4& m)
+std::ostream& operator<<(std::ostream& os, const mat4& m)
 {
 	os << "---mat4---" << std::endl;
 	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << ", " << m.c[0].w << std::endl;

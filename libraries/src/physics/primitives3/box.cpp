@@ -8,7 +8,7 @@ Physics::Primitives3::Quad::Quad(const vec3& center, const vec2& extensions, con
 
 vec3 Physics::Primitives3::Quad::getNormal() const
 {
-	vec3 normal = rotateQ({ 0.f, 1.f, 0.f }, q);
+	vec3 normal = Math::rotateQ({ 0.f, 1.f, 0.f }, q);
 	return reverse ? -normal : normal;
 }
 
@@ -17,7 +17,7 @@ Physics::Primitives3::Box::Box(const vec3& center, const vec3& extensions, const
 {
 }
 
-AABB3 Physics::Primitives3::Box::getAABB() const
+Physics::Primitives3::AABB3 Physics::Primitives3::Box::getAABB() const
 {
     //TODO sans les range mais avec vec3 min et vec3 max
     //min = vec3::min(vec3 a, vec3 b);
@@ -40,14 +40,14 @@ AABB3 Physics::Primitives3::Box::getAABB() const
     p[6] = { 0.f - extensions.x / 2, 0.f - extensions.y / 2, 0.f - extensions.z / 2 };
     p[7] = { 0.f - extensions.x / 2, 0.f - extensions.y / 2, 0.f + extensions.z / 2 };
 
-    p[0] = rotateQ(p[0], q);
-    p[1] = rotateQ(p[1], q);
-    p[2] = rotateQ(p[2], q);
-    p[3] = rotateQ(p[3], q);
-    p[4] = rotateQ(p[4], q);
-    p[5] = rotateQ(p[5], q);
-    p[6] = rotateQ(p[6], q);
-    p[7] = rotateQ(p[7], q);
+    p[0] = Math::rotateQ(p[0], q);
+    p[1] = Math::rotateQ(p[1], q);
+    p[2] = Math::rotateQ(p[2], q);
+    p[3] = Math::rotateQ(p[3], q);
+    p[4] = Math::rotateQ(p[4], q);
+    p[5] = Math::rotateQ(p[5], q);
+    p[6] = Math::rotateQ(p[6], q);
+    p[7] = Math::rotateQ(p[7], q);
 
     p[0] += center;
     p[1] += center;
@@ -60,14 +60,14 @@ AABB3 Physics::Primitives3::Box::getAABB() const
 
     for (int i = 0; i < 8; ++i)
     {
-        X.min = min(X.min, p[i].x);
-        X.max = max(X.max, p[i].x);
+        X.min = Math::min(X.min, p[i].x);
+        X.max = Math::max(X.max, p[i].x);
 
-        Y.min = min(Y.min, p[i].y);
-        Y.max = max(Y.max, p[i].y);
+        Y.min = Math::min(Y.min, p[i].y);
+        Y.max = Math::max(Y.max, p[i].y);
 
-        Z.min = min(Z.min, p[i].z);
-        Z.max = max(Z.max, p[i].z);
+        Z.min = Math::min(Z.min, p[i].z);
+        Z.max = Math::max(Z.max, p[i].z);
     }
 
     AABB3 aabb(center, { X.length(), Y.length(), Z.length() });
@@ -116,6 +116,6 @@ void Physics::Primitives3::Box::getAttribs(std::vector<float>& vertices, std::ve
 Physics::Primitives3::RoundedBox::RoundedBox(const vec3& center, const vec4& extensions, const Quaternion& q)
     :center(center), extensions(extensions), q(q)
 {
-    float m = min(extensions.x, min(extensions.y, extensions.z));
-    clamp(this->extensions.w, 0.f, m / 2);
+    float m = Math::min(extensions.x, Math::min(extensions.y, extensions.z));
+    this->extensions.w = Math::clamp(this->extensions.w, 0.f, m / 2);
 }

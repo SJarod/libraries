@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="include\math\math.hpp" />
     <ClInclude Include="include\math\quaternion.hpp" />
+    <ClInclude Include="include\math\types.hpp" />
     <ClInclude Include="include\physics\collision.hpp" />
     <ClInclude Include="include\physics\primitives2\aabb2.hpp" />
     <ClInclude Include="include\physics\primitives2\circle.hpp" />

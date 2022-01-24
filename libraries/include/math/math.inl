@@ -1,35 +1,36 @@
 #include "math.hpp"
-inline Math::float2::operator vec2() const
+
+inline float2::operator vec2() const
 {
 	return vec2{ e[0], e[1] };
 }
 
-inline Math::float3::operator vec3() const
+inline float3::operator vec3() const
 {
 	return vec3{ e[0], e[1], e[2] };
 }
 
-inline Math::vec2::operator float2() const
+inline vec2::operator float2() const
 {
 	return float2{ x, y };
 }
 
-inline Math::vec3::operator float3() const
+inline vec3::operator float3() const
 {
 	return float3{ x, y, z };
 }
 
-inline float Math::vec3::sqrMag() const
+inline float vec3::sqrMag() const
 {
 	return x * x + y * y + z * z;
 }
 
-inline float Math::vec3::mag() const
+inline float vec3::mag() const
 {
 	return sqrtf(sqrMag());
 }
 
-inline vec3 Math::vec3::normalized() const
+inline vec3 vec3::normalized() const
 {
 	return (*this) / mag();
 }
@@ -101,9 +102,15 @@ inline vec3 Math::max(const vec3& a, const vec3& b)
 	return { max(a.x, b.x), max(a.y, b.y), max(a.z, a.z) };
 }
 
-inline void Math::clamp(float& value, const float& mini, const float& maxi)
+inline float Math::clamp(const float& value, const float& mini, const float& maxi)
 {
-	value = max(mini, min(value, maxi));
+	return max(mini, min(value, maxi));
+}
+
+float Math::saturate(const float& value)
+{
+	//clamp between 0 and 1
+	return max(0.f, min(value, 1.f));
 }
 
 inline float Math::dotProduct(const vec2& a, const vec2& b)
@@ -116,37 +123,37 @@ inline float Math::dotProduct(const vec3& a, const vec3& b)
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-inline vec2 Math::operator+(const vec2& a, const vec2& b)
+inline vec2 operator+(const vec2& a, const vec2& b)
 {
 	return { a.x + b.x, a.y + b.y };
 }
 
-vec2 Math::operator-(const vec2& a, const vec2& b)
+vec2 operator-(const vec2& a, const vec2& b)
 {
 	return { a.x - b.x, a.y - b.y };
 }
 
-inline vec2 Math::operator*(const float& a, const vec2& v)
+inline vec2 operator*(const float& a, const vec2& v)
 {
 	return { a * v.x, a * v.y };
 }
 
-inline vec3 Math::operator-(const vec3& v)
+inline vec3 operator-(const vec3& v)
 {
 	return { -v.x, -v.y, -v.z };
 }
 
-inline vec3 Math::operator-(const vec3& a, const vec3& b)
+inline vec3 operator-(const vec3& a, const vec3& b)
 {
 	return { a.x - b.x, a.y - b.y, a.z - b.z };
 }
 
-inline vec3 Math::operator*(const float& a, const vec3& v)
+inline vec3 operator*(const float& a, const vec3& v)
 {
 	return { a * v.x, a * v.y, a * v.z };
 }
 
-inline vec3 Math::operator/(const vec3& v, const float a)
+inline vec3 operator/(const vec3& v, const float a)
 {
 	if (a == 0)
 		return v;
@@ -154,14 +161,14 @@ inline vec3 Math::operator/(const vec3& v, const float a)
 	return { v.x / a, v.y / a, v.z / a };
 }
 
-inline void Math::operator+=(vec3& a, const vec3& b)
+inline void operator+=(vec3& a, const vec3& b)
 {
 	a.x += b.x;
 	a.y += b.y;
 	a.z += b.z;
 }
 
-inline vec4 Math::operator*(const mat4& m, const vec4& v)
+inline vec4 operator*(const mat4& m, const vec4& v)
 {
 	vec4 temp = {};
 
@@ -176,7 +183,7 @@ inline vec4 Math::operator*(const mat4& m, const vec4& v)
 	return temp;
 }
 
-inline mat4 Math::operator*(const mat4& m, const mat4& m2)
+inline mat4 operator*(const mat4& m, const mat4& m2)
 {
 	mat4 temp = {};
 

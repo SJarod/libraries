@@ -39,9 +39,9 @@ namespace Physics
 	}
 }
 
-using namespace Physics::Primitives2;
+using namespace Physics;
 
-inline Range2 Physics::Primitives2::mergeRange2(const Range2& r1, const Range2& r2)
+inline Physics::Primitives2::Range2 Physics::Primitives2::mergeRange2(const Range2& r1, const Range2& r2)
 {
-	return Range2(min(r1.min, r2.min), max(r1.max, r2.max));
+	return Range2(Math::min(r1.min, r2.min), Math::max(r1.max, r2.max));
 }

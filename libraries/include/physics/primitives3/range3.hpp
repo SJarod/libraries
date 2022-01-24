@@ -17,3 +17,5 @@ namespace Physics
 		};
 	}
 }
+
+using namespace Physics;

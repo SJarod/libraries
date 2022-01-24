@@ -10,7 +10,7 @@ Physics::Referential3::Referential3(const vec3& origin)
 
 void Physics::Referential3::rotate(const Quaternion& q)
 {
-	i = rotateQ(i, q);
-	j = rotateQ(j, q);
-	k = rotateQ(k, q);
+	i = Math::rotateQ(i, q);
+	j = Math::rotateQ(j, q);
+	k = Math::rotateQ(k, q);
 }
