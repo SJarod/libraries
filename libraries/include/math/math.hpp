@@ -19,35 +19,43 @@
 
 namespace Math
 {
-	inline mat3	 identity3();
-	inline mat4	 identity4();
-
-	inline mat4	 frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
-	inline mat4	 perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far);
-	inline mat4	 orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
-
 	inline float min(const float& a, const float& b);
 	inline float max(const float& a, const float& b);
 	inline vec3	 min(const vec3& a, const vec3& b);
 	inline vec3	 max(const vec3& a, const vec3& b);
+
 	inline float clamp(const float& value, const float& mini, const float& maxi);
 	inline float saturate(const float& value);
+}
 
+namespace Math2
+{
 	inline float dotProduct(const vec2& a, const vec2& b);
+
+	//angle in degrees
+	vec2 rotate(const vec2& v, const float& angle);
+}
+
+namespace Math3
+{
 	inline float dotProduct(const vec3& a, const vec3& b);
 	vec3		 crossProduct(const vec3& a, const vec3& b);
 
-	//angle in degrees
-	vec2	vec2Rotation(const vec2& v, const float& angle);
+	inline mat3 identity3();
+	inline mat4 identity4();
 
-	mat4	translateMatrix(const vec3& pos);
+	inline mat4 frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
+	inline mat4 perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far);
+	inline mat4 orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
+
+	mat4 translateMatrix(const vec3& pos);
 
 	//euler rotation
-	mat4	rotateXMatrix(const float& pitch);		//angle in degrees
-	mat4	rotateYMatrix(const float& yaw);		//angle in degrees
-	mat4	rotateZMatrix(const float& roll);		//angle in degrees
+	mat4 rotateXMatrix(const float& pitch);		//angle in degrees
+	mat4 rotateYMatrix(const float& yaw);		//angle in degrees
+	mat4 rotateZMatrix(const float& roll);		//angle in degrees
 
-	mat4	scaleMatrix(const vec3& scale);
+	mat4 scaleMatrix(const vec3& scale);
 }
 
 //vec2 + vec2

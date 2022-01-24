@@ -34,7 +34,7 @@ mat4 Quaternion::m4() const
 	return mq;
 }
 
-vec3 Math::rotateQ(const vec3& v, const float& angle, const vec3& axis)
+vec3 Math3::rotateQ(const vec3& v, const float& angle, const vec3& axis)
 {
 	Quaternion q(angle, axis);
 	Quaternion qb = q.conjugate();

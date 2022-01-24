@@ -2,7 +2,7 @@
 
 #include "math/math.hpp"
 
-namespace Math
+namespace Math3
 {
 	//quaternion rotation
 	//angle in degrees
@@ -33,14 +33,14 @@ inline Quaternion Quaternion::operator*(const Quaternion& q) const
 }
 
 template <class Q>
-vec3 Math::rotateQ(const vec3& v, const Q& q)
+vec3 Math3::rotateQ(const vec3& v, const Q& q)
 {
 	Quaternion qr = q * v.q() * q.conjugate();
 	return { qr.i, qr.j, qr.k };
 }
 
 template<typename firstQuaternion, typename... quaternionArgs>
-vec3 Math::rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
+vec3 Math3::rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
 {
 	vec3 r = rotateQ(v, q1);
 	r = rotateQ(r, qs...);

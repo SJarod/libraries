@@ -7,7 +7,7 @@ Quaternion vec3::q() const
 	return q;
 }
 
-vec3 Math::crossProduct(const vec3& a, const vec3& b)
+vec3 Math3::crossProduct(const vec3& a, const vec3& b)
 {
 	vec3 v;
 	v.x = a.y * b.z - a.z * b.y;
@@ -16,7 +16,7 @@ vec3 Math::crossProduct(const vec3& a, const vec3& b)
 	return v;
 }
 
-vec2 Math::vec2Rotation(const vec2& v, const float& angle)
+vec2 Math2::rotate(const vec2& v, const float& angle)
 {
 	float a = angle * TORAD;
 	float x = cosf(a) * v.x - sinf(a) * v.y;
@@ -25,7 +25,7 @@ vec2 Math::vec2Rotation(const vec2& v, const float& angle)
 	return { x, y };
 }
 
-mat4 Math::translateMatrix(const vec3& pos)
+mat4 Math3::translateMatrix(const vec3& pos)
 {
 	return mat4{
 		1.f, 0.f, 0.f, pos.x,
@@ -35,7 +35,7 @@ mat4 Math::translateMatrix(const vec3& pos)
 	};
 }
 
-mat4 Math::rotateXMatrix(const float& pitch)
+mat4 Math3::rotateXMatrix(const float& pitch)
 {
 	float a = pitch * TORAD;
 	return mat4{
@@ -46,7 +46,7 @@ mat4 Math::rotateXMatrix(const float& pitch)
 	};
 }
 
-mat4 Math::rotateYMatrix(const float& yaw)
+mat4 Math3::rotateYMatrix(const float& yaw)
 {
 	float a = yaw * TORAD;
 	return mat4{
@@ -57,7 +57,7 @@ mat4 Math::rotateYMatrix(const float& yaw)
 	};
 }
 
-mat4 Math::rotateZMatrix(const float& roll)
+mat4 Math3::rotateZMatrix(const float& roll)
 {
 	float a = roll * TORAD;
 	return mat4{
@@ -68,7 +68,7 @@ mat4 Math::rotateZMatrix(const float& roll)
 	};
 }
 
-mat4 Math::scaleMatrix(const vec3& scale)
+mat4 Math3::scaleMatrix(const vec3& scale)
 {
 	return mat4{
 		scale.x, 0.f, 0.f, 0.f,

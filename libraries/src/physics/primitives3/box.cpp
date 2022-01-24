@@ -8,7 +8,7 @@ Physics::Primitives3::Quad::Quad(const vec3& center, const vec2& extensions, con
 
 vec3 Physics::Primitives3::Quad::getNormal() const
 {
-	vec3 normal = Math::rotateQ({ 0.f, 1.f, 0.f }, q);
+	vec3 normal = Math3::rotateQ({ 0.f, 1.f, 0.f }, q);
 	return reverse ? -normal : normal;
 }
 
@@ -40,14 +40,14 @@ Physics::Primitives3::AABB3 Physics::Primitives3::Box::getAABB() const
     p[6] = { 0.f - extensions.x / 2, 0.f - extensions.y / 2, 0.f - extensions.z / 2 };
     p[7] = { 0.f - extensions.x / 2, 0.f - extensions.y / 2, 0.f + extensions.z / 2 };
 
-    p[0] = Math::rotateQ(p[0], q);
-    p[1] = Math::rotateQ(p[1], q);
-    p[2] = Math::rotateQ(p[2], q);
-    p[3] = Math::rotateQ(p[3], q);
-    p[4] = Math::rotateQ(p[4], q);
-    p[5] = Math::rotateQ(p[5], q);
-    p[6] = Math::rotateQ(p[6], q);
-    p[7] = Math::rotateQ(p[7], q);
+    p[0] = Math3::rotateQ(p[0], q);
+    p[1] = Math3::rotateQ(p[1], q);
+    p[2] = Math3::rotateQ(p[2], q);
+    p[3] = Math3::rotateQ(p[3], q);
+    p[4] = Math3::rotateQ(p[4], q);
+    p[5] = Math3::rotateQ(p[5], q);
+    p[6] = Math3::rotateQ(p[6], q);
+    p[7] = Math3::rotateQ(p[7], q);
 
     p[0] += center;
     p[1] += center;

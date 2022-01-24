@@ -35,7 +35,7 @@ inline vec3 vec3::normalized() const
 	return (*this) / mag();
 }
 
-inline mat3 Math::identity3()
+inline mat3 Math3::identity3()
 {
 	mat3 m;
 	m.c[0] = { 1.f, 0.f, 0.f };
@@ -44,7 +44,7 @@ inline mat3 Math::identity3()
 	return m;
 }
 
-inline mat4 Math::identity4()
+inline mat4 Math3::identity4()
 {
 	mat4 m;
 	m.c[0] = { 1.f, 0.f, 0.f, 0.f };
@@ -54,7 +54,7 @@ inline mat4 Math::identity4()
 	return m;
 }
 
-inline mat4 Math::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
+inline mat4 Math3::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 frs;
 	frs.c[0] = { (2 * near) / (right - left), 0.f, 0.f, -near * (right + left) / (right - left) };
@@ -64,7 +64,7 @@ inline mat4 Math::frustum(const float& left, const float& right, const float& bo
 	return frs;
 }
 
-inline mat4 Math::perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far)
+inline mat4 Math3::perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far)
 {
 	float top = near * tanf(fovYdeg * TORAD * 0.5f);
 	float right = top * aspect;
@@ -72,7 +72,7 @@ inline mat4 Math::perspective(const float& fovYdeg, const float& aspect, const f
 	return frustum(-right, right, -top, top, near, far);
 }
 
-inline mat4 Math::orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
+inline mat4 Math3::orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 orth;
 	orth.c[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
@@ -113,12 +113,12 @@ float Math::saturate(const float& value)
 	return max(0.f, min(value, 1.f));
 }
 
-inline float Math::dotProduct(const vec2& a, const vec2& b)
+inline float Math2::dotProduct(const vec2& a, const vec2& b)
 {
 	return a.x * b.x + a.y * b.y;
 }
 
-inline float Math::dotProduct(const vec3& a, const vec3& b)
+inline float Math3::dotProduct(const vec3& a, const vec3& b)
 {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
