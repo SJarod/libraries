@@ -1,25 +1,5 @@
 #include "math.hpp"
 
-inline float2::operator vec2() const
-{
-	return vec2{ e[0], e[1] };
-}
-
-inline float3::operator vec3() const
-{
-	return vec3{ e[0], e[1], e[2] };
-}
-
-inline vec2::operator float2() const
-{
-	return float2{ x, y };
-}
-
-inline vec3::operator float3() const
-{
-	return float3{ x, y, z };
-}
-
 inline float vec3::sqrMag() const
 {
 	return x * x + y * y + z * z;

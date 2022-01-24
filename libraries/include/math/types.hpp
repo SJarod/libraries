@@ -24,26 +24,10 @@ union uint3
 	uint e[3];
 };
 
-union float2
-{
-	float e[2];
-
-	inline operator vec2() const;
-};
-
-union float3
-{
-	float e[3];
-
-	inline operator vec3() const;
-};
-
 union vec2
 {
 	float  e[2];
 	struct { float x; float y; };
-
-	inline operator float2() const;
 };
 
 union vec3
@@ -53,14 +37,12 @@ union vec3
 	struct { float i; float j; float k; };
 	vec2   xy;
 
-	inline operator float3() const;
-
 	//get vector's quaternion
 	Quaternion q() const;
 
-	inline float	sqrMag() const;
-	inline float	mag() const;
-	inline vec3		normalized() const;
+	inline float sqrMag() const;
+	inline float mag() const;
+	inline vec3	 normalized() const;
 };
 
 union vec4
@@ -71,6 +53,10 @@ union vec4
 	vec3   xyz;
 	vec3   rgb;
 };
+
+typedef vec2 float2;
+typedef vec3 float3;
+typedef vec4 float4;
 
 union mat3
 {
