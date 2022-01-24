@@ -28,6 +28,12 @@ union vec2
 {
 	float  e[2];
 	struct { float x; float y; };
+
+	static const vec2 zero;
+	static const vec2 up;
+	static const vec2 down;
+	static const vec2 left;
+	static const vec2 right;
 };
 
 union vec3
@@ -36,6 +42,14 @@ union vec3
 	struct { float x; float y; float z; };
 	struct { float i; float j; float k; };
 	vec2   xy;
+
+	static const vec3 zero;
+	static const vec3 up;
+	static const vec3 down;
+	static const vec3 left;
+	static const vec3 right;
+	static const vec3 forward;
+	static const vec3 backward;
 
 	//get vector's quaternion
 	Quaternion q() const;
@@ -52,6 +66,8 @@ union vec4
 	struct { float r; float g; float b; float a; };
 	vec3   xyz;
 	vec3   rgb;
+
+	static const vec4 zero;
 };
 
 typedef vec2 float2;
@@ -62,12 +78,18 @@ union mat3
 {
 	vec3	c[3];
 	float	e[9];
+
+	static const mat3 zero;
+	static const mat3 identity;
 };
 
 union mat4
 {
 	vec4	c[4];
 	float	e[16];
+
+	static const mat4 zero;
+	static const mat4 identity;
 };
 
 union Quaternion

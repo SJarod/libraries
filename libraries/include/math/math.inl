@@ -15,25 +15,6 @@ inline vec3 vec3::normalized() const
 	return (*this) / mag();
 }
 
-inline mat3 Math3::identity3()
-{
-	mat3 m;
-	m.c[0] = { 1.f, 0.f, 0.f };
-	m.c[1] = { 0.f, 1.f, 0.f };
-	m.c[2] = { 0.f, 0.f, 1.f };
-	return m;
-}
-
-inline mat4 Math3::identity4()
-{
-	mat4 m;
-	m.c[0] = { 1.f, 0.f, 0.f, 0.f };
-	m.c[1] = { 0.f, 1.f, 0.f, 0.f };
-	m.c[2] = { 0.f, 0.f, 1.f, 0.f };
-	m.c[3] = { 0.f, 0.f, 0.f, 1.f };
-	return m;
-}
-
 inline mat4 Math3::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 frs;

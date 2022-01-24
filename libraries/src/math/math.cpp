@@ -1,6 +1,33 @@
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
 
+const vec2 vec2::zero	{  0.f,  0.f };
+const vec2 vec2::up		{  0.f,  1.f };
+const vec2 vec2::down	{  0.f, -1.f };
+const vec2 vec2::left	{ -1.f,  0.f };
+const vec2 vec2::right	{  1.f,  0.f };
+
+const vec3 vec3::zero		{  0.f,  0.f,  0.f };
+const vec3 vec3::up			{  0.f,  1.f,  0.f };
+const vec3 vec3::down		{  0.f, -1.f,  0.f };
+const vec3 vec3::left		{ -1.f,  0.f,  0.f };
+const vec3 vec3::right		{  1.f,  0.f,  0.f };
+const vec3 vec3::forward	{  0.f,  0.f, -1.f };
+const vec3 vec3::backward	{  0.f,  0.f,  1.f };
+
+const vec4 vec4::zero{ 0.f, 0.f, 0.f, 0.f };
+
+const mat3 mat3::zero		{ vec3::zero, vec3::zero, vec3::zero };
+const mat3 mat3::identity	{ vec3::right, vec3::up, vec3::backward };
+
+const mat4 mat4::zero{ vec4::zero, vec4::zero, vec4::zero, vec4::zero };
+const mat4 mat4::identity{
+	1.f, 0.f, 0.f, 0.f,
+	0.f, 1.f, 0.f, 0.f,
+	0.f, 0.f, 1.f, 0.f,
+	0.f, 0.f, 0.f, 1.f
+};
+
 Quaternion vec3::q() const
 {
 	Quaternion q = { 0, x, y, z };
