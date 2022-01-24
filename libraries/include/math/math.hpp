@@ -61,6 +61,8 @@ inline vec2 operator+(const vec2& a, const vec2& b);
 inline vec2 operator-(const vec2& a, const vec2& b);
 //f * vec2
 inline vec2 operator*(const float& a, const vec2& v);
+//vec2 / f
+inline vec2 operator/(const vec2& v, const float a);
 //-vec3
 inline vec3 operator-(const vec3& v);
 //vec3 - vec3

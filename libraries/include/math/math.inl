@@ -1,5 +1,20 @@
 #include "math.hpp"
 
+inline float vec2::sqrMag() const
+{
+	return x * x + y * y;
+}
+
+inline float vec2::mag() const
+{
+	return sqrtf(sqrMag());
+}
+
+inline vec2 vec2::normalized() const
+{
+	return (*this) / mag();
+}
+
 inline float vec3::sqrMag() const
 {
 	return x * x + y * y + z * z;
@@ -97,6 +112,14 @@ vec2 operator-(const vec2& a, const vec2& b)
 inline vec2 operator*(const float& a, const vec2& v)
 {
 	return { a * v.x, a * v.y };
+}
+
+inline vec2 operator/(const vec2& v, const float a)
+{
+	if (a == 0)
+		return v;
+
+	return { v.x / a, v.y / a };
 }
 
 inline vec3 operator-(const vec3& v)

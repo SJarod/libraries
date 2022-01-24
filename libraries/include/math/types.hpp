@@ -1,3 +1,5 @@
+#pragma once
+
 typedef unsigned int uint;
 
 union vec2;
@@ -34,6 +36,10 @@ union vec2
 	static const vec2 down;
 	static const vec2 left;
 	static const vec2 right;
+
+	inline float sqrMag() const;
+	inline float mag() const;
+	inline vec2	 normalized() const;
 };
 
 union vec3
