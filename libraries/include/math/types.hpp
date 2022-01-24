@@ -98,6 +98,8 @@ union Quaternion
 	struct { float a; float i; float j; float k; };
 	vec4   v4;	//show quaternion as a vec4
 
+	static const Quaternion identity;
+
 	Quaternion() = default;
 	Quaternion(const float& a, const float& i, const float& j, const float& k);	//create simple quaternion
 	Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees

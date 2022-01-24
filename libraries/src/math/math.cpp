@@ -28,6 +28,8 @@ const mat4 mat4::identity{
 	0.f, 0.f, 0.f, 1.f
 };
 
+const Quaternion Quaternion::identity{ 1.f, 0.f, 0.f, 0.f };
+
 Quaternion vec3::q() const
 {
 	Quaternion q = { 0, x, y, z };
