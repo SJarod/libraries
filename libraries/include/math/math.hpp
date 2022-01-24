@@ -26,6 +26,13 @@ namespace Math
 
 	inline float clamp(const float& value, const float& mini, const float& maxi);
 	inline float saturate(const float& value);
+
+	inline int	 remap(int val, int min1, int max1, int min2, int max2);
+
+	inline float lerp(const float& from, const float& to, const float& t);
+	inline vec3	 lerp(const vec3& from, const vec3& to, const float& t);
+	Quaternion	 nlerp(const Quaternion& from, const Quaternion& to, const float& t);
+	Quaternion	 slerp(const Quaternion& from, const Quaternion& to, const float& t);
 }
 
 namespace Math2
@@ -39,6 +46,7 @@ namespace Math2
 namespace Math3
 {
 	inline float dotProduct(const vec3& a, const vec3& b);
+	inline float dotProduct(const vec4& a, const vec4& b);
 	vec3		 crossProduct(const vec3& a, const vec3& b);
 
 	inline mat4 frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
@@ -63,6 +71,7 @@ inline vec2 operator-(const vec2& a, const vec2& b);
 inline vec2 operator*(const float& a, const vec2& v);
 //vec2 / f
 inline vec2 operator/(const vec2& v, const float a);
+
 //-vec3
 inline vec3 operator-(const vec3& v);
 //vec3 - vec3
@@ -73,10 +82,23 @@ inline vec3 operator*(const float& a, const vec3& v);
 inline vec3 operator/(const vec3& v, const float a);
 //vec3 += vec3
 inline void operator+=(vec3& a, const vec3& b);
+
+//vec4 / f
+inline vec4 operator/(const vec4& v, const float a);
+
 //mat4 * vec4
 inline vec4 operator*(const mat4& m, const vec4& v);
 //mat4 * mat4
 inline mat4 operator*(const mat4& m, const mat4& m2);
+
+//q * f
+inline Quaternion operator*(const Quaternion& q, const float& f);
+//-q
+inline Quaternion operator-(const Quaternion& q);
+//q + q
+inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2);
+//q * q
+inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
 std::ostream& operator<<(std::ostream& os, const vec2& v);
 std::ostream& operator<<(std::ostream& os, const vec3& v);

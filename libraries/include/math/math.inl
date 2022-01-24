@@ -30,6 +30,21 @@ inline vec3 vec3::normalized() const
 	return (*this) / mag();
 }
 
+inline float vec4::sqrMag() const
+{
+	return x * x + y * y + z * z + w * w;
+}
+
+inline float vec4::mag() const
+{
+	return sqrtf(sqrMag());
+}
+
+inline vec4 vec4::normalized() const
+{
+	return (*this) / mag();
+}
+
 inline mat4 Math3::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 frs;
@@ -83,10 +98,27 @@ inline float Math::clamp(const float& value, const float& mini, const float& max
 	return max(mini, min(value, maxi));
 }
 
-float Math::saturate(const float& value)
+inline float Math::saturate(const float& value)
 {
 	//clamp between 0 and 1
 	return max(0.f, min(value, 1.f));
+}
+
+inline int Math::remap(int val, int min1, int max1, int min2, int max2)
+{
+	return min2 + (val - min1) * (max2 - min2) / (max1 - min1);
+}
+
+inline float Math::lerp(const float& from, const float& to, const float& t)
+{
+	return (1 - t) * from + t * to;
+}
+
+inline vec3 Math::lerp(const vec3& from, const vec3& to, const float& t)
+{
+	return { lerp(from.x, to.x, t),
+			 lerp(from.y, to.y, t),
+			 lerp(from.z, to.z, t) };
 }
 
 inline float Math2::dotProduct(const vec2& a, const vec2& b)
@@ -97,6 +129,11 @@ inline float Math2::dotProduct(const vec2& a, const vec2& b)
 inline float Math3::dotProduct(const vec3& a, const vec3& b)
 {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+float Math3::dotProduct(const vec4& a, const vec4& b)
+{
+	return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
 }
 
 inline vec2 operator+(const vec2& a, const vec2& b)
@@ -152,6 +189,14 @@ inline void operator+=(vec3& a, const vec3& b)
 	a.z += b.z;
 }
 
+inline vec4 operator/(const vec4& v, const float a)
+{
+	if (a == 0)
+		return v;
+
+	return { v.x / a, v.y / a, v.z / a, v.w / a };
+}
+
 inline vec4 operator*(const mat4& m, const vec4& v)
 {
 	vec4 temp = {};
@@ -192,4 +237,29 @@ inline mat4 operator*(const mat4& m, const mat4& m2)
 	}
 
 	return temp;
+}
+
+inline Quaternion operator*(const Quaternion& q, const float& f)
+{
+	return { q.a * f, q.i * f, q.j * f, q.k * f };
+}
+
+inline Quaternion operator-(const Quaternion& q)
+{
+	return q * -1.f;
+}
+
+inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2)
+{
+	return { q1.a + q2.a, q1.i + q2.i, q1.j + q2.j, q1.k + q2.k };
+}
+
+inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2)
+{
+	Quaternion qr;	//result
+	qr.a = q1.a * q2.a - q1.i * q2.i - q1.j * q2.j - q1.k * q2.k;
+	qr.i = q1.a * q2.i + q1.i * q2.a + q1.j * q2.k - q1.k * q2.j;
+	qr.j = q1.a * q2.j - q1.i * q2.k + q1.j * q2.a + q1.k * q2.i;
+	qr.k = q1.a * q2.k + q1.i * q2.j - q1.j * q2.i + q1.k * q2.a;
+	return qr;
 }

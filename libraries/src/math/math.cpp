@@ -30,6 +30,43 @@ const mat4 mat4::identity{
 
 const Quaternion Quaternion::identity{ 1.f, 0.f, 0.f, 0.f };
 
+Quaternion Math::nlerp(const Quaternion& from, const Quaternion& to, const float& t)
+{
+	vec4 v;
+	v.x = lerp(from.a, to.a, t);
+	v.y = lerp(from.i, to.i, t);
+	v.z = lerp(from.j, to.j, t);
+	v.w = lerp(from.k, to.k, t);
+
+	v = v.normalized();
+
+	return Quaternion(v.x, v.y, v.z, v.w);
+}
+
+Quaternion Math::slerp(const Quaternion& from, const Quaternion& to, const float& t)
+{
+	float cosHalfOmega = Math3::dotProduct(from.v4, to.v4);
+
+	Quaternion tto = to;
+	if (cosHalfOmega < 0)
+	{
+		tto = -tto;
+		cosHalfOmega *= -1.f;
+	}
+
+	if (fabs(cosHalfOmega) >= 1.0f)
+	{
+		return from;
+	}
+	else
+	{
+		float halfOmega = acosf(cosHalfOmega);
+		float sinHalfOmega = sqrtf(1.f - cosHalfOmega * cosHalfOmega);
+
+		return from * (sinf((1 - t) * halfOmega) / sinHalfOmega) + tto * (sinf(t * halfOmega) / sinHalfOmega);
+	}
+}
+
 Quaternion vec3::q() const
 {
 	Quaternion q = { 0, x, y, z };

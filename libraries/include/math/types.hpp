@@ -74,6 +74,10 @@ union vec4
 	vec3   rgb;
 
 	static const vec4 zero;
+
+	inline float sqrMag() const;
+	inline float mag() const;
+	inline vec4	 normalized() const;
 };
 
 typedef vec2 float2;
@@ -112,6 +116,4 @@ union Quaternion
 
 	inline Quaternion	conjugate() const;
 	mat4				m4() const; //get quaternion as mat4
-
-	inline Quaternion	operator*(const Quaternion& q) const;
 };
