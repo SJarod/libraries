@@ -49,6 +49,8 @@ namespace Math3
 	inline float dotProduct(const vec4& a, const vec4& b);
 	vec3		 crossProduct(const vec3& a, const vec3& b);
 
+	inline mat4 transpose(const mat4& m);
+
 	inline mat4 frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
 	inline mat4 perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far);
 	inline mat4 orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far);
