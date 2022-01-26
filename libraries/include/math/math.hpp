@@ -1,21 +1,27 @@
 #pragma once
 
 #ifndef M_PI
-#define M_PI 3.14159265358979323846264338327950288f
+#define M_PI 3.14159265358979323846264338327950288419716939937510f
 #endif
+// 2 * pi
+#ifndef M_TAU
+#define M_TAU 6.28318530717958647692528676655900576839433879875020f
+#endif
+// pi / 180
 #ifndef TORAD
-#define TORAD M_PI / 180.f
+#define TORAD 0.017453292519943295769236907684886127134428718885417f
 #endif
+// 180 / pi
 #ifndef TODEG
-#define TODEG 180.f / M_PI
+#define TODEG 57.295779513082320876798154814105170332405472466564f
 #endif
 
 #include <cmath>
 #include <cfloat>
 
-#include "types.hpp"
-
 #include <iostream>
+
+#include "types.hpp"
 
 namespace Math
 {

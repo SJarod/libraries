@@ -1,8 +1,8 @@
 #pragma once
 
-#include "physics/primitives2/convexpolygon.hpp"
-
 #include <vector>
+
+#include "physics/primitives2/convexpolygon.hpp"
 
 namespace Physics
 {

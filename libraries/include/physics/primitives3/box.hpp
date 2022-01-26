@@ -1,11 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
 
 #include "physics/primitives3/aabb3.hpp"
-
-#include <vector>
 
 namespace Physics
 {
