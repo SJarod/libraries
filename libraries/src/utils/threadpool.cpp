@@ -1,9 +1,9 @@
-#include "utils/threadpool.hpp"
-
 #include <iostream>
-#include <functional>
 
 #include <chrono>
+#include <functional>
+
+#include "utils/threadpool.hpp"
 
 Utils::Task::Task(std::function<void()> fct)
 	: task(fct)

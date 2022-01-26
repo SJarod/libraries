@@ -2,9 +2,9 @@
 
 #include <thread>
 #include <atomic>
+#include <functional>
 
 #include "utils/utils.hpp"
-#include <functional>
 
 namespace Utils
 {

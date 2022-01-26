@@ -1,6 +1,6 @@
-#include "utils/utils.hpp"
-
 #include <thread>
+
+#include "utils/utils.hpp"
 
 void Utils::SpinLock::lock()
 {

@@ -2,8 +2,8 @@
 
 #include <cassert>
 
-#include <atomic>
 #include <string>
+#include <atomic>
 
 namespace Utils
 {

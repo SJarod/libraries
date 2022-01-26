@@ -1,8 +1,8 @@
 #pragma once
 
-#include "math/math.hpp"
-
 #include <vector>
+
+#include "math/math.hpp"
 
 #define M_LON 50
 #define M_LAT 25

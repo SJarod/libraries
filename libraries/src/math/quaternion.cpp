@@ -1,6 +1,6 @@
-#include "math/quaternion.hpp"
-
 #include <iostream>
+
+#include "math/quaternion.hpp"
 
 Quaternion::Quaternion(const float& a, const float& i, const float& j, const float& k)
 	: a(a), i(i), j(j), k(k)
