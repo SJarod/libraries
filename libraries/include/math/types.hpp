@@ -95,7 +95,8 @@ union mat3
 
 union mat4
 {
-	vec4	c[4];
+	//row matrix
+	vec4	r[4];
 	float	e[16];
 
 	static const mat4 zero;

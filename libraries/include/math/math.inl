@@ -59,10 +59,10 @@ mat4 Math3::transpose(const mat4& m)
 inline mat4 Math3::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 frs;
-	frs.c[0] = { (2 * near) / (right - left), 0.f, 0.f, -near * (right + left) / (right - left) };
-	frs.c[1] = { 0.f, (2 * near) / (top - bot), 0.f, -near * (top + bot) / (top - bot) };
-	frs.c[2] = { 0.f, 0.f, -(far + near) / (far - near), -(2 * far * near) / (far - near) };
-	frs.c[3] = { 0.f, 0.f, -1.f, 0.f };
+	frs.r[0] = { (2 * near) / (right - left), 0.f, (right + left) / (right - left), 0.f };
+	frs.r[1] = { 0.f, (2 * near) / (top - bot), (top + bot) / (top - bot), 0.f };
+	frs.r[2] = { 0.f, 0.f, -(far + near) / (far - near), -(2 * far * near) / (far - near) };
+	frs.r[3] = { 0.f, 0.f, -1.f, 0.f };
 	return frs;
 }
 
@@ -77,10 +77,10 @@ inline mat4 Math3::perspective(const float& fovYdeg, const float& aspect, const 
 inline mat4 Math3::orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 orth;
-	orth.c[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
-	orth.c[1] = { 0.f, 2 / (top - bot), 0.f, -(top + bot) / (top - bot) };
-	orth.c[2] = { 0.f, 0.f, -2 / (far - near), -(far + near) / (far - near) };
-	orth.c[3] = { 0.f, 0.f, 0.f, 1.f };
+	orth.r[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
+	orth.r[1] = { 0.f, 2 / (top - bot), 0.f, -(top + bot) / (top - bot) };
+	orth.r[2] = { 0.f, 0.f, -2 / (far - near), -(far + near) / (far - near) };
+	orth.r[3] = { 0.f, 0.f, 0.f, 1.f };
 	return orth;
 }
 
@@ -216,7 +216,7 @@ inline vec4 operator*(const mat4& m, const vec4& v)
 	{
 		for (int j = 0; j < 4; ++j)
 		{
-			temp.e[i] += m.c[i].e[j] * v.e[j];
+			temp.e[i] += m.r[i].e[j] * v.e[j];
 		}
 	}
 
@@ -242,7 +242,7 @@ inline mat4 operator*(const mat4& m, const mat4& m2)
 		{
 			for (int k = 0; k < 4; ++k)
 			{
-				temp.c[i].e[j] += m.c[i].e[k] * m2.e[k * 4 + j];
+				temp.r[i].e[j] += m.r[i].e[k] * m2.e[k * 4 + j];
 			}
 		}
 	}

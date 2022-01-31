@@ -178,10 +178,10 @@ std::ostream& operator<<(std::ostream& os, const mat3& m)
 std::ostream& operator<<(std::ostream& os, const mat4& m)
 {
 	os << "---mat4---" << std::endl;
-	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << ", " << m.c[0].w << std::endl;
-	os << m.c[1].x << ", " << m.c[1].y << ", " << m.c[1].z << ", " << m.c[1].w << std::endl;
-	os << m.c[2].x << ", " << m.c[2].y << ", " << m.c[2].z << ", " << m.c[2].w << std::endl;
-	os << m.c[3].x << ", " << m.c[3].y << ", " << m.c[3].z << ", " << m.c[3].w;
+	os << m.r[0].x << ", " << m.r[0].y << ", " << m.r[0].z << ", " << m.r[0].w << std::endl;
+	os << m.r[1].x << ", " << m.r[1].y << ", " << m.r[1].z << ", " << m.r[1].w << std::endl;
+	os << m.r[2].x << ", " << m.r[2].y << ", " << m.r[2].z << ", " << m.r[2].w << std::endl;
+	os << m.r[3].x << ", " << m.r[3].y << ", " << m.r[3].z << ", " << m.r[3].w;
 
 	return os;
 }
