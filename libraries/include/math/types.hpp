@@ -2,34 +2,46 @@
 
 typedef unsigned int uint;
 
-union vec2;
-union vec3;
 union Quaternion;
 
 union int2
 {
-	int e[2];
+	struct { int x; int y; };
+
+	inline int& operator[](const int i);
+	inline const int& operator[](const int i) const;
 };
 
 union int3
 {
-	int e[3];
+	struct { int x; int y; int z; };
+
+	inline int& operator[](const int i);
+	inline const int& operator[](const int i) const;
 };
 
 union uint2
 {
-	uint e[2];
+	struct { uint x; uint y; };
+
+	inline uint& operator[](const int i);
+	inline const uint& operator[](const int i) const;
 };
 
 union uint3
 {
-	uint e[3];
+	struct { uint x; uint y; uint z; };
+
+	inline uint& operator[](const int i);
+	inline const uint& operator[](const int i) const;
 };
 
 union vec2
 {
-	float  e[2];
 	struct { float x; float y; };
+
+	inline float& operator[](const int i);
+	inline const float& operator[](const int i) const;
 
 	static const vec2 zero;
 	static const vec2 up;
@@ -44,10 +56,12 @@ union vec2
 
 union vec3
 {
-	float  e[3];
 	struct { float x; float y; float z; };
 	struct { float i; float j; float k; };
 	vec2   xy;
+
+	inline float& operator[](const int i);
+	inline const float& operator[](const int i) const;
 
 	static const vec3 zero;
 	static const vec3 up;
@@ -67,11 +81,13 @@ union vec3
 
 union vec4
 {
-	float  e[4];
 	struct { float x; float y; float z; float w; };
 	struct { float r; float g; float b; float a; };
 	vec3   xyz;
 	vec3   rgb;
+
+	inline float& operator[](const int i);
+	inline const float& operator[](const int i) const;
 
 	static const vec4 zero;
 
@@ -86,8 +102,10 @@ typedef vec4 float4;
 
 union mat3
 {
-	vec3	c[3];
-	float	e[9];
+	vec3 row[3];
+
+	inline float& operator[](const int i);
+	inline const float& operator[](const int i) const;
 
 	static const mat3 zero;
 	static const mat3 identity;
@@ -95,9 +113,10 @@ union mat3
 
 union mat4
 {
-	//row matrix
-	vec4	r[4];
-	float	e[16];
+	vec4 row[4];
+
+	inline float& operator[](const int i);
+	inline const float& operator[](const int i) const;
 
 	static const mat4 zero;
 	static const mat4 identity;
@@ -107,7 +126,7 @@ union Quaternion
 {
 	//q = a + bi + cj + dk
 	struct { float a; float i; float j; float k; };
-	vec4   v4;	//show quaternion as a vec4
+	vec4   vec;	//show quaternion as a vec4
 
 	static const Quaternion identity;
 
@@ -116,5 +135,5 @@ union Quaternion
 	Quaternion(const float& angle, const vec3& v);								//create rotation quaternion, angle in degrees
 
 	inline Quaternion	conjugate() const;
-	mat4				m4() const; //get quaternion as mat4
+	mat4				mat() const; //get quaternion as mat4
 };

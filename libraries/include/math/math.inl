@@ -1,4 +1,67 @@
+#include <cassert>
+
 #include "math.hpp"
+#include "types.hpp"
+
+inline int& int2::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
+
+inline const int& int2::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
+
+inline int& int3::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 0 ? i == 1 ? y : x : z;
+}
+
+inline const int& int3::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 0 ? i == 1 ? y : x : z;
+}
+
+inline uint& uint2::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
+
+inline const uint& uint2::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
+
+inline uint& uint3::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 0 ? i == 1 ? y : x : z;
+}
+
+inline const uint& uint3::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 0 ? i == 1 ? y : x : z;
+}
+
+inline float& vec2::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
+
+inline const float& vec2::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 2));
+	return i == 0 ? x : y;
+}
 
 inline float vec2::sqrMag() const
 {
@@ -13,6 +76,18 @@ inline float vec2::mag() const
 inline vec2 vec2::normalized() const
 {
 	return (*this) / mag();
+}
+
+inline float& vec3::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 2 ? z : xy[i];
+}
+
+inline const float& vec3::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 3));
+	return i == 2 ? z : xy[i];
 }
 
 inline float vec3::sqrMag() const
@@ -30,6 +105,18 @@ inline vec3 vec3::normalized() const
 	return (*this) / mag();
 }
 
+inline float& vec4::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 4));
+	return i == 3 ? w : xyz[i];
+}
+
+inline const float& vec4::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 4));
+	return i == 3 ? w : xyz[i];
+}
+
 inline float vec4::sqrMag() const
 {
 	return x * x + y * y + z * z + w * w;
@@ -45,13 +132,41 @@ inline vec4 vec4::normalized() const
 	return (*this) / mag();
 }
 
+inline float& mat3::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 9));
+	int m = i % 3;
+	return row[(i - m) / 3][m];
+}
+
+inline const float& mat3::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 9));
+	int m = i % 3;
+	return row[(i - m) / 3][m];
+}
+
+inline float& mat4::operator[](const int i)
+{
+	assert(("out of range", i >= 0 && i < 16));
+	int m = i % 4;
+	return row[(i - m) / 4][m];
+}
+
+inline const float& mat4::operator[](const int i) const
+{
+	assert(("out of range", i >= 0 && i < 16));
+	int m = i % 4;
+	return row[(i - m) / 4][m];
+}
+
 mat4 Math3::transpose(const mat4& m)
 {
 	mat4 t = {
-		m.e[0], m.e[4], m.e[8], m.e[12],
-		m.e[1], m.e[5], m.e[9], m.e[13],
-		m.e[2], m.e[6], m.e[10], m.e[14],
-		m.e[3], m.e[7], m.e[11], m.e[15]
+		m[0], m[4], m[8], m[12],
+		m[1], m[5], m[9], m[13],
+		m[2], m[6], m[10], m[14],
+		m[3], m[7], m[11], m[15]
 	};
 	return t;
 }
@@ -59,10 +174,10 @@ mat4 Math3::transpose(const mat4& m)
 inline mat4 Math3::frustum(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 frs;
-	frs.r[0] = { (2 * near) / (right - left), 0.f, (right + left) / (right - left), 0.f };
-	frs.r[1] = { 0.f, (2 * near) / (top - bot), (top + bot) / (top - bot), 0.f };
-	frs.r[2] = { 0.f, 0.f, -(far + near) / (far - near), -(2 * far * near) / (far - near) };
-	frs.r[3] = { 0.f, 0.f, -1.f, 0.f };
+	frs.row[0] = { (2 * near) / (right - left), 0.f, (right + left) / (right - left), 0.f };
+	frs.row[1] = { 0.f, (2 * near) / (top - bot), (top + bot) / (top - bot), 0.f };
+	frs.row[2] = { 0.f, 0.f, -(far + near) / (far - near), -(2 * far * near) / (far - near) };
+	frs.row[3] = { 0.f, 0.f, -1.f, 0.f };
 	return frs;
 }
 
@@ -77,10 +192,10 @@ inline mat4 Math3::perspective(const float& fovYdeg, const float& aspect, const 
 inline mat4 Math3::orthographic(const float& left, const float& right, const float& bot, const float& top, const float& near, const float& far)
 {
 	mat4 orth;
-	orth.r[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
-	orth.r[1] = { 0.f, 2 / (top - bot), 0.f, -(top + bot) / (top - bot) };
-	orth.r[2] = { 0.f, 0.f, -2 / (far - near), -(far + near) / (far - near) };
-	orth.r[3] = { 0.f, 0.f, 0.f, 1.f };
+	orth.row[0] = { 2 / (right - left), 0.f, 0.f, -(right + left) / (right - left) };
+	orth.row[1] = { 0.f, 2 / (top - bot), 0.f, -(top + bot) / (top - bot) };
+	orth.row[2] = { 0.f, 0.f, -2 / (far - near), -(far + near) / (far - near) };
+	orth.row[3] = { 0.f, 0.f, 0.f, 1.f };
 	return orth;
 }
 
@@ -216,7 +331,7 @@ inline vec4 operator*(const mat4& m, const vec4& v)
 	{
 		for (int j = 0; j < 4; ++j)
 		{
-			temp.e[i] += m.r[i].e[j] * v.e[j];
+			temp[i] += m.row[i][j] * v[j];
 		}
 	}
 
@@ -242,7 +357,12 @@ inline mat4 operator*(const mat4& m, const mat4& m2)
 		{
 			for (int k = 0; k < 4; ++k)
 			{
-				temp.r[i].e[j] += m.r[i].e[k] * m2.e[k * 4 + j];
+				//column
+				/*
+				temp.row[i][j] += m.row[i][k] * m2[k * 4 + j];
+				*/
+				//row
+				temp.row[j][i] += m.row[k][i] * m2[j * 4 + k];
 			}
 		}
 	}

@@ -45,7 +45,7 @@ Quaternion Math::nlerp(const Quaternion& from, const Quaternion& to, const float
 
 Quaternion Math::slerp(const Quaternion& from, const Quaternion& to, const float& t)
 {
-	float cosHalfOmega = Math3::dotProduct(from.v4, to.v4);
+	float cosHalfOmega = Math3::dotProduct(from.vec, to.vec);
 
 	Quaternion tto = to;
 	if (cosHalfOmega < 0)
@@ -168,9 +168,9 @@ std::ostream& operator<<(std::ostream& os, const vec4& v)
 std::ostream& operator<<(std::ostream& os, const mat3& m)
 {
 	os << "---mat3---" << std::endl;
-	os << m.c[0].x << ", " << m.c[0].y << ", " << m.c[0].z << std::endl;
-	os << m.c[1].x << ", " << m.c[1].y << ", " << m.c[1].z << std::endl;
-	os << m.c[2].x << ", " << m.c[2].y << ", " << m.c[2].z;
+	os << m.row[0].x << ", " << m.row[0].y << ", " << m.row[0].z << std::endl;
+	os << m.row[1].x << ", " << m.row[1].y << ", " << m.row[1].z << std::endl;
+	os << m.row[2].x << ", " << m.row[2].y << ", " << m.row[2].z;
 
 	return os;
 }
@@ -178,10 +178,10 @@ std::ostream& operator<<(std::ostream& os, const mat3& m)
 std::ostream& operator<<(std::ostream& os, const mat4& m)
 {
 	os << "---mat4---" << std::endl;
-	os << m.r[0].x << ", " << m.r[0].y << ", " << m.r[0].z << ", " << m.r[0].w << std::endl;
-	os << m.r[1].x << ", " << m.r[1].y << ", " << m.r[1].z << ", " << m.r[1].w << std::endl;
-	os << m.r[2].x << ", " << m.r[2].y << ", " << m.r[2].z << ", " << m.r[2].w << std::endl;
-	os << m.r[3].x << ", " << m.r[3].y << ", " << m.r[3].z << ", " << m.r[3].w;
+	os << m.row[0].x << ", " << m.row[0].y << ", " << m.row[0].z << ", " << m.row[0].w << std::endl;
+	os << m.row[1].x << ", " << m.row[1].y << ", " << m.row[1].z << ", " << m.row[1].w << std::endl;
+	os << m.row[2].x << ", " << m.row[2].y << ", " << m.row[2].z << ", " << m.row[2].w << std::endl;
+	os << m.row[3].x << ", " << m.row[3].y << ", " << m.row[3].z << ", " << m.row[3].w;
 
 	return os;
 }
