@@ -3,63 +3,63 @@
 #include "math.hpp"
 #include "types.hpp"
 
-inline int& int2::operator[](const int i)
+inline int& int2::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline const int& int2::operator[](const int i) const
+inline const int& int2::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline int& int3::operator[](const int i)
+inline int& int3::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 0 ? i == 1 ? y : x : z;
 }
 
-inline const int& int3::operator[](const int i) const
+inline const int& int3::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 0 ? i == 1 ? y : x : z;
 }
 
-inline uint& uint2::operator[](const int i)
+inline uint& uint2::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline const uint& uint2::operator[](const int i) const
+inline const uint& uint2::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline uint& uint3::operator[](const int i)
+inline uint& uint3::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 0 ? i == 1 ? y : x : z;
 }
 
-inline const uint& uint3::operator[](const int i) const
+inline const uint& uint3::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 0 ? i == 1 ? y : x : z;
 }
 
-inline float& vec2::operator[](const int i)
+inline float& vec2::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline const float& vec2::operator[](const int i) const
+inline const float& vec2::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 2));
+	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
@@ -78,15 +78,15 @@ inline vec2 vec2::normalized() const
 	return (*this) / mag();
 }
 
-inline float& vec3::operator[](const int i)
+inline float& vec3::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 2 ? z : xy[i];
 }
 
-inline const float& vec3::operator[](const int i) const
+inline const float& vec3::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 3));
+	assert(("out of range", i < 3));
 	return i == 2 ? z : xy[i];
 }
 
@@ -105,15 +105,15 @@ inline vec3 vec3::normalized() const
 	return (*this) / mag();
 }
 
-inline float& vec4::operator[](const int i)
+inline float& vec4::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 4));
+	assert(("out of range", i < 4));
 	return i == 3 ? w : xyz[i];
 }
 
-inline const float& vec4::operator[](const int i) const
+inline const float& vec4::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 4));
+	assert(("out of range", i < 4));
 	return i == 3 ? w : xyz[i];
 }
 
@@ -132,30 +132,30 @@ inline vec4 vec4::normalized() const
 	return (*this) / mag();
 }
 
-inline float& mat3::operator[](const int i)
+inline float& mat3::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 9));
+	assert(("out of range", i < 9));
 	int m = i % 3;
 	return row[(i - m) / 3][m];
 }
 
-inline const float& mat3::operator[](const int i) const
+inline const float& mat3::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 9));
+	assert(("out of range", i < 9));
 	int m = i % 3;
 	return row[(i - m) / 3][m];
 }
 
-inline float& mat4::operator[](const int i)
+inline float& mat4::operator[](const unsigned int i)
 {
-	assert(("out of range", i >= 0 && i < 16));
+	assert(("out of range", i < 16));
 	int m = i % 4;
 	return row[(i - m) / 4][m];
 }
 
-inline const float& mat4::operator[](const int i) const
+inline const float& mat4::operator[](const unsigned int i) const
 {
-	assert(("out of range", i >= 0 && i < 16));
+	assert(("out of range", i < 16));
 	int m = i % 4;
 	return row[(i - m) / 4][m];
 }

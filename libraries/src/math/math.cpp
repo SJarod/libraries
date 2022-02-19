@@ -1,34 +1,34 @@
 #include "math/math.hpp"
 #include "math/quaternion.hpp"
 
-const vec2 vec2::zero	{  0.f,  0.f };
-const vec2 vec2::up		{  0.f,  1.f };
-const vec2 vec2::down	{  0.f, -1.f };
-const vec2 vec2::left	{ -1.f,  0.f };
-const vec2 vec2::right	{  1.f,  0.f };
+const vec2 vec2::zo = {  0.f,  0.f };
+const vec2 vec2::up = {  0.f,  1.f };
+const vec2 vec2::dn = {  0.f, -1.f };
+const vec2 vec2::le = { -1.f,  0.f };
+const vec2 vec2::ri = {  1.f,  0.f };
 
-const vec3 vec3::zero		{  0.f,  0.f,  0.f };
-const vec3 vec3::up			{  0.f,  1.f,  0.f };
-const vec3 vec3::down		{  0.f, -1.f,  0.f };
-const vec3 vec3::left		{ -1.f,  0.f,  0.f };
-const vec3 vec3::right		{  1.f,  0.f,  0.f };
-const vec3 vec3::forward	{  0.f,  0.f, -1.f };
-const vec3 vec3::backward	{  0.f,  0.f,  1.f };
+const vec3 vec3::zo = {  0.f,  0.f,  0.f };
+const vec3 vec3::up = {  0.f,  1.f,  0.f };
+const vec3 vec3::dn = {  0.f, -1.f,  0.f };
+const vec3 vec3::le = { -1.f,  0.f,  0.f };
+const vec3 vec3::ri = {  1.f,  0.f,  0.f };
+const vec3 vec3::fw = {  0.f,  0.f, -1.f };
+const vec3 vec3::bw = {  0.f,  0.f,  1.f };
 
-const vec4 vec4::zero{ 0.f, 0.f, 0.f, 0.f };
+const vec4 vec4::zo = { 0.f, 0.f, 0.f, 0.f };
 
-const mat3 mat3::zero		{ vec3::zero, vec3::zero, vec3::zero };
-const mat3 mat3::identity	{ vec3::right, vec3::up, vec3::backward };
+const mat3 mat3::zo = { vec3::zo, vec3::zo, vec3::zo };
+const mat3 mat3::id = { vec3::ri, vec3::up, vec3::bw };
 
-const mat4 mat4::zero{ vec4::zero, vec4::zero, vec4::zero, vec4::zero };
-const mat4 mat4::identity{
+const mat4 mat4::zo = { vec4::zo, vec4::zo, vec4::zo, vec4::zo };
+const mat4 mat4::id = {
 	1.f, 0.f, 0.f, 0.f,
 	0.f, 1.f, 0.f, 0.f,
 	0.f, 0.f, 1.f, 0.f,
 	0.f, 0.f, 0.f, 1.f
 };
 
-const Quaternion Quaternion::identity{ 1.f, 0.f, 0.f, 0.f };
+const Quaternion Quaternion::id = { 1.f, 0.f, 0.f, 0.f };
 
 Quaternion Math::nlerp(const Quaternion& from, const Quaternion& to, const float& t)
 {
