@@ -17,6 +17,23 @@ const vec3 vec3::bw = {  0.f,  0.f,  1.f };
 
 const vec4 vec4::zo = { 0.f, 0.f, 0.f, 0.f };
 
+const vec4 Color::white		= {   1.f,   1.f,   1.f, 1.f };
+const vec4 Color::silver	= { 0.75f, 0.75f, 0.75f, 1.f };
+const vec4 Color::gray		= {  0.5f,  0.5f,  0.5f, 1.f };
+const vec4 Color::black		= {   0.f,   0.f,   0.f, 1.f };
+const vec4 Color::red		= {   1.f,   0.f,   0.f, 1.f };
+const vec4 Color::maroon	= {  0.5f,   0.f,   0.f, 1.f };
+const vec4 Color::yellow	= {   1.f,   1.f,   0.f, 1.f };
+const vec4 Color::olive		= {  0.5f,  0.5f,   0.f, 1.f };
+const vec4 Color::lime		= {   0.f,   1.f,   0.f, 1.f };
+const vec4 Color::green		= {   0.f,  0.5f,   0.f, 1.f };
+const vec4 Color::aqua		= {   0.f,   1.f,   1.f, 1.f };
+const vec4 Color::teal		= {   0.f,  0.5f,  0.5f, 1.f };
+const vec4 Color::blue		= {   0.f,   0.f,   1.f, 1.f };
+const vec4 Color::navy		= {   0.f,   0.f,  0.5f, 1.f };
+const vec4 Color::fuchsia	= {   1.f,   0.f,   1.f, 1.f };
+const vec4 Color::purple	= {  0.5f,   0.f,  0.5f, 1.f };
+
 const mat3 mat3::zo = { vec3::zo, vec3::zo, vec3::zo };
 const mat3 mat3::id = { vec3::ri, vec3::up, vec3::bw };
 

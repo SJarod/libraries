@@ -100,9 +100,7 @@ union vec3
 union vec4
 {
 	struct { float x; float y; float z; float w; };
-	struct { float r; float g; float b; float a; };
 	vec3   xyz;
-	vec3   rgb;
 	float  elem[4];
 
 	inline float& operator[](const unsigned int i);
@@ -119,6 +117,30 @@ union vec4
 typedef vec2 float2;
 typedef vec3 float3;
 typedef vec4 float4;
+
+union Color
+{
+	struct { float r; float g; float b; float a; };
+	vec4   rgba;
+	vec3   rgb;
+
+	static const vec4 white;
+	static const vec4 silver;
+	static const vec4 gray;
+	static const vec4 black;
+	static const vec4 red;
+	static const vec4 maroon;
+	static const vec4 yellow;
+	static const vec4 olive;
+	static const vec4 lime;
+	static const vec4 green;
+	static const vec4 aqua;
+	static const vec4 teal;
+	static const vec4 blue;
+	static const vec4 navy;
+	static const vec4 fuchsia;
+	static const vec4 purple;
+};
 
 union mat3
 {
