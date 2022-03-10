@@ -10,11 +10,15 @@ set(SOURCE ${PROJECT_SOURCE_DIR}/src)
 include_directories(${INCLUDE})
 
 file(GLOB_RECURSE SOURCES
+	${INCLUDE}/*.h
+	${INCLUDE}/*.hpp
+	${INCLUDE}/*.inl
 	${SOURCE}/*.c
 	${SOURCE}/*.cpp
 )
 
 add_library(libraries STATIC ${SOURCES})
+target_include_directories(libraries PUBLIC ${INCLUDE})
 
 file(GLOB_RECURSE HEADERS
 	${INCLUDE}/*.h
