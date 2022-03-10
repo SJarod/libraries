@@ -1,15 +1,17 @@
-#visual studio
-.vs
-*.user
+# project
+[Bb]uild
+[Ii]nstall
 
-#compilation files
+# Build results
+[Dd]ebug
+[Rr]elease
+[Rr]eleases
 x64
-libraries/x64
 
-#git merge original files
+# git merge original files
 *.orig
 
-#archives
+# archives
 *.zip
 *.rar
 *.7z
