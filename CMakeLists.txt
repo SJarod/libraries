@@ -7,8 +7,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(INCLUDE ${PROJECT_SOURCE_DIR}/include)
 set(SOURCE ${PROJECT_SOURCE_DIR}/src)
 
-include_directories(${INCLUDE})
-
 file(GLOB_RECURSE SOURCES
 	${INCLUDE}/*.h
 	${INCLUDE}/*.hpp
@@ -19,12 +17,6 @@ file(GLOB_RECURSE SOURCES
 
 add_library(libraries STATIC ${SOURCES})
 target_include_directories(libraries PUBLIC ${INCLUDE})
-
-file(GLOB_RECURSE HEADERS
-	${INCLUDE}/*.h
-	${INCLUDE}/*.hpp
-	${INCLUDE}/*.inl
-)
 
 install(TARGETS libraries)
 install(
