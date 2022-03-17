@@ -1,39 +1,58 @@
 #pragma once
 
-#include "math/math.hpp"
+struct float4;
+struct mat4;
 
-namespace Math3
+struct Quaternion
 {
-	//quaternion rotation
-	//angle in degrees
-	vec3 rotateQ(const vec3& v, const float& angle, const vec3& axis);
+	union
+	{
+		//q = a + bi + cj + dk
+		struct { float a; float i; float j; float k; };
+	};
 
-	//only accepts Quaternions
-	template <class Q>
-	vec3 rotateQ(const vec3& v, const Q& q);
-	//multiple rotation in the order of arguments
-	template <typename firstQuaternion, typename... quaternionArgs>
-	vec3 rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs);
-}
+	//identity
+	static const Quaternion id;
 
-inline Quaternion Quaternion::conjugate() const
-{
-	Quaternion qb = { a, -i, -j, -k };
-	return qb;
-}
+	Quaternion() = default;
 
-template <class Q>
-vec3 Math3::rotateQ(const vec3& v, const Q& q)
-{
-	Quaternion qr = q * v.q() * q.conjugate();
-	return { qr.i, qr.j, qr.k };
-}
+	/**
+	 * Create a simple quaternion.
+	 */
+	inline Quaternion(const float& a, const float& i, const float& j, const float& k);
 
-template<typename firstQuaternion, typename... quaternionArgs>
-vec3 Math3::rotateQ(const vec3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
-{
-	vec3 r = rotateQ(v, q1);
-	r = rotateQ(r, qs...);
+	/**
+	 * Create rotation quaternion.
+	 *
+	 * @param angle in degrees
+	 * @param v
+	 */
+	inline Quaternion(const float& angle, const float3& v);
 
-	return r;
-}
+	/**
+	 * Return the conjugate of the quaternion.
+	 *
+	 * @return quaternion's conjugate
+	 */
+	inline Quaternion	conjugate() const;
+
+	inline float4		vec() const;
+
+	/**
+	 * Return the quaternion as a rotation matrix.
+	 *
+	 * @return mat4
+	 */
+	inline mat4			mat() const;
+};
+
+//q * f
+inline Quaternion operator*(const Quaternion& q, const float& f);
+//-q
+inline Quaternion operator-(const Quaternion& q);
+//q + q
+inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2);
+//q * q
+inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
+
+#include "math/quaternion.inl"

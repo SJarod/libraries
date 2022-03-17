@@ -1,172 +1,132 @@
-#include <cassert>
+#include "math/math.hpp"
 
-#include "math.hpp"
-#include "types.hpp"
-
-inline int& int2::operator[](const unsigned int i)
+inline float Math::min(const float& a, const float& b)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	return a < b ? a : b;
 }
 
-inline const int& int2::operator[](const unsigned int i) const
+inline float Math::max(const float& a, const float& b)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	return a > b ? a : b;
 }
 
-inline int& int3::operator[](const unsigned int i)
+inline float3 Math::min(const float3& a, const float3& b)
 {
-	assert(("out of range", i < 3));
-	return i == 0 ? i == 1 ? y : x : z;
+	return { min(a.x, b.x), min(a.y, b.y), min(a.z, a.z) };
 }
 
-inline const int& int3::operator[](const unsigned int i) const
+inline float3 Math::max(const float3& a, const float3& b)
 {
-	assert(("out of range", i < 3));
-	return i == 0 ? i == 1 ? y : x : z;
+	return { max(a.x, b.x), max(a.y, b.y), max(a.z, a.z) };
 }
 
-inline uint& uint2::operator[](const unsigned int i)
+inline float Math::clamp(const float& value, const float& mini, const float& maxi)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	return max(mini, min(value, maxi));
 }
 
-inline const uint& uint2::operator[](const unsigned int i) const
+inline float Math::saturate(const float& value)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	//clamp between 0 and 1
+	return max(0.f, min(value, 1.f));
 }
 
-inline uint& uint3::operator[](const unsigned int i)
+inline int Math::remap(const int val, const int min1, const int max1, const int min2, const int max2)
 {
-	assert(("out of range", i < 3));
-	return i == 0 ? i == 1 ? y : x : z;
+	return min2 + (val - min1) * (max2 - min2) / (max1 - min1);
 }
 
-inline const uint& uint3::operator[](const unsigned int i) const
+inline float Math::lerp(const float& from, const float& to, const float& t)
 {
-	assert(("out of range", i < 3));
-	return i == 0 ? i == 1 ? y : x : z;
+	return (1 - t) * from + t * to;
 }
 
-inline float& vec2::operator[](const unsigned int i)
+inline float3 Math::lerp(const float3& from, const float3& to, const float& t)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	return { lerp(from.x, to.x, t),
+			 lerp(from.y, to.y, t),
+			 lerp(from.z, to.z, t) };
 }
 
-inline const float& vec2::operator[](const unsigned int i) const
+inline Quaternion Math::nlerp(const Quaternion& from, const Quaternion& to, const float& t)
 {
-	assert(("out of range", i < 2));
-	return i == 0 ? x : y;
+	float4 v;
+	v.x = lerp(from.a, to.a, t);
+	v.y = lerp(from.i, to.i, t);
+	v.z = lerp(from.j, to.j, t);
+	v.w = lerp(from.k, to.k, t);
+
+	v = v.normalized();
+
+	return Quaternion(v.x, v.y, v.z, v.w);
 }
 
-inline float vec2::sqrMag() const
+inline Quaternion Math::slerp(const Quaternion& from, const Quaternion& to, const float& t)
 {
-	return x * x + y * y;
+	float cosHalfOmega = Math3::dot(from.vec(), to.vec());
+
+	Quaternion tto = to;
+	if (cosHalfOmega < 0)
+	{
+		tto = -tto;
+		cosHalfOmega *= -1.f;
+	}
+
+	if (fabs(cosHalfOmega) >= 1.0f)
+	{
+		return from;
+	}
+	else
+	{
+		float halfOmega = acosf(cosHalfOmega);
+		float sinHalfOmega = sqrtf(1.f - cosHalfOmega * cosHalfOmega);
+
+		return from * (sinf((1 - t) * halfOmega) / sinHalfOmega) + tto * (sinf(t * halfOmega) / sinHalfOmega);
+	}
 }
 
-inline float vec2::mag() const
+
+inline float Math2::dot(const float2& a, const float2& b)
 {
-	return sqrtf(sqrMag());
+	return a.x * b.x + a.y * b.y;
 }
 
-inline vec2 vec2::normalized() const
+inline float2 Math2::rotate(const float2& v, const float& angle)
 {
-	return (*this) / mag();
+	float a = angle * TORAD;
+	float x = cosf(a) * v.x - sinf(a) * v.y;
+	float y = sinf(a) * v.x + cosf(a) * v.y;
+
+	return { x, y };
 }
 
-inline float& vec3::operator[](const unsigned int i)
+
+inline float Math3::dot(const float3& a, const float3& b)
 {
-	assert(("out of range", i < 3));
-	return i == 2 ? z : xy[i];
+	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
-inline const float& vec3::operator[](const unsigned int i) const
+inline float Math3::dot(const float4& a, const float4& b)
 {
-	assert(("out of range", i < 3));
-	return i == 2 ? z : xy[i];
+	return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
 }
 
-inline float vec3::sqrMag() const
+inline float3 Math3::cross(const float3& a, const float3& b)
 {
-	return x * x + y * y + z * z;
+	float3 v;
+	v.x = a.y * b.z - a.z * b.y;
+	v.y = a.z * b.x - a.x * b.z;
+	v.z = a.x * b.y - a.y * b.x;
+	return v;
 }
 
-inline float vec3::mag() const
-{
-	return sqrtf(sqrMag());
-}
-
-inline vec3 vec3::normalized() const
-{
-	return (*this) / mag();
-}
-
-inline float& vec4::operator[](const unsigned int i)
-{
-	assert(("out of range", i < 4));
-	return i == 3 ? w : xyz[i];
-}
-
-inline const float& vec4::operator[](const unsigned int i) const
-{
-	assert(("out of range", i < 4));
-	return i == 3 ? w : xyz[i];
-}
-
-inline float vec4::sqrMag() const
-{
-	return x * x + y * y + z * z + w * w;
-}
-
-inline float vec4::mag() const
-{
-	return sqrtf(sqrMag());
-}
-
-inline vec4 vec4::normalized() const
-{
-	return (*this) / mag();
-}
-
-inline float& mat3::operator[](const unsigned int i)
-{
-	assert(("out of range", i < 9));
-	int m = i % 3;
-	return row[(i - m) / 3][m];
-}
-
-inline const float& mat3::operator[](const unsigned int i) const
-{
-	assert(("out of range", i < 9));
-	int m = i % 3;
-	return row[(i - m) / 3][m];
-}
-
-inline float& mat4::operator[](const unsigned int i)
-{
-	assert(("out of range", i < 16));
-	int m = i % 4;
-	return row[(i - m) / 4][m];
-}
-
-inline const float& mat4::operator[](const unsigned int i) const
-{
-	assert(("out of range", i < 16));
-	int m = i % 4;
-	return row[(i - m) / 4][m];
-}
-
-mat4 Math3::transpose(const mat4& m)
+inline mat4 Math3::transpose(const mat4& m)
 {
 	mat4 t = {
-		m[0], m[4], m[8], m[12],
-		m[1], m[5], m[9], m[13],
-		m[2], m[6], m[10], m[14],
-		m[3], m[7], m[11], m[15]
+		m.elem[0], m.elem[4],  m.elem[8], m.elem[12],
+		m.elem[1], m.elem[5],  m.elem[9], m.elem[13],
+		m.elem[2], m.elem[6], m.elem[10], m.elem[14],
+		m.elem[3], m.elem[7], m.elem[11], m.elem[15]
 	};
 	return t;
 }
@@ -199,198 +159,125 @@ inline mat4 Math3::orthographic(const float& left, const float& right, const flo
 	return orth;
 }
 
-inline float Math::min(const float& a, const float& b)
+inline mat4 Math3::translateMatrix(const float3& pos)
 {
-	return a < b ? a : b;
+	return mat4{
+		1.f, 0.f, 0.f, pos.x,
+		0.f, 1.f, 0.f, pos.y,
+		0.f, 0.f, 1.f, pos.z,
+		0.f, 0.f, 0.f, 1.f,
+	};
 }
 
-inline float Math::max(const float& a, const float& b)
+inline mat4 Math3::rotateXMatrix(const float& pitch)
 {
-	return a > b ? a : b;
+	float a = pitch * TORAD;
+	return mat4{
+		1.f, 0.f, 0.f, 0.f,
+		0.f, cos(a), -sin(a), 0.f,
+		0.f, sin(a), cos(a), 0.f,
+		0.f, 0.f, 0.f, 1.f,
+	};
 }
 
-inline vec3 Math::min(const vec3& a, const vec3& b)
+inline mat4 Math3::rotateYMatrix(const float& yaw)
 {
-	return { min(a.x, b.x), min(a.y, b.y), min(a.z, a.z) };
+	float a = yaw * TORAD;
+	return mat4{
+		cos(a), 0.f, sin(a), 0.f,
+		0.f, 1.f, 0.f, 0.f,
+		-sin(a), 0.f, cos(a), 0.f,
+		0.f, 0.f, 0.f, 1.f,
+	};
 }
 
-inline vec3 Math::max(const vec3& a, const vec3& b)
+inline mat4 Math3::rotateZMatrix(const float& roll)
 {
-	return { max(a.x, b.x), max(a.y, b.y), max(a.z, a.z) };
+	float a = roll * TORAD;
+	return mat4{
+		cos(a), -sin(a), 0.f, 0.f,
+		sin(a), cos(a), 0.f, 0.f,
+		0.f, 0.f, 1.f, 0.f,
+		0.f, 0.f, 0.f, 1.f,
+	};
 }
 
-inline float Math::clamp(const float& value, const float& mini, const float& maxi)
+inline mat4 Math3::scaleMatrix(const float3& scale)
 {
-	return max(mini, min(value, maxi));
+	return mat4{
+		scale.x, 0.f, 0.f, 0.f,
+		0.f, scale.y, 0.f, 0.f,
+		0.f, 0.f, scale.z, 0.f,
+		0.f, 0.f, 0.f, 1.f,
+	};
 }
 
-inline float Math::saturate(const float& value)
+inline float3 Math3::rotateQ(const float3& v, const float& angle, const float3& axis)
 {
-	//clamp between 0 and 1
-	return max(0.f, min(value, 1.f));
+	Quaternion q(angle, axis);
+	Quaternion qb = q.conjugate();
+	Quaternion qv = v.q();
+
+	Quaternion qr = q * qv * qb;	//quaternion after rotation
+
+	return { qr.i, qr.j, qr.k };
 }
 
-inline int Math::remap(int val, int min1, int max1, int min2, int max2)
+template <class Q>
+inline float3 Math3::rotateQ(const float3& v, const Q& q)
 {
-	return min2 + (val - min1) * (max2 - min2) / (max1 - min1);
+	Quaternion qr = q * v.q() * q.conjugate();
+	return { qr.i, qr.j, qr.k };
 }
 
-inline float Math::lerp(const float& from, const float& to, const float& t)
+template<typename firstQuaternion, typename... quaternionArgs>
+inline float3 Math3::rotateQ(const float3& v, const firstQuaternion& q1, const quaternionArgs&... qs)
 {
-	return (1 - t) * from + t * to;
+	float3 r = rotateQ(v, q1);
+	r = rotateQ(r, qs...);
+
+	return r;
 }
 
-inline vec3 Math::lerp(const vec3& from, const vec3& to, const float& t)
+
+inline std::ostream& operator<<(std::ostream& os, const float2& v)
 {
-	return { lerp(from.x, to.x, t),
-			 lerp(from.y, to.y, t),
-			 lerp(from.z, to.z, t) };
+	os << "---float2---" << std::endl;
+	os << v.x << ", " << v.y;
+	return os;
 }
 
-inline float Math2::dotProduct(const vec2& a, const vec2& b)
+inline std::ostream& operator<<(std::ostream& os, const float3& v)
 {
-	return a.x * b.x + a.y * b.y;
+	os << "---float3---" << std::endl;
+	os << v.x << ", " << v.y << ", " << v.z;
+	return os;
 }
 
-inline float Math3::dotProduct(const vec3& a, const vec3& b)
+inline std::ostream& operator<<(std::ostream& os, const float4& v)
 {
-	return a.x * b.x + a.y * b.y + a.z * b.z;
+	os << "---float4---" << std::endl;
+	os << v.x << ", " << v.y << ", " << v.z << ", " << v.w;
+	return os;
 }
 
-float Math3::dotProduct(const vec4& a, const vec4& b)
+inline std::ostream& operator<<(std::ostream& os, const mat3& m)
 {
-	return a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
+	os << "---mat3---" << std::endl;
+	os << m.row[0].x << ", " << m.row[0].y << ", " << m.row[0].z << std::endl;
+	os << m.row[1].x << ", " << m.row[1].y << ", " << m.row[1].z << std::endl;
+	os << m.row[2].x << ", " << m.row[2].y << ", " << m.row[2].z;
+
+	return os;
 }
 
-inline vec2 operator+(const vec2& a, const vec2& b)
+inline std::ostream& operator<<(std::ostream& os, const mat4& m)
 {
-	return { a.x + b.x, a.y + b.y };
-}
+	os << "---mat4---" << std::endl;
+	os << m.row[0].x << ", " << m.row[0].y << ", " << m.row[0].z << ", " << m.row[0].w << std::endl;
+	os << m.row[1].x << ", " << m.row[1].y << ", " << m.row[1].z << ", " << m.row[1].w << std::endl;
+	os << m.row[2].x << ", " << m.row[2].y << ", " << m.row[2].z << ", " << m.row[2].w << std::endl;
+	os << m.row[3].x << ", " << m.row[3].y << ", " << m.row[3].z << ", " << m.row[3].w;
 
-vec2 operator-(const vec2& a, const vec2& b)
-{
-	return { a.x - b.x, a.y - b.y };
-}
-
-inline vec2 operator*(const float& a, const vec2& v)
-{
-	return { a * v.x, a * v.y };
-}
-
-inline vec2 operator/(const vec2& v, const float a)
-{
-	if (a == 0)
-		return v;
-
-	return { v.x / a, v.y / a };
-}
-
-inline vec3 operator-(const vec3& v)
-{
-	return { -v.x, -v.y, -v.z };
-}
-
-inline vec3 operator-(const vec3& a, const vec3& b)
-{
-	return { a.x - b.x, a.y - b.y, a.z - b.z };
-}
-
-inline vec3 operator*(const float& a, const vec3& v)
-{
-	return { a * v.x, a * v.y, a * v.z };
-}
-
-inline vec3 operator/(const vec3& v, const float a)
-{
-	if (a == 0)
-		return v;
-
-	return { v.x / a, v.y / a, v.z / a };
-}
-
-inline void operator+=(vec3& a, const vec3& b)
-{
-	a.x += b.x;
-	a.y += b.y;
-	a.z += b.z;
-}
-
-inline vec4 operator/(const vec4& v, const float a)
-{
-	if (a == 0)
-		return v;
-
-	return { v.x / a, v.y / a, v.z / a, v.w / a };
-}
-
-inline vec4 operator*(const mat4& m, const vec4& v)
-{
-	vec4 temp = {};
-
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 0; j < 4; ++j)
-		{
-			temp[i] += m.row[i][j] * v[j];
-		}
-	}
-
-	return temp;
-}
-
-inline mat4 operator*(const mat4& m, const mat4& m2)
-{
-	mat4 temp = {};
-
-				// 0  1  2  3
-				// 4  5  6  7
-				// 8  9 10 11
-				//12 13 14 15
-	// 0  1  2  3
-	// 4  5  6  7
-	// 8  9 10 11
-	//12 13 14 15
-
-	for (int i = 0; i < 4; ++i)
-	{
-		for (int j = 0; j < 4; ++j)
-		{
-			for (int k = 0; k < 4; ++k)
-			{
-				//column
-				/*
-				temp.row[i][j] += m.row[i][k] * m2[k * 4 + j];
-				*/
-				//row
-				temp.row[j][i] += m.row[k][i] * m2[j * 4 + k];
-			}
-		}
-	}
-
-	return temp;
-}
-
-inline Quaternion operator*(const Quaternion& q, const float& f)
-{
-	return { q.a * f, q.i * f, q.j * f, q.k * f };
-}
-
-inline Quaternion operator-(const Quaternion& q)
-{
-	return q * -1.f;
-}
-
-inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2)
-{
-	return { q1.a + q2.a, q1.i + q2.i, q1.j + q2.j, q1.k + q2.k };
-}
-
-inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2)
-{
-	Quaternion qr;	//result
-	qr.a = q1.a * q2.a - q1.i * q2.i - q1.j * q2.j - q1.k * q2.k;
-	qr.i = q1.a * q2.i + q1.i * q2.a + q1.j * q2.k - q1.k * q2.j;
-	qr.j = q1.a * q2.j - q1.i * q2.k + q1.j * q2.a + q1.k * q2.i;
-	qr.k = q1.a * q2.k + q1.i * q2.j - q1.j * q2.i + q1.k * q2.a;
-	return qr;
+	return os;
 }

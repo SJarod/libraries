@@ -9,13 +9,13 @@ Physics::Primitives3::Plane::Plane(const vec3& n, const float& d)
 Physics::Primitives3::Plane::Plane(const vec3& n, const vec3& A)
 {
 	normal = n.normalized();
-	d = Math3::dotProduct(A, normal);
+	d = Math3::dot(A, normal);
 }
 
 Physics::Primitives3::Plane::Plane(const vec3& A, const vec3& B, const vec3& C)
 {
 	vec3 AB = B - A;
 	vec3 AC = C - A;
-	normal = Math3::crossProduct(AB, AC).normalized();
-	d = Math3::dotProduct(A, normal);
+	normal = Math3::cross(AB, AC).normalized();
+	d = Math3::dot(A, normal);
 }

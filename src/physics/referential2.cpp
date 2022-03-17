@@ -25,7 +25,7 @@ vec2 Physics::Referential2::posLocalGlobal(const vec2& lPos) const
 vec2 Physics::Referential2::posGlobalLocal(const vec2& gPos) const
 {
 	vec2 temp = gPos - origin;
-	return { Math2::dotProduct(temp, i), Math2::dotProduct(temp, j) };
+	return { Math2::dot(temp, i), Math2::dot(temp, j) };
 }
 
 vec2 Physics::Referential2::vectorLocalGlobal(const vec2& lVect) const
@@ -35,5 +35,5 @@ vec2 Physics::Referential2::vectorLocalGlobal(const vec2& lVect) const
 
 vec2 Physics::Referential2::vectorGlobalLocal(const vec2& gVect) const
 {
-	return { Math2::dotProduct(gVect, i), Math2::dotProduct(gVect, j) };
+	return { Math2::dot(gVect, i), Math2::dot(gVect, j) };
 }
