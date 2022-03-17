@@ -29,4 +29,4 @@ inline float4 operator/(const float4& a, const float& f);
 typedef float4 vec4;
 #endif
 
-#include "math/float4.hpp"
+#include "math/types/float4.inl"

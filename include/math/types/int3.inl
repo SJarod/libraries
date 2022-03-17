@@ -1,6 +1,6 @@
 #include <cassert>
 
-#include "math/int3.hpp"
+#include "math/types/int3.hpp"
 
 inline int& int3::operator[](const unsigned int i)
 {

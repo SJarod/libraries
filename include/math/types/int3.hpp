@@ -22,4 +22,4 @@ struct int3
 	inline const int& operator[](const unsigned int i) const;
 };
 
-#include "math/int3.inl"
+#include "math/types/int3.inl"

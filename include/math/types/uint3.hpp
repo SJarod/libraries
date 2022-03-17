@@ -24,4 +24,4 @@ struct uint3
 	inline const uint& operator[](const unsigned int i) const;
 };
 
-#include "math/uint3.hpp"
+#include "math/types/uint3.inl"

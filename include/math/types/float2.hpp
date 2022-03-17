@@ -40,4 +40,4 @@ inline float2 operator/(const float2& a, const float& f);
 typedef float2 vec2;
 #endif
 
-#include "math/float2.inl"
+#include "math/types/float2.inl"

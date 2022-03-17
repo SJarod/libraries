@@ -33,4 +33,4 @@ struct Color
 	static const Color purple;
 };
 
-#include "math/color.inl"
+#include "math/types/color.inl"

@@ -1,8 +1,8 @@
 #include <cassert>
 
-#include "math/float3.hpp"
+#include "math/types/float3.hpp"
 
-#include "math/mat3.hpp"
+#include "math/types/mat3.hpp"
 
 inline const mat3 mat3::zo = { float3::zo, float3::zo, float3::zo };
 inline const mat3 mat3::id = { float3::ri, float3::up, float3::bw };

@@ -19,4 +19,4 @@ struct mat3
 	inline const float3& operator[](const unsigned int i) const;
 };
 
-#include "math/mat3.inl"
+#include "math/types/mat3.inl"

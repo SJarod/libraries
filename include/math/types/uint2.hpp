@@ -21,4 +21,4 @@ struct uint2
 	inline const uint& operator[](const unsigned int i) const;
 };
 
-#include "math/uint2.hpp"
+#include "math/types/uint2.inl"

@@ -19,4 +19,4 @@ struct int2
 	inline const int& operator[](const unsigned int i) const;
 };
 
-#include "math/int2.inl"
+#include "math/types/int2.inl"

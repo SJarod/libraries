@@ -54,4 +54,4 @@ inline void operator+=(float3& a, const float3& f);
 typedef float3 vec3;
 #endif
 
-#include "math/float3.inl"
+#include "math/types/float3.inl"

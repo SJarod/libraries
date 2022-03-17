@@ -23,20 +23,22 @@
 
 #include <iostream>
 
-#include "math/int2.hpp"
-#include "math/int3.hpp"
+#include "math/types/int2.hpp"
+#include "math/types/int3.hpp"
 
-#include "math/uint2.hpp"
-#include "math/uint3.hpp"
+#include "math/types/uint2.hpp"
+#include "math/types/uint3.hpp"
 
-#include "math/float2.hpp"
-#include "math/float3.hpp"
-#include "math/float4.hpp"
+#include "math/types/float2.hpp"
+#include "math/types/float3.hpp"
+#include "math/types/float4.hpp"
 
-#include "math/mat3.hpp"
-#include "math/mat4.hpp"
+#include "math/types/vec.hpp"
 
-#include "math/quaternion.hpp"
+#include "math/types/mat3.hpp"
+#include "math/types/mat4.hpp"
+
+#include "math/types/quaternion.hpp"
 
 namespace Math
 {
