@@ -34,13 +34,13 @@ inline float3 float3::normalized() const
 	return (*this) / mag();
 }
 
-inline float& float3::operator[](const unsigned int i)
+inline float& float3::operator[](const uint i)
 {
 	assert(("out of range", i < 3));
 	return i == 2 ? z : xy[i];
 }
 
-inline const float& float3::operator[](const unsigned int i) const
+inline const float& float3::operator[](const uint i) const
 {
 	assert(("out of range", i < 3));
 	return i == 2 ? z : xy[i];

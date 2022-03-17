@@ -33,10 +33,10 @@ namespace Utils
 	class ThreadPool
 	{
 	private:
-		std::thread*		th = nullptr;
+		std::thread*	th = nullptr;
 		//number of threads
-		unsigned int		nThread = 0;
-		bool				multithread = true;
+		uint			nThread = 0;
+		bool			multithread = true;
 
 		float				startTime = 0.f;
 		float				endTime = 0.f;
@@ -57,7 +57,7 @@ namespace Utils
 		 * 
 		 * @param nThread
 		 */
-		ThreadPool(unsigned int nThread = std::thread::hardware_concurrency());
+		ThreadPool(uint nThread = std::thread::hardware_concurrency());
 
 		/**
 		 * End the thread pool.
@@ -86,7 +86,7 @@ namespace Utils
 		 * 
 		 * @return 
 		 */
-		unsigned int getThreadsNumber() const;
+		uint getThreadsNumber() const;
 
 		/**
 		 * Add a task to the task queue.

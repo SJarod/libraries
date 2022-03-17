@@ -5,6 +5,8 @@
 #include <string>
 #include <atomic>
 
+#include "math/math.hpp"
+
 namespace Utils
 {
 	template<typename T>
@@ -30,9 +32,9 @@ namespace Utils
 	class Queue
 	{
 	private:
-		Node<T>*		head = nullptr;
+		Node<T>*	head = nullptr;
 		//queue size, number of elements
-		unsigned int	size = 0;
+		uint		size = 0;
 
 	public:
 		/**
@@ -67,7 +69,7 @@ namespace Utils
 		 * 
 		 * @return 
 		 */
-		unsigned int sizeQueue() const;
+		uint sizeQueue() const;
 	};
 
 	class SpinLock
@@ -233,7 +235,7 @@ bool Utils::Queue<T>::isQueueEmpty()
 }
 
 template<typename T>
-unsigned int Utils::Queue<T>::sizeQueue() const
+uint Utils::Queue<T>::sizeQueue() const
 {
 	return size;
 }

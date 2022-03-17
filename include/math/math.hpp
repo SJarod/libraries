@@ -18,22 +18,18 @@
 #define TODEG 57.295779513082320876798154814105170332405472466564f
 #endif
 
+typedef unsigned int uint;
+
 #include <cmath>
 #include <cfloat>
 
 #include <iostream>
 
-#include "math/types/int2.hpp"
-#include "math/types/int3.hpp"
-
-#include "math/types/uint2.hpp"
-#include "math/types/uint3.hpp"
-
 #include "math/types/float2.hpp"
 #include "math/types/float3.hpp"
 #include "math/types/float4.hpp"
 
-#include "math/types/vec.hpp"
+#include "math/types/vect.hpp"
 
 #include "math/types/mat3.hpp"
 #include "math/types/mat4.hpp"

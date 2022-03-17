@@ -73,7 +73,7 @@ namespace Physics
 			 * @param vertices
 			 * @param indices
 			 */
-			void	getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const;
+			void	getAttribs(std::vector<float>& vertices, std::vector<uint>& indices) const;
 		};
 
 		class RoundedBox

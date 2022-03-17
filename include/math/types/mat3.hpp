@@ -21,7 +21,7 @@ struct mat3
 	 * @param i
 	 * @return row
 	 */
-	inline float3& operator[](const unsigned int i);
+	inline float3& operator[](const uint i);
 
 	/**
 	 * Access this matrix's row with [].
@@ -29,7 +29,7 @@ struct mat3
 	 * @param i
 	 * @return row
 	 */
-	inline const float3& operator[](const unsigned int i) const;
+	inline const float3& operator[](const uint i) const;
 };
 
 #include "math/types/mat3.inl"

@@ -5,7 +5,7 @@ Physics::Primitives3::Sphere::Sphere(const vec3& center, const float& radius)
 {
 }
 
-void Physics::Primitives3::Sphere::getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const
+void Physics::Primitives3::Sphere::getAttribs(std::vector<float>& vertices, std::vector<uint>& indices) const
 {
     float r = radius;
 

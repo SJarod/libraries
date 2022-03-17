@@ -21,7 +21,7 @@ struct mat4
 	 * \param i
 	 * \return row
 	 */
-	inline float4& operator[](const unsigned int i);
+	inline float4& operator[](const uint i);
 
 	/**
 	 * Access this matrix's row with [].
@@ -29,7 +29,7 @@ struct mat4
 	 * \param i
 	 * \return row
 	 */
-	inline const float4& operator[](const unsigned int i) const;
+	inline const float4& operator[](const uint i) const;
 };
 
 /**

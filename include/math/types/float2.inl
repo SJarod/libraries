@@ -24,13 +24,13 @@ inline float2 float2::normalized() const
 	return (*this) / mag();
 }
 
-inline float& float2::operator[](const unsigned int i)
+inline float& float2::operator[](const uint i)
 {
 	assert(("out of range", i < 2));
 	return i == 0 ? x : y;
 }
 
-inline const float& float2::operator[](const unsigned int i) const
+inline const float& float2::operator[](const uint i) const
 {
 	assert(("out of range", i < 2));
 	return i == 0 ? x : y;

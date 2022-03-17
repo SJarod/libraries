@@ -16,7 +16,7 @@ void Utils::Task::doTask()
 		task();
 }
 
-Utils::ThreadPool::ThreadPool(unsigned int nThread)
+Utils::ThreadPool::ThreadPool(uint nThread)
 {
 	this->nThread = nThread;
 
@@ -25,7 +25,7 @@ Utils::ThreadPool::ThreadPool(unsigned int nThread)
 
 	running.store(true);
 
-	for (unsigned int i = 0; i < nThread; ++i)
+	for (uint i = 0; i < nThread; ++i)
 		th[i] = std::thread(std::bind(&ThreadPool::poolRoutine, this, i));
 }
 
@@ -49,7 +49,7 @@ bool& Utils::ThreadPool::getMultithreadParam()
 	return multithread;
 }
 
-unsigned int Utils::ThreadPool::getThreadsNumber() const
+uint Utils::ThreadPool::getThreadsNumber() const
 {
 	return nThread;
 }
@@ -118,7 +118,7 @@ void Utils::ThreadPool::endPool()
 
 	running.store(false);
 
-	for (unsigned int i = 0; i < nThread; ++i)
+	for (uint i = 0; i < nThread; ++i)
 		th[i].join();
 }
 

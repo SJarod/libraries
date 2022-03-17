@@ -75,7 +75,7 @@ Physics::Primitives3::AABB3 Physics::Primitives3::Box::getAABB() const
     return aabb;
 }
 
-void Physics::Primitives3::Box::getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const
+void Physics::Primitives3::Box::getAttribs(std::vector<float>& vertices, std::vector<uint>& indices) const
 {
     float ver[] = {
         center.x + -extensions.x, center.y +  extensions.y, center.z +  extensions.z,
@@ -93,7 +93,7 @@ void Physics::Primitives3::Box::getAttribs(std::vector<float>& vertices, std::ve
         vertices.push_back(ver[i]);
     }
 
-    unsigned int ind[] = {
+    uint ind[] = {
         0, 1, 3,
         1, 2, 3,
         5, 6, 4,
