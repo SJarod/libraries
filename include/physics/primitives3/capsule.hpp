@@ -16,9 +16,16 @@ namespace Physics
 			Quaternion q;
 
 			Capsule() = default;
+
+			/**
+			 * Create a capsule.
+			 * 
+			 * @param center
+			 * @param height
+			 * @param radius
+			 * @param q
+			 */
 			Capsule(const vec3& center, const float& height, const float& radius, const Quaternion& q);
 		};
 	}
 }
-
-using namespace Physics;

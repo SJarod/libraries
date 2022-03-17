@@ -14,15 +14,47 @@ struct float4
 	//zero
 	static const float4 zo;
 
-	inline float	sqrMag() const;
-	inline float	mag() const;
-	inline float4	normalized() const;
+	/**
+	 * Get the square magnitude of this vector.
+	 * 
+	 * @return 
+	 */
+	inline float sqrMag() const;
 
+	/**
+	 * Get the magnitude of this vector.
+	 * 
+	 * @return 
+	 */
+	inline float mag() const;
+
+	/**
+	 * Get this vector with normalized magnitude.
+	 * 
+	 * @return 
+	 */
+	inline float4 normalized() const;
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline float& operator[](const unsigned int i);
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline const float& operator[](const unsigned int i) const;
 };
 
-//float4 / f
+/**
+ * float4 / f.
+ */
 inline float4 operator/(const float4& a, const float& f);
 
 #ifdef FLOAT_AS_VEC

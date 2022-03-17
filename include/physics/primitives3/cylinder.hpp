@@ -16,9 +16,16 @@ namespace Physics
 			Quaternion q;
 
 			Cylinder() = default;
+
+			/**
+			 * Create a cylinder.
+			 * 
+			 * @param center
+			 * @param height
+			 * @param radius
+			 * @param q
+			 */
 			Cylinder(const vec3& center, const float& height, const float& radius, const Quaternion& q);
 		};
 	}
 }
-
-using namespace Physics;

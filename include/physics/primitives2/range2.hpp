@@ -17,29 +17,83 @@ namespace Physics
 			float max;
 
 			Range2() = default;
-			//init min and max to same value
+
+			/**
+			 * Create a range with both min and max to the same value.
+			 * 
+			 * @param val
+			 */
 			Range2(const float& val);
+
+			/**
+			 * Create a range.
+			 * 
+			 * @param min
+			 * @param max
+			 */
 			Range2(const float& min, const float& max);
-			//projection of a vec2 on a vector
+
+			/**
+			 * Projection of a point on a 2D segment.
+			 * 
+			 * @param pt
+			 * @param dir
+			 */
 			Range2(const vec2& pt, const vec2& dir);
-			//projection of a rectangle on a vector
+
+			/**
+			 * Projection of a rectangle on a 2D segment.
+			 * 
+			 * @param rect
+			 * @param dir
+			 */
 			Range2(const Rectangle& rect, const vec2& dir);
-			//projection of a circle on a vector
+
+			/**
+			 * Projection of a circle on a 2D segment.
+			 * 
+			 * @param cl
+			 * @param dir
+			 */
 			Range2(const Circle& cl, const vec2& dir);
-			//projection of a convex polygon on a vector
+
+			/**
+			 * Projection of a convex polygon on a 2D segment.
+			 * 
+			 * @param cx
+			 * @param dir
+			 */
 			Range2(const ConvexPolygon& cx, const vec2& dir);
 
-			void	add(const float& val);
-			float	length() const;
+			/**
+			 * Add a value to the range and adapt it.
+			 * 
+			 * @param val
+			 */
+			void add(const float& val);
 
-			bool	isCollidingWith(const Range2& r);
+			/**
+			 * Length of the range.
+			 * 
+			 * @return 
+			 */
+			float length() const;
+
+			/**
+			 * Check if the range overriding with the specified range.
+			 * 
+			 * @param r
+			 * @return 
+			 */
+			bool isCollidingWith(const Range2& r);
 		};
 
+		/**
+		 * Merge 2 ranges.
+		 */
 		inline Range2 mergeRange2(const Range2& r1, const Range2& r2);
 	}
 }
-
-using namespace Physics;
 
 inline Physics::Primitives2::Range2 Physics::Primitives2::mergeRange2(const Range2& r1, const Range2& r2)
 {

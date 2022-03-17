@@ -13,9 +13,14 @@ namespace Physics
 			vec3 extensions;
 
 			AABB3() = default;
+
+			/**
+			 * Create an axis aligned bounding box.
+			 * 
+			 * @param center
+			 * @param extensions
+			 */
 			AABB3(const vec3& center, const vec3& extensions);
 		};
 	}
 }
-
-using namespace Physics;

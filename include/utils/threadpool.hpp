@@ -15,8 +15,18 @@ namespace Utils
 
 	public:
 		Task() = default;
+
+		/**
+		 * Create a task using a function.
+		 * 
+		 * @param fct
+		 */
 		Task(std::function<void()> fct);
 
+		/**
+		 * Run the function.
+		 * 
+		 */
 		void doTask();
 	};
 
@@ -24,47 +34,124 @@ namespace Utils
 	{
 	private:
 		std::thread*		th = nullptr;
-		unsigned int		nThread = 0;	//number of threads
+		//number of threads
+		unsigned int		nThread = 0;
 		bool				multithread = true;
 
 		float				startTime = 0.f;
 		float				endTime = 0.f;
 		std::atomic<float>	lastTaskTime;
 
-		Queue<Task>			tasks;			//shared data
+		//shared date
+		Queue<Task>			tasks;
 		SpinLock			queueSL;
 		SpinLock			printSL;
 
-		std::atomic<bool>	running;		//is routine running?
+		//is the routine running?
+		std::atomic<bool>	running;
 
 	public:
+		/**
+		 * Create the thread pool.
+		 * Specify the number of threads, the number of threads is by default the maximum that the machine can get.
+		 * 
+		 * @param nThread
+		 */
 		ThreadPool(unsigned int nThread = std::thread::hardware_concurrency());
+
+		/**
+		 * End the thread pool.
+		 * 
+		 */
 		~ThreadPool();
 
-		//true : multithread, false : monothread
-		void			setMultithread(const bool param);
-		bool&			getMultithreadParam();
-		unsigned int	getThreadsNumber() const;
+		/**
+		 * Set the pool to function or not.
+		 * true : multithread
+		 * false : monothread
+		 * 
+		 * @param param
+		 */
+		void setMultithread(const bool param);
 
-		void	addTask(std::function<void()> fct);
-		void	removeTask(const int iterator = 0);
-		void	work();
+		/**
+		 * Is the pool functionning in multithread?
+		 * 
+		 * @return 
+		 */
+		bool& getMultithreadParam();
 
-		//thread routine
-		void	poolRoutine(int id);
-		void	printThreadId(int id);
+		/**
+		 * Get the number of threads.
+		 * 
+		 * @return 
+		 */
+		unsigned int getThreadsNumber() const;
 
-		//join every thread, after end of every task
-		void	endPool();
+		/**
+		 * Add a task to the task queue.
+		 * 
+		 * @param fct
+		 */
+		void addTask(std::function<void()> fct);
 
-		void	setStartTime();
-		//return loading time in seconds
-		//user chooses when to show the loading time
-		float	getLoadingTime();
-		//time when the pool has finished doing every tasks
-		float	printLastWorkingTime();
-		float	printLastWorkingTimeOnce();
+		/**
+		 * Remove a task from the task queue.
+		 * 
+		 * @param iterator
+		 */
+		void removeTask(const int iterator = 0);
+
+		/**
+		 * Choose a task then do it.
+		 * 
+		 */
+		void work();
+
+		/**
+		 * Thread routine.
+		 * Main loop function
+		 * 
+		 * @param id
+		 */
+		void poolRoutine(int id);
+
+		/**
+		 * Print the thread id.
+		 * 
+		 * @param id
+		 */
+		void printThreadId(int id);
+
+		/**
+		 * Join every threads, after the end of every task.
+		 * 
+		 */
+		void endPool();
+
+		/**
+		 * Get the time to store as the thread pool's starting time.
+		 * 
+		 */
+		void setStartTime();
+
+		/**
+		 * Return the time between now and the start time.
+		 * Equivalent to a loading time.
+		 * The user chooses when to show the loading time, do not forget to set the start time.
+		 */
+		float getLoadingTime();
+
+		/**
+		 * Time when the pool has finished doing every tasks.
+		 */
+		float printLastWorkingTime();
+
+		/**
+		 * Print the time when the last task was finished.
+		 * 
+		 * @return 
+		 */
+		float printLastWorkingTimeOnce();
 	};
 }
-
-using namespace Utils;

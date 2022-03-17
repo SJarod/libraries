@@ -19,21 +19,62 @@ struct float2
 	//right
 	static const float2 ri;
 
-	inline float	sqrMag() const;
-	inline float	mag() const;
-	inline float2	normalized() const;
+	/**
+	 * Get the square magnitude of this vector.
+	 * 
+	 * @return float
+	 */
+	inline float sqrMag() const;
 
+	/**
+	 * Get the magnitude of this vector.
+	 * 
+	 * @return 
+	 */
+	inline float mag() const;
+
+	/**
+	 * Get this vector with normalized magnitude.
+	 * 
+	 * @return 
+	 */
+	inline float2 normalized() const;
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline float& operator[](const unsigned int i);
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline const float& operator[](const unsigned int i) const;
 };
 
-//float2 + float2
+/**
+ * float2 + float2.
+ */
 inline float2 operator+(const float2& a, const float2& f);
-//float2 - float2
+
+/**
+ * float2 - float2.
+ */
 inline float2 operator-(const float2& a, const float2& f);
-//f * float2
+
+/**
+ * f * float2.
+ */
 inline float2 operator*(const float& f, const float2& a);
-//float2 / f
+
+/**
+ * float2 / f.
+ */
 inline float2 operator/(const float2& a, const float& f);
 
 #ifdef FLOAT_AS_VEC

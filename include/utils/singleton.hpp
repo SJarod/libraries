@@ -4,22 +4,23 @@
 
 namespace Utils
 {
-	/*
-	Creating a Singleton class
-	--------------------------
-
-	class MySingleton : public Singleton<MySingleton>
-	{
-		friend class Singleton<MySingleton>;
-
-	private:
-		MySingleton() {}
-	};
-
-	--------------------------
-	Don't forget to call destroy() at the end of program to destory the instance.
-	*/
-
+	/**
+	 * Creating a Singleton class.
+	 * ---------------------------
+	 * 
+	 * @code
+	 *	class MySingleton : public Singleton<MySingleton>
+	 *	{
+	 *		friend class Singleton<MySingleton>;
+	 *	
+	 *	private:
+	 *		MySingleton() {}
+	 *	};
+	 * @endcode
+	 * 
+	 * ---------------------------
+	 * Don't forget to call destroy() at the end of program to destory the instance.
+	 */
 	template<class T>
 	class Singleton
 	{
@@ -27,17 +28,28 @@ namespace Utils
 		static T* instance;
 
 	public:
+		/**
+		 * Get the unique instance.
+		 * 
+		 * @return 
+		 */
 		static inline T* getInstance();
 
-		//destroys singleton instance
+		/**
+		 * Destroy the singleton instance.
+		 * Call this function at the end of program.
+		 * 
+		 */
 		static void destroy();
 
-		//cannot create any Singleton object
+		/**
+		 * Cannot create any singleton object.
+		 * 
+		 * @param s
+		 */
 		void operator=(const Singleton& s) = delete;
 	};
 }
-
-using namespace Utils;
 
 template<class T>
 T* Utils::Singleton<T>::instance = new T;

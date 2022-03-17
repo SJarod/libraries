@@ -40,7 +40,7 @@ Utils::ThreadPool::~ThreadPool()
 
 void Utils::ThreadPool::setMultithread(const bool param)
 {
-	if (tasks.emptyQueue())
+	if (tasks.isQueueEmpty())
 		multithread = param;
 }
 
@@ -93,7 +93,7 @@ void Utils::ThreadPool::poolRoutine(int id)
 
 		queueSL.lock();
 
-		if (tasks.emptyQueue())
+		if (tasks.isQueueEmpty())
 		{
 			queueSL.unlock();
 			continue;
@@ -113,7 +113,7 @@ void Utils::ThreadPool::printThreadId(int id)
 
 void Utils::ThreadPool::endPool()
 {
-	while (!tasks.emptyQueue())
+	while (!tasks.isQueueEmpty())
 		std::this_thread::yield();
 
 	running.store(false);

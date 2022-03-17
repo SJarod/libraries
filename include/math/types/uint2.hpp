@@ -11,12 +11,12 @@ struct uint2
 	};
 
 	/**
-	 * Access uint2 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline uint& operator[](const unsigned int i);
 
 	/**
-	 * Access uint2 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline const uint& operator[](const unsigned int i) const;
 };

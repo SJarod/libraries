@@ -28,26 +28,74 @@ struct float3
 	//backward
 	static const float3 bw;
 
-	//get vector's quaternion
+	/**
+	 * Get this vector's quaternion.
+	 * 
+	 * @return 
+	 */
 	inline Quaternion q() const;
 
-	inline float	sqrMag() const;
-	inline float	mag() const;
-	inline float3	normalized() const;
+	/**
+	 * Get the square magnitude of this vector.
+	 *
+	 * @return 
+	 */
+	inline float sqrMag() const;
 
+	/**
+	 * Get the magnitude of this vector.
+	 * 
+	 * @return 
+	 */
+	inline float mag() const;
+
+	/**
+	 * Get this vector with normalized magnitude.
+	 * 
+	 * @return 
+	 */
+	inline float3 normalized() const;
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline float& operator[](const unsigned int i);
+
+	/**
+	 * Access this vector's elements with [].
+	 * 
+	 * @param i
+	 * @return 
+	 */
 	inline const float& operator[](const unsigned int i) const;
 };
 
-//-float3
+/**
+ * -float3.
+ */
 inline float3 operator-(const float3& a);
-//float3 - float3
+
+/**
+ * float3 - float3.
+ */
 inline float3 operator-(const float3& a, const float3& f);
-//f * float3
+
+/**
+ * f * float3.
+ */
 inline float3 operator*(const float& f, const float3& a);
-//float3 / f
+
+/**
+ * float3 / f.
+ */
 inline float3 operator/(const float3& a, const float& f);
-//float3 += float3
+
+/**
+ * float3 += float3.
+ */
 inline void operator+=(float3& a, const float3& f);
 
 #ifdef FLOAT_AS_VEC

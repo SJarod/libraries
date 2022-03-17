@@ -14,12 +14,12 @@ struct uint3
 	};
 
 	/**
-	 * Access uint3 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline uint& operator[](const unsigned int i);
 
 	/**
-	 * Access uint3 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline const uint& operator[](const unsigned int i) const;
 };

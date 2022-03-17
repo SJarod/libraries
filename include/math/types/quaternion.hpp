@@ -17,12 +17,18 @@ struct Quaternion
 	Quaternion() = default;
 
 	/**
-	 * Create a simple quaternion.
+	 * Create a simple quaternion setting its values to the arguments, without calculations.
 	 */
 	inline Quaternion(const float& a, const float& i, const float& j, const float& k);
 
 	/**
+	 * Create a simple quaternion setting its values to the argument, without calculations.
+	 */
+	inline Quaternion(const float4& v);
+
+	/**
 	 * Create rotation quaternion.
+	 * The quaternion should be normalized.
 	 *
 	 * @param angle in degrees
 	 * @param v
@@ -34,25 +40,41 @@ struct Quaternion
 	 *
 	 * @return quaternion's conjugate
 	 */
-	inline Quaternion	conjugate() const;
+	inline Quaternion conjugate() const;
 
-	inline float4		vec() const;
+	/**
+	 * Return the quaternion as a float4.
+	 * 
+	 * @return 
+	 */
+	inline float4 vec() const;
 
 	/**
 	 * Return the quaternion as a rotation matrix.
 	 *
 	 * @return mat4
 	 */
-	inline mat4			mat() const;
+	inline mat4 mat() const;
 };
 
-//q * f
+/**
+ * q * f.
+ */
 inline Quaternion operator*(const Quaternion& q, const float& f);
-//-q
+
+/**
+ * -q.
+ */
 inline Quaternion operator-(const Quaternion& q);
-//q + q
+
+/**
+ * q + q.
+ */
 inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2);
-//q * q
+
+/**
+ * q * q.
+ */
 inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
 #include "math/types/quaternion.inl"

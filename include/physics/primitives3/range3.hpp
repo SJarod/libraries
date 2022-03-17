@@ -11,11 +11,21 @@ namespace Physics
 			float max;
 
 			Range3() = default;
+
+			/**
+			 * Create a range.
+			 * 
+			 * @param min
+			 * @param max
+			 */
 			Range3(const float& min, const float& max);
 
+			/**
+			 * Length of the range.
+			 * 
+			 * @return 
+			 */
 			float length() const;
 		};
 	}
 }
-
-using namespace Physics;

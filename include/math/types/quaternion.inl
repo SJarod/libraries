@@ -11,6 +11,11 @@ inline Quaternion::Quaternion(const float& a, const float& i, const float& j, co
 {
 }
 
+inline Quaternion::Quaternion(const float4& v)
+	: a(v.x), i(v.y), j(v.z), k(v.w)
+{
+}
+
 inline Quaternion::Quaternion(const float& angle, const float3& v)
 {
 	float a = angle * TORAD;

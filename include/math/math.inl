@@ -27,7 +27,6 @@ inline float Math::clamp(const float& value, const float& mini, const float& max
 
 inline float Math::saturate(const float& value)
 {
-	//clamp between 0 and 1
 	return max(0.f, min(value, 1.f));
 }
 

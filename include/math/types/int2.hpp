@@ -9,12 +9,12 @@ struct int2
 	};
 
 	/**
-	 * Access int2 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline int& operator[](const unsigned int i);
 
 	/**
-	 * Access int2 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline const int& operator[](const unsigned int i) const;
 };

@@ -15,9 +15,16 @@ namespace Physics
             float   angle = 0.f;
 
             Rectangle() = default;
+
+            /**
+             * Create a rectangle.
+             * 
+             * @param x
+             * @param y
+             * @param width
+             * @param height
+             */
             Rectangle(const float& x, const float& y, const float& width, const float& height);
         };
     }
 }
-
-using namespace Physics;

@@ -4,7 +4,7 @@ struct float4;
 struct float3;
 
 /**
- * Include math/math.hpp before including math/color.hpp.
+ * Include math/math.hpp before including math/types/color.hpp.
  */
 struct Color
 {

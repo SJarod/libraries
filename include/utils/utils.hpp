@@ -14,6 +14,12 @@ namespace Utils
 
 	public:
 		Node() = default;
+
+		/**
+		 * Create a node used in the queue.
+		 * 
+		 * @param t
+		 */
 		Node(const T& t);
 
 		T			data;
@@ -25,18 +31,43 @@ namespace Utils
 	{
 	private:
 		Node<T>*		head = nullptr;
-		unsigned int	size = 0;	//queue size, number of elements
+		//queue size, number of elements
+		unsigned int	size = 0;
 
 	public:
-		~Queue();					//not trivially copyable
+		/**
+		 * The queue is not tribially copyable.
+		 */
+		~Queue();
 
-		T& frontData(const int iterator = 0);		//get front node's data or else
+		/**
+		 * Get the front node's data or specify the node's index.
+		 */
+		T& frontData(const int iterator = 0);
 
-		void			pushBackNode(const T& t);				//add node at end of queue
-		void			popFrontNode(const int iterator = 0);	//erase front node or else
+		/**
+		 * Add a node at the end of the queue.
+		 */
+		void pushBackNode(const T& t);
 
-		bool			emptyQueue();
-		unsigned int	sizeQueue() const;
+		/**
+		 * Erase front node or specify the index of the node to erase.
+		 */
+		void popFrontNode(const int iterator = 0);
+
+		/**
+		 * Is the queue empty?
+		 * 
+		 * @return 
+		 */
+		bool isQueueEmpty();
+
+		/**
+		 * Get the size of the queue.
+		 * 
+		 * @return 
+		 */
+		unsigned int sizeQueue() const;
 	};
 
 	class SpinLock
@@ -45,7 +76,16 @@ namespace Utils
 		std::atomic_flag flag = ATOMIC_FLAG_INIT;
 
 	public:
+		/**
+		 * Lock the spin lock.
+		 * 
+		 */
 		void lock();
+
+		/**
+		 * Unlock the spin lock.
+		 * 
+		 */
 		void unlock();
 	};
 
@@ -54,19 +94,42 @@ namespace Utils
 	private:
 		std::string raw;
 		int			length = 0;
-		int			cursor = 0;	//which line is the cursor pointing at
+		//which character is the cursor pointing at?
+		int			cursor = 0;
 
 	public:
 		RawText() = default;
+
+		/**
+		 * Create a raw text from a std::string.
+		 * 
+		 * @param str
+		 */
 		RawText(const std::string& str);
 
-		void			setCursor(const int pos);
-		bool			getline(std::string& out);
-		std::string&	getRawText();
+		/**
+		 * Move the cursor.
+		 * 
+		 * @param pos
+		 */
+		void setCursor(const int pos);
+
+		/**
+		 * Get the line where the cursor is, then move the cursor to the beginning of the next line.
+		 * 
+		 * @param out
+		 * @return 
+		 */
+		bool getline(std::string& out);
+
+		/**
+		 * Get the entire text.
+		 * 
+		 * @return 
+		 */
+		std::string& getRawText();
 	};
 }
-
-using namespace Utils;
 
 template<typename T>
 inline Utils::Node<T>::Node(const T& t)
@@ -77,7 +140,7 @@ inline Utils::Node<T>::Node(const T& t)
 template<typename T>
 inline Utils::Queue<T>::~Queue()
 {
-	while (!emptyQueue())
+	while (!isQueueEmpty())
 		popFrontNode();
 }
 
@@ -99,7 +162,8 @@ inline T& Utils::Queue<T>::frontData(const int iterator)
 		return node->data;
 	}
 
-	std::abort();
+	//std::abort();
+	assert(("out of range", 0));
 }
 
 template<typename T>
@@ -130,7 +194,7 @@ void Utils::Queue<T>::pushBackNode(const T& t)
 template<typename T>
 void Utils::Queue<T>::popFrontNode(const int iterator)
 {
-	if (emptyQueue())
+	if (isQueueEmpty())
 		return;
 
 	Node<T>* node = head;
@@ -163,7 +227,7 @@ void Utils::Queue<T>::popFrontNode(const int iterator)
 }
 
 template<typename T>
-bool Utils::Queue<T>::emptyQueue()
+bool Utils::Queue<T>::isQueueEmpty()
 {
 	return size == 0;
 }

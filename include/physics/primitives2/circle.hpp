@@ -13,9 +13,14 @@ namespace Physics
             float   radius;
 
             Circle() = default;
+
+            /**
+             * Create a circle.
+             * 
+             * @param center
+             * @param radius
+             */
             Circle(const vec2& c, const float& r);
         };
     }
 }
-
-using namespace Physics;

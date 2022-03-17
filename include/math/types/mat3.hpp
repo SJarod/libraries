@@ -15,7 +15,20 @@ struct mat3
 	//identity
 	static const mat3 id;
 
+	/**
+	 * Access this matrix's row with [].
+	 * 
+	 * @param i
+	 * @return row
+	 */
 	inline float3& operator[](const unsigned int i);
+
+	/**
+	 * Access this matrix's row with [].
+	 * 
+	 * @param i
+	 * @return row
+	 */
 	inline const float3& operator[](const unsigned int i) const;
 };
 

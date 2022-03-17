@@ -1,5 +1,6 @@
-#include "physics/primitives3/box.hpp"
 #include "physics/primitives3/range3.hpp"
+
+#include "physics/primitives3/box.hpp"
 
 Physics::Primitives3::Quad::Quad(const vec3& center, const vec2& extensions, const Quaternion& q, bool reverse)
 	:center(center), extensions(extensions), q(q), reverse(reverse)

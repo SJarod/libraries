@@ -8,14 +8,21 @@ namespace Physics
 {
 	namespace Primitives2
 	{
+		/**
+		 * A concave polygon will always have at least one interior angle.
+		 */
 		class ConcavePolygon
 		{
 		public:
-			std::vector<ConvexPolygon>	polygons;	//array of convex polygons
+			//array of convex polygons
+			std::vector<ConvexPolygon>	polygons;
 
+			/**
+			 * Add a polygon to the array of convex polygons.
+			 * 
+			 * @param ConvexPolygon
+			 */
 			void addPolygon(const ConvexPolygon& convex);
 		};
 	}
 }
-
-using namespace Physics;

@@ -12,4 +12,12 @@
 #define new DEBUG_NEW
 #endif
 
+/**
+ * Initialize the leaks detection.
+ * Call this function int the main() after including this file.
+ */
 void initMemleaksDebug();
+
+
+
+

@@ -12,12 +12,12 @@ struct int3
 	};
 
 	/**
-	 * Access int3 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline int& operator[](const unsigned int i);
 
 	/**
-	 * Access int3 elements.
+	 * Access this vector's elements with [].
 	 */
 	inline const int& operator[](const unsigned int i) const;
 };

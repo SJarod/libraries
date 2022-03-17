@@ -15,13 +15,31 @@ struct mat4
 	//identity
 	static const mat4 id;
 
+	/**
+	 * Access this matrix's row with [].
+	 * 
+	 * \param i
+	 * \return row
+	 */
 	inline float4& operator[](const unsigned int i);
+
+	/**
+	 * Access this matrix's row with [].
+	 * 
+	 * \param i
+	 * \return row
+	 */
 	inline const float4& operator[](const unsigned int i) const;
 };
 
-//mat4 * float4
+/**
+ * mat4 * float4.
+ */
 inline float4 operator*(const mat4& m, const float4& f);
-//mat4 * mat4
+
+/**
+ * mat4 * mat4.
+ */
 inline mat4 operator*(const mat4& m1, const mat4& m2);
 
 #include "math/types/mat4.inl"

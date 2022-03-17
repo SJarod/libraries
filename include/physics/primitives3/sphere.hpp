@@ -18,11 +18,22 @@ namespace Physics
 			float	radius;
 
 			Sphere() = default;
+
+			/**
+			 * Create a sphere.
+			 * 
+			 * @param center
+			 * @param radius
+			 */
 			Sphere(const vec3& center, const float& radius);
 
+			/**
+			 * Get sphere's vertices and indices for a sphere shaped mesh.
+			 *
+			 * @param vertices
+			 * @param indices
+			 */
 			void getAttribs(std::vector<float>& vertices, std::vector<unsigned int>& indices) const;
 		};
 	}
 }
-
-using namespace Physics;

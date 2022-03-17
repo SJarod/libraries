@@ -18,8 +18,8 @@ Physics::Primitives2::Range2::Range2(const vec2& pt, const vec2& dir)
 
 Physics::Primitives2::Range2::Range2(const Rectangle& rect, const vec2& dir)
 {
-	vec2 A, B, C, D;   //4 corners of rectangle
-	float a, b, c, d;       //dotProduct
+	vec2 A, B, C, D;	//4 corners of rectangle
+	float a, b, c, d;	//dotProduct
 
 	A.x = rect.center.x - rect.width / 2;
 	A.y = rect.center.x - rect.height / 2;
@@ -43,7 +43,7 @@ Physics::Primitives2::Range2::Range2(const Rectangle& rect, const vec2& dir)
 
 Physics::Primitives2::Range2::Range2(const Circle& cl, const vec2& dir)
 {
-	vec2 A, B;     //2 points of circle
+	vec2 A, B;	//2 points of circle
 
 	A.x = cl.center.x - cl.radius;
 	A.y = cl.center.y;
