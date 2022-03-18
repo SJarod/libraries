@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cassert>
+#include <cstdarg>
 
 template<typename T, int N>
 struct vec
@@ -13,11 +14,13 @@ struct vec
 	inline vec<T, N>() = default;
 
 	/**
-	 * Create a vector setting all of its value to the specified value.
+	 * Create a vector setting its values to the specified parameters.
+	 * If there is only one parameter, all of the vector's elements will be set to this value.
+	 * The additional parameters are ignored.
 	 *
-	 * @param t
+	 * @param ts...
 	 */
-	inline vec<T, N>(const T& t);
+	inline vec<T, N>(const T ts...);
 
 	/**
 	 * Get the square magnitude of this vector.
@@ -58,12 +61,29 @@ struct vec
 };
 
 template<typename T, int N>
-inline vec<T, N>::vec(const T& t)
+inline vec<T, N>::vec(const T ts...)
 {
+	std::va_list args;
+	va_start(args, ts);
+
 	for (int i = 0; i < N; ++i)
 	{
-		elem[i] = t;
+		elem[i] = ts;
 	}
+
+	for (int i = 1; i < N; ++i)
+	{
+		T val;
+		if (typeid(T) == typeid(float))
+			val = va_arg(args, double);
+		else
+			val = va_arg(args, T);
+
+		if (val)
+			elem[i] = val;
+	}
+
+	va_end(args);
 }
 
 template<typename T, int N>
