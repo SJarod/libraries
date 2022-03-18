@@ -1,6 +1,6 @@
 #pragma once
 
-#include "math/math.hpp"
+#include "mathematics.hpp"
 
 //primitives2
 #include "physics/primitives2/rectangle.hpp"

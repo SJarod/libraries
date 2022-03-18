@@ -5,7 +5,7 @@
 #include <string>
 #include <atomic>
 
-#include "math/math.hpp"
+#include "mathematics.hpp"
 
 namespace Utils
 {

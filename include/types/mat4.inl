@@ -1,8 +1,8 @@
 #include <cassert>
 
-#include "math/types/float4.hpp"
+#include "types/float4.hpp"
 
-#include "math/types/mat4.hpp"
+#include "types/mat4.hpp"
 
 inline const mat4 mat4::zo = { float4::zo, float4::zo, float4::zo, float4::zo };
 inline const mat4 mat4::id = {

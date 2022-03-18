@@ -1,4 +1,4 @@
-#include "math/math.hpp"
+#include "mathematics.hpp"
 
 inline float Math::min(const float& a, const float& b)
 {

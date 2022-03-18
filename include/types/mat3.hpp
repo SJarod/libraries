@@ -32,4 +32,4 @@ struct mat3
 	inline const float3& operator[](const uint i) const;
 };
 
-#include "math/types/mat3.inl"
+#include "types/mat3.inl"

@@ -4,7 +4,7 @@ struct float4;
 struct float3;
 
 /**
- * Include math/math.hpp before including math/types/color.hpp.
+ * Include mathematics.hpp before including types/color.hpp.
  */
 struct Color
 {
@@ -33,4 +33,4 @@ struct Color
 	static const Color purple;
 };
 
-#include "math/types/color.inl"
+#include "types/color.inl"

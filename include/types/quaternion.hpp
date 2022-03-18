@@ -77,4 +77,4 @@ inline Quaternion operator+(const Quaternion& q1, const Quaternion& q2);
  */
 inline Quaternion operator*(const Quaternion& q1, const Quaternion& q2);
 
-#include "math/types/quaternion.inl"
+#include "types/quaternion.inl"

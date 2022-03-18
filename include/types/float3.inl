@@ -1,9 +1,9 @@
 #include <cmath>
 #include <cassert>
 
-#include "math/types/quaternion.hpp"
+#include "types/quaternion.hpp"
 
-#include "math/types/float3.hpp"
+#include "types/float3.hpp"
 
 inline const float3 float3::zo = {  0.f,  0.f,  0.f };
 inline const float3 float3::up = {  0.f,  1.f,  0.f };

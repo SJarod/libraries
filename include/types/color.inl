@@ -1,6 +1,6 @@
-#include "math/types/float4.hpp"
+#include "types/float4.hpp"
 
-#include "math/types/color.hpp"
+#include "types/color.hpp"
 
 inline const Color Color::white		= {   1.f,   1.f,   1.f, 1.f };
 inline const Color Color::silver	= { 0.75f, 0.75f, 0.75f, 1.f };

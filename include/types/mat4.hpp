@@ -42,4 +42,4 @@ inline float4 operator*(const mat4& m, const float4& f);
  */
 inline mat4 operator*(const mat4& m1, const mat4& m2);
 
-#include "math/types/mat4.inl"
+#include "types/mat4.inl"

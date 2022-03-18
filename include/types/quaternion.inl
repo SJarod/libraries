@@ -1,8 +1,8 @@
-#include "math/math.hpp"
-#include "math/types/float4.hpp"
-#include "math/types/mat4.hpp"
+#include "mathematics.hpp"
+#include "types/float4.hpp"
+#include "types/mat4.hpp"
 
-#include "math/types/quaternion.hpp"
+#include "types/quaternion.hpp"
 
 inline const Quaternion Quaternion::id = { 1.f, 0.f, 0.f, 0.f };
 

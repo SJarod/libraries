@@ -25,16 +25,16 @@ typedef unsigned int uint;
 
 #include <iostream>
 
-#include "math/types/float2.hpp"
-#include "math/types/float3.hpp"
-#include "math/types/float4.hpp"
+#include "types/float2.hpp"
+#include "types/float3.hpp"
+#include "types/float4.hpp"
 
-#include "math/types/vect.hpp"
+#include "types/vect.hpp"
 
-#include "math/types/mat3.hpp"
-#include "math/types/mat4.hpp"
+#include "types/mat3.hpp"
+#include "types/mat4.hpp"
 
-#include "math/types/quaternion.hpp"
+#include "types/quaternion.hpp"
 
 namespace Math
 {
@@ -242,4 +242,4 @@ inline std::ostream& operator<<(std::ostream& os, const mat3& m);
  */
 inline std::ostream& operator<<(std::ostream& os, const mat4& m);
 
-#include "math/math.inl"
+#include "mathematics.inl"

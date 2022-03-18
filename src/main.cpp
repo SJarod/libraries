@@ -2,7 +2,7 @@
 
 #include "utils/memleaks.hpp"
 
-#include "math/math.hpp"
+#include "mathematics.hpp"
 
 int main()
 {

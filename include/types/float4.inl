@@ -1,7 +1,7 @@
 #include <cmath>
 #include <cassert>
 
-#include "math/types/float4.hpp"
+#include "types/float4.hpp"
 
 inline const float4 float4::zo = { 0.f, 0.f, 0.f, 0.f };
 

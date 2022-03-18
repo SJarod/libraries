@@ -81,4 +81,4 @@ inline float2 operator/(const float2& a, const float& f);
 typedef float2 vec2;
 #endif
 
-#include "math/types/float2.inl"
+#include "types/float2.inl"

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "math/math.hpp"
+#include "mathematics.hpp"
 #include "physics/primitives3/aabb3.hpp"
 
 namespace Physics
