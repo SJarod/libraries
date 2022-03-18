@@ -3,7 +3,7 @@
 #include <cassert>
 #include <cstdarg>
 
-template<typename T, int N>
+template<typename T, uint N>
 struct vec
 {
 	union
@@ -65,7 +65,7 @@ struct vec
 	inline const T& operator[](const uint i) const;
 };
 
-template<typename T, int N>
+template<typename T, uint N>
 inline vec<T, N>::vec(const T ts...)
 {
 	std::va_list args;
@@ -73,7 +73,7 @@ inline vec<T, N>::vec(const T ts...)
 
 	elem[0] = ts;
 
-	for (int i = 1; i < N; ++i)
+	for (uint i = 1; i < N; ++i)
 	{
 		elem[i] = va_arg(args, T);
 	}
@@ -81,11 +81,11 @@ inline vec<T, N>::vec(const T ts...)
 	va_end(args);
 }
 
-template<typename T, int N>
+template<typename T, uint N>
 inline float vec<T, N>::sqrMag() const
 {
 	float m = 0.f;
-	for (int i = 0; i < N; ++i)
+	for (uint i = 0; i < N; ++i)
 	{
 		m += (float)elem[i] * (float)elem[i];
 	}
@@ -93,13 +93,13 @@ inline float vec<T, N>::sqrMag() const
 	return m;
 }
 
-template<typename T, int N>
+template<typename T, uint N>
 inline float vec<T, N>::mag() const
 {
 	return sqrtf(sqrMag());
 }
 
-template<typename T, int N>
+template<typename T, uint N>
 inline vec<T, N> vec<T, N>::normalized() const
 {
 	float m = mag();
@@ -107,7 +107,7 @@ inline vec<T, N> vec<T, N>::normalized() const
 		return *this;
 
 	vec<T, N> v;
-	for (int i = 0; i < N; ++i)
+	for (uint i = 0; i < N; ++i)
 	{
 		v[i] = (float)elem[i] / m;
 	}
@@ -115,14 +115,14 @@ inline vec<T, N> vec<T, N>::normalized() const
 	return v;
 }
 
-template<typename T, int N>
+template<typename T, uint N>
 inline T& vec<T, N>::operator[](const uint i)
 {
 	assert(("out of range", i < N));
 	return elem[i];
 }
 
-template<typename T, int N>
+template<typename T, uint N>
 inline const T& vec<T, N>::operator[](const uint i) const
 {
 	assert(("out of range", i < N));
