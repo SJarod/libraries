@@ -15,8 +15,13 @@ struct vec
 
 	/**
 	 * Create a vector setting its values to the specified parameters.
-	 * If there is only one parameter, all of the vector's elements will be set to this value.
+	 * If there are not enough parameters, the remaining elements will not be initialized.
+	 * If a parameter is not of type T, the corresponding element will not be initialized.
 	 * The additional parameters are ignored.
+	 * 
+	 * This constructor does not work with float type : use array manual initialization.
+	 * This constructor must work with small classical types : int, uint, double, ...
+	 * This constructor may not work with array types : mat3, mat4, ...
 	 *
 	 * @param ts...
 	 */
@@ -66,21 +71,11 @@ inline vec<T, N>::vec(const T ts...)
 	std::va_list args;
 	va_start(args, ts);
 
-	for (int i = 0; i < N; ++i)
-	{
-		elem[i] = ts;
-	}
+	elem[0] = ts;
 
 	for (int i = 1; i < N; ++i)
 	{
-		T val;
-		if (typeid(T) == typeid(float))
-			val = va_arg(args, double);
-		else
-			val = va_arg(args, T);
-
-		if (val)
-			elem[i] = val;
+		elem[i] = va_arg(args, T);
 	}
 
 	va_end(args);
