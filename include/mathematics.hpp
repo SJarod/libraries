@@ -1,5 +1,6 @@
 #pragma once
 
+//typedef float as vec (float2 becomes vec2)
 #define FLOAT_AS_VEC
 
 #ifndef M_PI
@@ -241,5 +242,13 @@ inline std::ostream& operator<<(std::ostream& os, const mat3& m);
  * Display a mat4 in the console.
  */
 inline std::ostream& operator<<(std::ostream& os, const mat4& m);
+
+/**
+ * Display a vec<T, N> in the console.
+ * Some custom types are strangely displayed.
+ * If the type T cannot be printed in an ostream, this operator cannot be called.
+ */
+template<typename T, uint N>
+inline std::ostream& operator<<(std::ostream& os, const vec<T, N>& v);
 
 #include "mathematics.inl"

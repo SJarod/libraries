@@ -280,3 +280,22 @@ inline std::ostream& operator<<(std::ostream& os, const mat4& m)
 
 	return os;
 }
+
+template<typename T, uint N>
+inline std::ostream& operator<<(std::ostream& os, const vec<T, N>& v)
+{
+#ifdef RAW_VEC_TEMPLATE_NAME
+	os << "---vec<" << typeid(T).name() << ", " << N << ">---" << std::endl;
+#else
+	os << "---" << typeid(T).name() << N << "---" << std::endl;
+#endif
+
+	for (uint i = 0; i < N; ++i)
+	{
+		os << v.elem[i];
+		if (i < N - 1)
+			os << ", ";
+	}
+
+	return os;
+}

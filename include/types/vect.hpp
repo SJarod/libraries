@@ -3,6 +3,9 @@
 #include <cassert>
 #include <cstdarg>
 
+//used for printing the vector
+//#define RAW_VEC_TEMPLATE_NAME
+
 template<typename T, uint N>
 struct vec
 {
