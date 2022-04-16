@@ -18,7 +18,7 @@ inline Quaternion::Quaternion(const float4& v)
 
 inline Quaternion::Quaternion(const float& angle, const float3& v)
 {
-	float a = angle * TORAD;
+	float a = angle * Math::Conversion::degrad;
 
 	//real part
 	this->a = cosf(a / 2);

@@ -92,7 +92,7 @@ inline float Math2::dot(const float2& a, const float2& b)
 
 inline float2 Math2::rotate(const float2& v, const float& angle)
 {
-	float a = angle * TORAD;
+	float a = angle * Math::Conversion::degrad;
 	float x = cosf(a) * v.x - sinf(a) * v.y;
 	float y = sinf(a) * v.x + cosf(a) * v.y;
 
@@ -142,7 +142,7 @@ inline mat4 Math3::frustum(const float& left, const float& right, const float& b
 
 inline mat4 Math3::perspective(const float& fovYdeg, const float& aspect, const float& near, const float& far)
 {
-	float top = near * tanf(fovYdeg * TORAD * 0.5f);
+	float top = near * tanf(fovYdeg * Math::Conversion::degrad * 0.5f);
 	float right = top * aspect;
 
 	return frustum(-right, right, -top, top, near, far);
@@ -170,7 +170,7 @@ inline mat4 Math3::translateMatrix(const float3& pos)
 
 inline mat4 Math3::rotateXMatrix(const float& pitch)
 {
-	float a = pitch * TORAD;
+	float a = pitch * Math::Conversion::degrad;
 	return mat4{
 		1.f, 0.f, 0.f, 0.f,
 		0.f, cos(a), -sin(a), 0.f,
@@ -181,7 +181,7 @@ inline mat4 Math3::rotateXMatrix(const float& pitch)
 
 inline mat4 Math3::rotateYMatrix(const float& yaw)
 {
-	float a = yaw * TORAD;
+	float a = yaw * Math::Conversion::degrad;
 	return mat4{
 		cos(a), 0.f, sin(a), 0.f,
 		0.f, 1.f, 0.f, 0.f,
@@ -192,7 +192,7 @@ inline mat4 Math3::rotateYMatrix(const float& yaw)
 
 inline mat4 Math3::rotateZMatrix(const float& roll)
 {
-	float a = roll * TORAD;
+	float a = roll * Math::Conversion::degrad;
 	return mat4{
 		cos(a), -sin(a), 0.f, 0.f,
 		sin(a), cos(a), 0.f, 0.f,

@@ -9,8 +9,8 @@ void Physics::Primitives3::Sphere::getAttribs(std::vector<float>& vertices, std:
 {
     float r = radius;
 
-    float angleLon = 2.f * M_PI / M_LON;
-    float angleLat = M_PI / M_LAT;
+    float angleLon = Math::Constant::tau / M_LON;
+    float angleLat = Math::Constant::pi / M_LAT;
 
     for (int i = 0; i < M_LAT; ++i)
     {

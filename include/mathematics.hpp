@@ -3,20 +3,29 @@
 //typedef float as vec (float2 becomes vec2)
 #define FLOAT_AS_VEC
 
+//pi
+//https://www.angio.net/pi/bigpi.cgi
+
+//precision calculator
+//https://www.mathsisfun.com/calculator-precision.html
+
+//The constant values have a 50 digits precision.
+#if false
 #ifndef M_PI
 #define M_PI 3.14159265358979323846264338327950288419716939937510f
 #endif
 // 2 * pi
 #ifndef M_TAU
-#define M_TAU 6.28318530717958647692528676655900576839433879875020f
+#define M_TAU 6.28318530717958647692528676655900576839433879875021f
 #endif
 // pi / 180
 #ifndef TORAD
-#define TORAD 0.017453292519943295769236907684886127134428718885417f
+#define TORAD 0.01745329251994329576923690768488612713442871888541f
 #endif
 // 180 / pi
 #ifndef TODEG
-#define TODEG 57.295779513082320876798154814105170332405472466564f
+#define TODEG 57.29577951308232087679815481410517033240547246656432f
+#endif
 #endif
 
 typedef unsigned int uint;
@@ -25,6 +34,25 @@ typedef unsigned int uint;
 #include <cfloat>
 
 #include <iostream>
+
+namespace Math
+{
+	struct Constant
+	{
+		static inline const double pi = 3.14159265358979323846264338327950288419716939937510;
+		// 2 * pi
+		static inline const double tau = 6.28318530717958647692528676655900576839433879875021;
+		static inline const double e = 2.71828182845904523536028747135266249775724709369995;
+	};
+
+	struct Conversion
+	{
+		// pi / 180
+		static inline const double degrad = 0.01745329251994329576923690768488612713442871888541;
+		// 180 / pi
+		static inline const double raddeg = 57.29577951308232087679815481410517033240547246656432;
+	};
+}
 
 #include "types/float2.hpp"
 #include "types/float3.hpp"
@@ -51,7 +79,7 @@ namespace Math
 
 	/**
 	 * Minimal vector between a and b.
-	 * 
+	 *
 	 * @return float3 where its elements are the minimums of the corresponding elements between a and b
 	 */
 	inline float3 min(const float3& a, const float3& b);
@@ -65,7 +93,7 @@ namespace Math
 
 	/**
 	 * Cap a value for it not to exceed the specified range.
-	 * 
+	 *
 	 * @param value
 	 * @param minimal step
 	 * @param maximal step
@@ -80,7 +108,7 @@ namespace Math
 	/**
 	 * Remap a value.
 	 * Transform a value from a range for it to fit into a new range.
-	 * 
+	 *
 	 * @param value
 	 * @param first minimal step
 	 * @param first maximal step
@@ -119,7 +147,7 @@ namespace Math2
 
 	/**
 	 * Rotate a vector.
-	 * 
+	 *
 	 * @param float2
 	 * @param angle in degrees
 	 */
@@ -170,21 +198,21 @@ namespace Math3
 
 	/**
 	 * Rotation matrix based on Euler's rotation.
-	 * 
+	 *
 	 * @param angle in degrees
 	 */
 	inline mat4 rotateXMatrix(const float& pitch);
 
 	/**
 	 * Rotation matrix based on Euler's rotation.
-	 * 
+	 *
 	 * @param angle in degrees
 	 */
 	inline mat4 rotateYMatrix(const float& yaw);
 
 	/**
 	 * Rotation matrix based on Euler's rotation.
-	 * 
+	 *
 	 * @param angle in degrees
 	 */
 	inline mat4 rotateZMatrix(const float& roll);
@@ -196,7 +224,7 @@ namespace Math3
 
 	/**
 	 * Rotate a vector3 using quaternion calculation.
-	 * 
+	 *
 	 * @param vector3
 	 * @param angle in degrees
 	 * @param rotation axis
