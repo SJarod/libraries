@@ -6,7 +6,6 @@
 
 int main()
 {
-	initMemleaksDebug();
 	std::cout << "Hello world !" << std::endl;
 
 	vec<mat4, 2> v = { mat4::id, mat4::zo };
