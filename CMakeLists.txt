@@ -1,26 +1,24 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(libraries)
+project(libraries_project)
 
 set(CMAKE_CXX_STANDARD 20)
 
-set(INCLUDE ${PROJECT_SOURCE_DIR}/include)
-set(SOURCE ${PROJECT_SOURCE_DIR}/src)
-
 file(GLOB_RECURSE SOURCES
-	${INCLUDE}/*.h
-	${INCLUDE}/*.hpp
-	${INCLUDE}/*.inl
-	${SOURCE}/*.c
-	${SOURCE}/*.cpp
+	include/*.h
+	include/*.hpp
+	include/*.inl
+	src/*.c
+	src/*.cpp
 )
 
 add_library(libraries STATIC ${SOURCES})
-target_include_directories(libraries PUBLIC ${INCLUDE})
+target_include_directories(libraries PUBLIC include)
 
+#installing the lib
 install(TARGETS libraries)
-install(
-	DIRECTORY ${INCLUDE}/
+#installing the include files
+install(DIRECTORY include/
 	DESTINATION include
 	FILES_MATCHING
 	PATTERN *.h
