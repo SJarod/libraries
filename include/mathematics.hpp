@@ -70,12 +70,14 @@ namespace Math
 	/**
 	 * Minimal value between a and b.
 	 */
-	inline float min(const float& a, const float& b);
+	template<typename T>
+	inline T min(const T& a, const T& b);
 
 	/**
 	 * Maximal value between a and b.
 	 */
-	inline float max(const float& a, const float& b);
+	template<typename T>
+	inline T max(const T& a, const T& b);
 
 	/**
 	 * Minimal vector between a and b.
@@ -98,7 +100,8 @@ namespace Math
 	 * @param minimal step
 	 * @param maximal step
 	 */
-	inline float clamp(const float& value, const float& mini, const float& maxi);
+	template<typename T>
+	inline T clamp(const T& value, const T& mini, const T& maxi);
 
 	/**
 	 * Clamp between 0 and 1.
@@ -115,12 +118,14 @@ namespace Math
 	 * @param second minimal step
 	 * @param second maximal step
 	 */
-	inline int remap(const int val, const int min1, const int max1, const int min2, const int max2);
+	template<typename T>
+	inline T remap(const T val, const T min1, const T max1, const T min2, const T max2);
 
 	/**
 	 * Linear interpolation from a specified value to another according to a specified time.
 	 */
-	inline float lerp(const float& from, const float& to, const float& t);
+	template<typename T>
+	inline T lerp(const T& from, const T& to, const T& t);
 
 	/**
 	 * Linear interpolation from a specified vector to another according to a specified time.

@@ -1,11 +1,13 @@
 #include "mathematics.hpp"
 
-inline float Math::min(const float& a, const float& b)
+template<typename T>
+inline T Math::min(const T& a, const T& b)
 {
 	return a < b ? a : b;
 }
 
-inline float Math::max(const float& a, const float& b)
+template<typename T>
+inline T Math::max(const T& a, const T& b)
 {
 	return a > b ? a : b;
 }
@@ -20,7 +22,8 @@ inline float3 Math::max(const float3& a, const float3& b)
 	return { max(a.x, b.x), max(a.y, b.y), max(a.z, a.z) };
 }
 
-inline float Math::clamp(const float& value, const float& mini, const float& maxi)
+template<typename T>
+inline T Math::clamp(const T& value, const T& mini, const T& maxi)
 {
 	return max(mini, min(value, maxi));
 }
@@ -30,12 +33,14 @@ inline float Math::saturate(const float& value)
 	return max(0.f, min(value, 1.f));
 }
 
-inline int Math::remap(const int val, const int min1, const int max1, const int min2, const int max2)
+template<typename T>
+inline T Math::remap(const T val, const T min1, const T max1, const T min2, const T max2)
 {
 	return min2 + (val - min1) * (max2 - min2) / (max1 - min1);
 }
 
-inline float Math::lerp(const float& from, const float& to, const float& t)
+template<typename T>
+inline T Math::lerp(const T& from, const T& to, const T& t)
 {
 	return (1 - t) * from + t * to;
 }

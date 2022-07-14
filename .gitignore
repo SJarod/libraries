@@ -1,6 +1,8 @@
 # project
 [Bb]uild
 [Ii]nstall
+.vs
+out
 
 # Build results
 [Dd]ebug
